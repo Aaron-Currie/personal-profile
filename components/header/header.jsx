@@ -4,9 +4,9 @@ import styles from './header.module.css';
 import Button from '../button/button';
 import { usePathname } from 'next/navigation';
 import MobileMenu from './mobile-menu';
-import { Modal, ModalOverlay } from '../modals/modals';
+import { ModalOverlay } from '../modals/modals';
 import { useUserContext } from '@/context/user';
-import useScreenSize from '@/app/hooks/screen-size';
+import useScreenSize from '@/hooks/screen-size';
 import QuickAccessButton from '../button/quick-access-button';
 
 const Header = () => {

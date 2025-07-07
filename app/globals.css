@@ -87,6 +87,10 @@ ul {
   gap: 10px;
 }
 
+.flex-center {
+  align-items: center;
+}
+
 @keyframes fadein {
   from {
     opacity: 0;

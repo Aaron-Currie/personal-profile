@@ -78,8 +78,7 @@ export default function AboutMe() {
                 <p>{'Current Training: Ongoing ops in cloud engineering (GCP cloud developer professional), HacktheBox cyber security training and side-project development (snowboading trick tacking app).'}</p>
                 <p>Currently Reading: Clean code, Robert C. Martin, Stormlight Archive, Branden Sanderson, Nexus, Yuval Harai</p>
                 <p>Special Interests: Snowboarding, Touring, Mountain biking, Hiking</p>
-                <ImageGrid images={hobbies}
-                    />
+                <ImageGrid images={hobbies}/>
             </CollapsableSection>
         </main>
     );

@@ -9,7 +9,7 @@ export const UserProvider = ({ children }) => {
         { mission: 'About Me', link: '/about-me', completed: false, recentUnlock: false },
         { mission: 'Experience', link: '/experience', completed: false, recentUnlock: false },
         { mission: 'Portfolio', link: '/portfolio', completed: false, recentUnlock: false },
-        { mission: 'Skills', link: '/tech-stack', completed: false, recentUnlock: false },
+        { mission: 'Skills', link: '/skills', completed: false, recentUnlock: false },
         { mission: 'CV', link: '/cv', completed: false, recentUnlock: false },
     ]);
 

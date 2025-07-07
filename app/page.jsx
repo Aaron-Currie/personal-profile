@@ -6,7 +6,7 @@ import {MissionModal} from "../components/modals/modals";
 import MissionPin from "../components/home-page/mission-pin";
 import Briefing from "../components/briefing/briefing";
 import AnimatedLights from "../components/animated-lights/animated-lights";
-import useScreenSize from "./hooks/screen-size";
+import useScreenSize from "../hooks/screen-size";
 import { useUserContext } from "@/context/user";
 import Button from "@/components/button/button";
 
