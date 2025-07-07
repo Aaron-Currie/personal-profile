@@ -51,7 +51,6 @@ export default function Home() {
             <h3>Section: {currentMission.section}</h3>
             <p>{currentMission.description}</p>
             <Button type='a' href={`/${currentMission.link}`} label='Launch Mission' />
-            <Button type='a' href={`/${currentMission.link}`} label='Launch Mission' />
         </MissionModal>)}
       <section className={styles.section}>
       <img src="/globetactical.png" className={styles.map} />

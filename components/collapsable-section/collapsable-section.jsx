@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import styles from './collapsable-section.module.css';
 
-const CollapsableSection = ({ title, children }) => {
-    const [isOpen, setIsOpen] = useState(false);
+const CollapsableSection = ({ title, children, startOpen = false }) => {
+    const [isOpen, setIsOpen] = useState(startOpen);
 
     const toggleSection = () => {
         setIsOpen((prev) => !prev);
