@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import styles from './button.module.css';
 
 const QuickAccessButton = ({pages, updatePageStatus}) => {
@@ -11,6 +12,12 @@ const QuickAccessButton = ({pages, updatePageStatus}) => {
           updatePageStatus(page.link, true, true);
         });
     }
+
+    useEffect(() => {
+        const allCompleted = pages.every((page) => page.completed);
+        console.log(allCompleted,'All Completed');
+        setAllUnlocked(allCompleted);
+    }, [pages]);
     
 
     return (

@@ -4,7 +4,6 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-    console.log("UserProvider initialized");
     const [pages, setPages] = useState([
         { mission: 'Home', link: '/', completed: false, recentUnlock: false },
         { mission: 'About Me', link: '/about-me', completed: false, recentUnlock: false },
@@ -26,6 +25,18 @@ export const UserProvider = ({ children }) => {
             );
         }, 1000)
     };
+
+    useEffect(() => {
+        const stored = localStorage.getItem("unlockedPages");
+        console.log(stored)
+        if (stored) {
+          setPages(JSON.parse(stored));
+        }
+      }, []);
+      
+      useEffect(() => {
+        localStorage.setItem("unlockedPages", JSON.stringify(pages));
+      }, [pages]);
 
     return (
         <UserContext.Provider value={{pages, updatePageStatus}}>

@@ -8,6 +8,7 @@ import Briefing from "../components/briefing/briefing";
 import AnimatedLights from "../components/animated-lights/animated-lights";
 import useScreenSize from "./hooks/screen-size";
 import { useUserContext } from "@/context/user";
+import Button from "@/components/button/button";
 
 export default function Home() {
   const [currentMission, setCurrentMission] = useState(null);
@@ -17,7 +18,6 @@ export default function Home() {
   const { pages, updatePageStatus } = useUserContext();
 
   useEffect(() => {
-    console.log(mobile)
     if(!mobile) {
       setBriefing(true);
     } else if(pages.find((page) => page.link === '/').completed && mobile) {
@@ -45,7 +45,14 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      {currentMission && <MissionModal currentMission={currentMission} closeModal={handleMissionClick}/>}
+      {currentMission && (
+        <MissionModal currentMission={currentMission} closeModal={handleMissionClick}>
+            <h2>Mission: {currentMission.missionTitle}</h2>
+            <h3>Section: {currentMission.section}</h3>
+            <p>{currentMission.description}</p>
+            <Button type='a' href={`/${currentMission.link}`} label='Launch Mission' />
+            <Button type='a' href={`/${currentMission.link}`} label='Launch Mission' />
+        </MissionModal>)}
       <section className={styles.section}>
       <img src="/globetactical.png" className={styles.map} />
         <div className={styles.overlay}>

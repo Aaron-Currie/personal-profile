@@ -73,6 +73,12 @@
     }
  }
 
+ @media (max-width: 400px) {
+    .defaultButton {
+        width: 100%;
+    }
+}
+
 
 @keyframes unlock {
     0% {
