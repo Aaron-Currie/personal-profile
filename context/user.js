@@ -5,7 +5,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [pages, setPages] = useState([
-        { mission: 'Home', link: '/', completed: true, recentUnlock: false },
+        { mission: 'Home', link: '/', completed: false, recentUnlock: false },
         { mission: 'About Me', link: '/about', completed: false, recentUnlock: false },
         { mission: 'Experience', link: '/experience', completed: false, recentUnlock: false },
         { mission: 'Portfolio', link: '/portfolio', completed: false, recentUnlock: false },
@@ -31,6 +31,7 @@ export const UserProvider = ({ children }) => {
         if (stored) {
           setPages(JSON.parse(stored));
         }
+        updatePageStatus('/', true, false);
       }, []);
       
       useEffect(() => {

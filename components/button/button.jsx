@@ -8,7 +8,7 @@ const Button = ({ label, action, href, type = 'button', disabled=false, recentUn
     }
     return (
         <button
-            className={`${styles.button} ${type === 'icon' ? styles.iconButton : styles.defaultButton}`}
+            className={`${styles.button} ${type === 'icon' ? styles.iconButton : styles.defaultButton} ${disabled && styles.disabled}`}
             onClick={action}
             disabled={disabled}
         >

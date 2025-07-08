@@ -79,7 +79,7 @@ const Carousel = ({ images }) => {
                         <div key={index} onClick={onClick} className={`${styles.imageContainer} ${styles[position]}`}>
                         <img
                             key={index}
-                            src={image}
+                            src={image.image}
                             alt={`Slide ${index}`}
                             className={`${styles.image}`}
                         />
