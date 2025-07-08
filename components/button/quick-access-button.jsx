@@ -8,14 +8,13 @@ const QuickAccessButton = ({pages, updatePageStatus}) => {
 
     const quickAccess = () => {
         setAllUnlocked(true);
-        pages.filter((page) => !page.complete).forEach((page) => {
+        pages.filter((page) => !page.completed).forEach((page) => {
           updatePageStatus(page.link, true, true);
         });
     }
 
     useEffect(() => {
         const allCompleted = pages.every((page) => page.completed);
-        console.log(allCompleted,'All Completed');
         setAllUnlocked(allCompleted);
     }, [pages]);
     

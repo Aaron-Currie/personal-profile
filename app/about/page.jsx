@@ -4,6 +4,7 @@ import { qestrArray } from '@/constants/questrArray';
 import Carousel from '@/components/carousel/carousel';
 import ImageGrid from '@/components/image-grid/image-grid';
 import { hobbies } from '@/constants/hobbies';
+import AnimatedLights from '@/components/animated-lights/animated-lights';
 
 export default function AboutMe() {
     return (
@@ -80,6 +81,7 @@ export default function AboutMe() {
                 <p>Special Interests: Snowboarding, Touring, Mountain biking, Hiking</p>
                 <ImageGrid images={hobbies}/>
             </CollapsableSection>
+            <AnimatedLights />
         </main>
     );
 }

@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
 import{ missions } from "../constants/missions";
 import {MissionModal} from "../components/modals/modals";
-import MissionPin from "../components/home-page/mission-pin";
+import MissionPin from "../components/mission-pin/mission-pin";
 import Briefing from "../components/briefing/briefing";
 import AnimatedLights from "../components/animated-lights/animated-lights";
 import useScreenSize from "../hooks/screen-size";
@@ -26,9 +26,7 @@ export default function Home() {
   }, [mobile])
 
   useEffect(() => {
-    if(!pages.find((page) => page.link === '/').completed) {
     updatePageStatus('/', true, false);
-    }
   }, [])
 
   const handleMissionClick = (mission) => {
@@ -50,7 +48,7 @@ export default function Home() {
             <h2>Mission: {currentMission.missionTitle}</h2>
             <h3>Section: {currentMission.section}</h3>
             <p>{currentMission.description}</p>
-            <Button type='a' href={`/${currentMission.link}`} label='Launch Mission' />
+            <Button type='a' href={`/missions/${currentMission.link}`} label='Launch Mission' />
         </MissionModal>)}
       <section className={styles.section}>
       <img src="/globetactical.png" className={styles.map} />
@@ -61,7 +59,8 @@ export default function Home() {
             <p>Click the quick access button to skip the missions to assess the portfolio immediately.</p>
           </Briefing>
           {missions.map((mission) => {
-            return <MissionPin key={mission.id} handleClick={handleMissionClick} mission={mission} />
+            const completed = pages.find((page) => page.link === `/${mission.link}`)?.completed;
+            return <MissionPin key={mission.id} handleClick={handleMissionClick} mission={mission} completed={completed} />
           })}
           <AnimatedLights />
         </div>

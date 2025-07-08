@@ -1,6 +1,7 @@
 import { UserProvider } from "@/context/user";
 import "./globals.css";
 import Header from "@/components/header/header";
+import AnimatedLights from "@/components/animated-lights/animated-lights";
 
 export const metadata = {
   title: "Create Next App",

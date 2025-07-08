@@ -8,6 +8,7 @@ import { ModalOverlay } from '../modals/modals';
 import { useUserContext } from '@/context/user';
 import useScreenSize from '@/hooks/screen-size';
 import QuickAccessButton from '../button/quick-access-button';
+import ResetButton from '../button/reset-button';
 
 const Header = () => {
     const pathname = usePathname();

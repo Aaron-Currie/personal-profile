@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './cards.module.css';
+import useInViewPort from '@/hooks/in-viewport';
 
 const Cards = ({ children }) => {
     return (
@@ -10,9 +11,11 @@ const Cards = ({ children }) => {
 };
 
 Cards.Item = ({ children, size='md' }) => {
+    const [ref, inViewPort] = useInViewPort(0)
     return (
         <div
-            className={`${styles.cardItem} ${styles[size]}`}
+            ref={ref}
+            className={`${styles.cardItem} ${styles[size]} ${inViewPort ? 'opacity-1' : 'opacity-0'}`}
         >
             {children}
         </div>

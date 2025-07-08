@@ -15,7 +15,7 @@
     background-color: var(--background-blue);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border: 1px solid var(--border-blue);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, opacity 1s ease;
     overflow: hidden;
     text-align: left;
 }

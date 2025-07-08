@@ -1,12 +1,10 @@
-/* Overlay container to position the lights */
 .animationOverlay {
-    position: relative;
+    position: absolute;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow: hidden;
 }
 
-/* Flashing lights */
 .flashingLight {
     position: absolute;
     width: 10px;
@@ -16,7 +14,6 @@
     animation: flash 3s ease-in-out;
 }
 
-/* Flashing animation */
 @keyframes flash {
     0% {
         opacity: 1;
@@ -29,7 +26,6 @@
     }
 }
 
-/* Zipping light */
 .zippingLightRight {
     position: absolute;
     width: 5px;
@@ -48,7 +44,6 @@
     animation: zipLeft 4s linear infinite;
 }
 
-/* Zipping animation */
 @keyframes zipRight {
     0% {
         transform: translateX(0) translateY(0);
