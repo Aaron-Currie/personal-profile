@@ -1,73 +1,54 @@
 'use client';
 import Briefing from "@/components/briefing/briefing";
 import styles from "./page.module.css";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { missionData } from "./mission-data";
-import FlipCard from "./flip-card";
+import FlipCard from "../../../components/mission-components/flip-card/flip-card";
+import useScreenSize from "@/hooks/screen-size";
+import Success from "@/components/mission-components/success-animation/success";
 
 export default function Home() {
   const [briefing, setBriefing] = useState(true);
   const [selectedItem, setSelectedItem] = useState(null);
   const [missionDataState, setMissionDataState] = useState(null);
+  const [complete, setComplete] = useState(false);
+  const { mobile } = useScreenSize()
+
 
   useEffect(() => {
     const shuffledData = [...missionData].sort(() => Math.random() - 0.5);
     setMissionDataState(shuffledData);
   }, []);
 
+  useEffect(() => {
+    if(!mobile) {
+      setBriefing(true);
+    }
+  }, [mobile])
+
+  useEffect(() => {
+    if(missionDataState && missionDataState.every((mission) => mission.matched)) {
+      setComplete(true);
+    }
+  }, [missionDataState]);
+
   const handleBriefingClick = () => {
     setBriefing(!briefing);
   }
 
-  // const FlipCard = ({ mission, selectedItem, setSelectedItem, setMissionDataState }) => {
-  //   const [isFlipped, setIsFlipped] = useState(false);
-
-  //   const handleItemClick = (id, matchId) => {
-  //     setIsFlipped(!isFlipped);
-  //     console.log('Item Clicked', isFlipped);
-  //     if (!selectedItem) {
-  //       setSelectedItem({id, matchId});
-  //     } else if (selectedItem.matchId === matchId) {
-  //       console.log('Selected Item is matched');
-  //       const updatedMissionData = missionDataState.map((item) =>
-  //         item.matchId === matchId ? { ...item, matched: true } : item
-  //       );
-  //       setMissionDataState(updatedMissionData);
-  //       setSelectedItem(null);
-  //     } else {
-  //       console.log('Selected Item is not matched');
-  //       setSelectedItem(null);
-  //     }
-  //   }
-
-  //   return (
-  //       <button
-  //           disabled={mission.id === selectedItem?.id || mission.matched}
-  //           className={`${styles.flipCard}`}
-  //           onClick={()=> handleItemClick(mission.id, mission.matchId)}
-  //       >
-  //           <div className={styles.flipCardItemFront}>
-  //               <img src='/question.png' className={`${styles.gridImg} ${styles.questionMark}`} />
-  //           </div>
-  //           <div className={styles.flipCardItemBack}>
-  //               <img src={mission.icon} className={styles.gridImg} />
-  //           </div>
-  //       </button>
-  //   );
-  // };
-
   return (
     <main className={styles.main}>
       <section className={styles.section}>
-      <img src="/apartment.png" className={styles.map} />
-        <div className={`${styles.overlay} briefing-offset`}>
+        {complete && <Success page='/skills'></Success>}
+        <div className={`briefing-offset`}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
-            <h3>Profile: AARON CURRIE</h3>
-            <p>Welcome to the profile, your mission is to do research and reconsience on the target in question, to asses if they are what we need for the next msision. Complete the tasks to build a dossier on the target.</p>
-            <p>Click the quick access button to skip the missions to assess the portfolio immediately.</p>
+            <h3>Mission: Obtain Technology</h3>
+            <p>Agent AC1178 successfully intercepted and secured a cache of highly sensitive technologies critical to our operation. However, during extraction, the data was encrypted and locked inside a cryptographically sealed vault.
+
+To regain access, we need you to decrypt the vault by matching the corresponding cipher keys. Time is of the essence — the mission depends on your precision.</p>
+            <p><strong>How to play:</strong> Select tiles in the grid to reveal hidden cipher keys. Match identical pairs to unlock sections of the vault. Continue until all pairs have been revealed and the vault is fully decrypted.</p>
           </Briefing>
           <div className={styles.missionGrid}>
-            
             {!missionDataState? <p>Loading</p> : missionDataState.map((mission, index) => {
               return (
                 <FlipCard index={index} mission={mission} key={index} selectedItem={selectedItem} setSelectedItem={setSelectedItem} setMissionDataState={setMissionDataState} missionDataState={missionDataState} />

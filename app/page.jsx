@@ -8,7 +8,6 @@ import Briefing from "../components/briefing/briefing";
 import AnimatedLights from "../components/animated-lights/animated-lights";
 import useScreenSize from "../hooks/screen-size";
 import { useUserContext } from "@/context/user";
-import Button from "@/components/button/button";
 
 export default function Home() {
   const [currentMission, setCurrentMission] = useState(null);
@@ -44,22 +43,22 @@ export default function Home() {
   return (
     <main className={styles.main}>
       {currentMission && (
-        <MissionModal currentMission={currentMission} closeModal={handleMissionClick}>
+        <MissionModal currentMission={currentMission} closeModal={handleMissionClick} pages={pages}>
             <h2>Mission: {currentMission.missionTitle}</h2>
             <h3>Section: {currentMission.section}</h3>
             <p>{currentMission.description}</p>
-            <Button type='a' href={`/missions/${currentMission.link}`} label='Launch Mission' />
         </MissionModal>)}
       <section className={styles.section}>
       <img src="/globetactical.png" className={styles.map} />
         <div className={styles.overlay}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
             <h3>Profile: AARON CURRIE</h3>
-            <p>Welcome to the profile, your mission is to do research and reconsience on the target in question, to asses if they are what we need for the next msision. Complete the tasks to build a dossier on the target.</p>
-            <p>Click the quick access button to skip the missions to assess the portfolio immediately.</p>
+            <p>Welcome, Operative. Your mission is to conduct reconnaissance on the subject known as Agent AC1178. We must determine their suitability for a high-priority assignment.</p>
+            <p>To complete your assessment, navigate through a series of encrypted dossiers. Each page contains intel on the agent’s background, skills, experience, and capabilities — but access is restricted. Complete the missions on the map below to unlock each file and build a full profile.</p>
+            <p>If time is limited, use the <strong>Quick Access</strong> override button to bypass security protocols and review all pages immediately.</p>
           </Briefing>
           {missions.map((mission) => {
-            const completed = pages.find((page) => page.link === `/${mission.link}`)?.completed;
+            const completed = pages.find((page) => page.link === `${mission.link}`)?.completed;
             return <MissionPin key={mission.id} handleClick={handleMissionClick} mission={mission} completed={completed} />
           })}
           <AnimatedLights />

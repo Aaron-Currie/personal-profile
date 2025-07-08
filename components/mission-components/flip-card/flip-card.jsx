@@ -1,5 +1,5 @@
   import { use, useEffect, useState } from "react";
-import styles from "./page.module.css";
+import styles from "./flip-card.module.css";
 
   const FlipCard = ({ mission, selectedItem, setSelectedItem, setMissionDataState, missionDataState }) => {
     const [isFlipped, setIsFlipped] = useState(false);

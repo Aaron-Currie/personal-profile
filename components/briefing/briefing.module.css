@@ -33,6 +33,12 @@
     display: none;
 }
 
+@media (max-width: 1000px) {
+    .briefingContent {
+        font-size: 0.9rem;
+    }
+}
+
 @media (max-width: 880px) {
     .briefingButton {
         display: block;;

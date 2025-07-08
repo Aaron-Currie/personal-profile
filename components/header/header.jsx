@@ -59,7 +59,7 @@ const Header = () => {
                     if(pathname === page.link) return null
                     return <Button key={index} type='a' href={page.link} action={closeBurgerMenu} label={page.mission} disabled={!page.completed} recentUnlock={page.recentUnlock} />
                 })}
-                <QuickAccessButton pages={pages} updatePageStatus={updatePageStatus} />
+                {pathname === '/' && <QuickAccessButton pages={pages} updatePageStatus={updatePageStatus} />}
             </nav>
         </header>
     );

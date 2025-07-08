@@ -5,7 +5,7 @@ const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
     const [pages, setPages] = useState([
-        { mission: 'Home', link: '/', completed: false, recentUnlock: false },
+        { mission: 'Home', link: '/', completed: true, recentUnlock: false },
         { mission: 'About Me', link: '/about', completed: false, recentUnlock: false },
         { mission: 'Experience', link: '/experience', completed: false, recentUnlock: false },
         { mission: 'Portfolio', link: '/portfolio', completed: false, recentUnlock: false },
@@ -14,7 +14,6 @@ export const UserProvider = ({ children }) => {
     ]);
 
     const updatePageStatus = (link, completed, recentUnlock) => {
-        console.log(`Updating page status for ${link}: completed=${completed}, recentUnlock=${recentUnlock}`);
         setPages((prevPages) =>
             prevPages.map((page) =>
                 page.link === link ? { ...page, completed, recentUnlock} : {...page}
@@ -29,14 +28,12 @@ export const UserProvider = ({ children }) => {
 
     useEffect(() => {
         const stored = localStorage.getItem("unlockedPages");
-        console.log(stored, 'STORAGE')
         if (stored) {
           setPages(JSON.parse(stored));
         }
       }, []);
       
       useEffect(() => {
-        console.log("Saving pages to localStorage", pages);
         localStorage.setItem("unlockedPages", JSON.stringify(pages));
       }, [pages]);
 
