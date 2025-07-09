@@ -1,10 +1,10 @@
 import CollapsableSection from '@/components/collapsable-section/collapsable-section';
 import styles from './page.module.css'
 import { qestrArray } from '@/constants/questrArray';
-import Carousel from '@/components/carousel/carousel';
 import ImageGrid from '@/components/image-grid/image-grid';
 import { hobbies } from '@/constants/hobbies';
 import AnimatedLights from '@/components/animated-lights/animated-lights';
+import CarouselWrapper from '@/components/carousel-wrapper/carousel-wrapper';
 
 export default function AboutMe() {
     return (
@@ -61,7 +61,18 @@ export default function AboutMe() {
                         <p>Questr is a gamified mobile app designed to get users off the couch and into their local environment. The app overlays real-world quests onto a map of your city, turning everyday locations into opportunities for discovery.</p>
                         <p>Users complete a variety of location-based missions - from taking photos and solving puzzles, to answering questions or engaging in mini battle games - all designed to encourage exploration and interaction. Successful missions reward players with experience points and in-game currency, which can be spent on custom avatars and upgrades.</p>
                         <p>The app combines fun gameplay with real-world movement, offering a playful alternative to traditional city exploration.</p>
-                        <Carousel images={qestrArray} />
+                        <CarouselWrapper>
+                            {qestrArray.map((quest, index) => {
+                                return (
+                                    <img
+                                    key={index}
+                                    src={quest.image}
+                                    alt={`Slide ${index}`}
+                                    className={`${styles.carouselImage}`}
+                                />
+                                )
+                            })}
+                        </CarouselWrapper>
                     </div>
             </ CollapsableSection>
             <CollapsableSection title='Technologies'>

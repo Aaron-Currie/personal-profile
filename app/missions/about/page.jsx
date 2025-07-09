@@ -8,6 +8,9 @@ import useScreenSize from "@/hooks/screen-size";
 import Success from "@/components/mission-components/success-animation/success";
 import Cards from "@/components/cards/cards";
 import Button from "@/components/button/button";
+import Carousel from "@/components/carousel/carousel";
+import CarouselWrapper from "@/components/carousel-wrapper/carousel-wrapper";
+import AgentCard from "@/components/mission-components/agent-card/agent-card";
 
 export default function Home() {
   const [briefing, setBriefing] = useState(true);
@@ -79,33 +82,12 @@ const classProvider = (agent, trait, answer, selected) => {
             <p><strong>How to play:</strong> Select agents to reveal which traits they share with AC1178. Use this intel to eliminate false leads and zero in on the target.</p>
             <p><strong>⚠️ Caution:</strong> After three incorrect identifications, the agents will be alerted. AC1178 will relocate, and all revealed intel will be lost. Proceed with precision.</p>
           </Briefing>
-          <div className={styles.cardScroll}>
-            <Cards>
-                {!missionDataState? <p>Accquiring fresh safe house data</p> : Object.keys(missionDataState).map((key, index) => {
-                    const agent = missionData[key];
-                    const isSelected = selectedAgent.includes(key);
-                    return (
-                    <Cards.Item key={index} size='sm'>
-                        <img src={agent.image}/>
-                        <div className={styles.cardContent}>
-                            <p className={classProvider(agent, 'base', 'Leeds', isSelected)} >Base: {agent.base}</p>
-                            <p className={classProvider(agent, 'experience', 2.5, isSelected)}>Experience: {agent.experience} years</p>
-                            <p className={classProvider(agent, 'training', 'Bootcamp', isSelected)} >Training: {agent.training}</p>
-                            <p className={classProvider(agent, 'certifications', 'Google Cloud Certified', isSelected)}>Certifications: {agent.certifications}</p>
-                            <p>Interests: </p>
-                            <ul>
-                                {agent.interests.map((interest, index) => (
-                                    <li className={classProvider(interest, 'interests',['Hiking', 'Snowboarding', 'Mountain Biking'] , isSelected)} key={index}>{interest}</li>
-                                ))}
-                            </ul>
-                        </div>
-                        <Button disabled={selectedAgent.includes(key)} label='Select Agent' type='button' action={() => selectAgent(key)}/>
-                    </Cards.Item>)
+{!missionDataState? <p>Accquiring fresh safe house data</p> :
+            <CarouselWrapper>
+                 {Object.keys(missionDataState).map((key, index) => {
+                    return <AgentCard key={index} agent={missionDataState[key]} agentName={key} action={selectAgent} selectedAgent={selectedAgent} />
                 })}
-            </Cards>
-          </div>
-
-
+            </CarouselWrapper>}
         </div>
       </section>
     </main>

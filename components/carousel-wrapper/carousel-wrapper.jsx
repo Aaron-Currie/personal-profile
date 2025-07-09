@@ -1,21 +1,23 @@
 "use client"
 import React, { useState } from 'react';
-import styles from './carousel.module.css';
+import styles from './carousel-wrapper.module.css';
 
-const Carousel = ({ images }) => {
+const CarouselWrapper = ({ children }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
 
+    console.log(children, 'CHILDREN IN CAROUSEL WRAPPER');
+
     const prevSlide = () => {
         setCurrentIndex((prevIndex) =>
-            prevIndex === 0 ? images.length - 1 : prevIndex - 1
+            prevIndex === 0 ? children.length - 1 : prevIndex - 1
         );
     };
 
     const nextSlide = () => {
         setCurrentIndex((prevIndex) =>
-            prevIndex === images.length - 1 ? 0 : prevIndex + 1
+            prevIndex === children.length - 1 ? 0 : prevIndex + 1
         );
     };
 
@@ -52,37 +54,25 @@ const Carousel = ({ images }) => {
                 &#8249;
             </button>
             <div className={styles.imagesContainer}>
-                {images.map((image, index) => {
+                {children.map((child, index) => {
                     let position;
                     if (index === currentIndex) {
                         position = 'center';
-                    } else if (index === (currentIndex - 1 + images.length) % images.length) {
+                    } else if (index === (currentIndex - 1 + children.length) % children.length) {
                         position = 'left';
-                    } else if (index === (currentIndex + 1) % images.length) {
+                    } else if (index === (currentIndex + 1) % children.length) {
                         position = 'right';
-                    } else if (index === (currentIndex - 2 + images.length) % images.length) {
+                    } else if (index === (currentIndex - 2 + children.length) % children.length) {
                         position = 'hiddenLeft';
-                    }else if (index === (currentIndex + 2) % images.length) {
+                    }else if (index === (currentIndex + 2) % children.length) {
                         position = 'hiddenRight';
                     } else {
                         position = 'hidden';
                     }
 
-                    let onClick = null;
-                    if (position === 'right') {
-                        onClick = nextSlide;
-                    } else if (position === 'left') {
-                        onClick = prevSlide;
-                    }
-
                     return (
-                        <div key={index} onClick={onClick} className={`${styles.imageContainer} ${styles[position]}`}>
-                        <img
-                            key={index}
-                            src={image.image}
-                            alt={`Slide ${index}`}
-                            className={`${styles.image}`}
-                        />
+                        <div key={index} className={`${styles.imageContainer} ${styles[position]}`}>
+                            {child}
                         </div>
                     );
                 })}
@@ -94,4 +84,4 @@ const Carousel = ({ images }) => {
     );
 };
 
-export default Carousel;
+export default CarouselWrapper;
