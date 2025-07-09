@@ -17,7 +17,7 @@ console.log(agent, 'agent')
     }
     const isSelected = selectedAgent.includes(agentName);
     return (
-        <div className={styles.agentCard}>
+        <div className={`${styles.agentCard} ${isSelected && styles.incorrectCard}`}>
                         <img className={styles.image} src={agent.image}/>
                         <div className={styles.cardContent}>
                             <p className={classProvider(agent, 'base', 'Leeds', isSelected)} >Base: {agent.base}</p>

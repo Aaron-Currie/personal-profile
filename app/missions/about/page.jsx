@@ -3,12 +3,8 @@ import Briefing from "@/components/briefing/briefing";
 import styles from "./page.module.css";
 import React, { use, useEffect, useState } from "react";
 import { missionData } from "./mission-data";
-import FlipCard from "../../../components/mission-components/flip-card/flip-card";
 import useScreenSize from "@/hooks/screen-size";
 import Success from "@/components/mission-components/success-animation/success";
-import Cards from "@/components/cards/cards";
-import Button from "@/components/button/button";
-import Carousel from "@/components/carousel/carousel";
 import CarouselWrapper from "@/components/carousel-wrapper/carousel-wrapper";
 import AgentCard from "@/components/mission-components/agent-card/agent-card";
 
