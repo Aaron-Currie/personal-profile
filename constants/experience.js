@@ -12,7 +12,10 @@ export const experience = [
         description: {
             company: 'Sky',
             position: 'Software Engineer',
-            time: 'March 2024 - Present, 1 year 8 months',
+            date: 'March 2024 - Present',
+            time: '1 year 8 months',
+            location: "Leeds, UK",
+            codename: 'Infinite Loop',
             bio: 'I\'m a full-stack developer with 2.5 years of industry experience at Sky, where I quickly progressed from junior to mid-level after transitioning into tech from a diverse background in hospitality and laboratory management. I\'ve delivered a wide range of projects across modern frontends and cloud-native backends, working with technologies like React, Next.js, Google Cloud, and Docker.',
             points: [
                 'Led migration from Next.js Pages Router to App Router, improving codebase scalability and developer experience.',
@@ -39,7 +42,10 @@ export const experience = [
         description: {
             company: 'Sky',
             position: 'Associate Software Engineer',
-            time: 'March 2023 - March 2024, 1 year',
+            time: '1 year',
+            date: 'March 2023 - March 2024',
+            location: "Leeds, UK",
+            codename: 'Silent Commit',
             bio: 'I worked as an Associate Software Engineer at Sky, where I contributed to various projects and gained valuable experience in software development.',
             points: [
                 'Contributed to multiple projects across the Sky platform.',
@@ -63,7 +69,10 @@ export const experience = [
         description: {
             company: 'Northcoders Bootcamp',
             position: 'Full Stack Developer Trainee',
-            time: 'September 2022 - March 2023, 6 months',
+            time: '6 months',
+            date: 'September 2022 - March 2023,',
+            location: "Leeds, UK",
+            codename: 'Recursive Shadow',
             bio: 'I completed a full-stack developer training program at Northcoders Bootcamp, where I learned modern web development technologies and practices.',
             points: [
                 'Learned modern web development technologies including JavaScript, React, Node.js, and SQL.',
@@ -89,7 +98,10 @@ export const experience = [
         description: {
             company: 'Seasalt Clovelly',
             position: 'Bar Manager',
-            time: 'June 2021 - September 2022, 1 year 3 months',
+            time: '1 year 3 months',
+            date: 'June 2021 - September 2022',
+            location: "Sydney, Australia",
+            codename: 'Memory Leak',
             bio: 'I managed a bar, overseeing operations, staff, and customer service while ensuring a high-quality experience for patrons.',
             points: [
                 'Managed daily operations of the bar, including staff scheduling and inventory management.',
@@ -115,7 +127,10 @@ export const experience = [
         description: {
             company: 'Self Learning Code Academy',
             position: 'Student',
-            time: 'January 2021 - June 2021, 6 months',
+            time: '6 months',
+            date: 'January 2021 - June 2021',
+            location: "Sydney, Australia",
+            codename: 'Encrypted Stack',
             bio: 'I completed a self-directed coding academy, where I focused on learning web development skills and building projects to enhance my programming abilities.',
             points: [
                 'Engaged in self-directed learning to master web development technologies.',
@@ -141,7 +156,10 @@ export const experience = [
         description: {
             company: 'Thredbo Ski Resort',
             position: 'Bar Supervisor',
-            time: 'June 2020 - January 2021, 7 months',
+            time: '7 months',
+            date: 'June 2020 - January 2021',
+            location: "Jindabyne, Australia",
+            codename: 'Cold Commit',
             bio: 'I supervised bar operations, ensuring smooth service and high standards of quality while managing a team of bartenders.',
             points: [
                 'Supervised daily bar operations, including staff management and customer service.',
@@ -165,7 +183,10 @@ export const experience = [
         description: {
             company: 'Various',
             position: 'Hospitality Work, Farm Work, Hostel Work',
-            time: 'January 2019 - June 2020, 1 year 5 months',
+            time: '1 year 5 months',
+            date: 'January 2019 - June 2020',
+            location: "Unknown",
+            codename: 'Manual Override',
             bio: 'I traveled extensively while working in various hospitality roles, gaining diverse experiences and skills in customer service and operations.',
             points: [
                 'Worked in various hospitality roles while traveling, enhancing customer service skills.',
@@ -189,7 +210,10 @@ export const experience = [
         description: {
             company: 'Thorden Academy',
             position: 'Senior Laboratory Technician',
-            time: 'June 2016 - January 2019, 2 years 7 months',
+            time: '2 years 7 months',
+            date: 'June 2016 - January 2019',
+            location: "Southampton, UK",
+            codename: 'Cache Fusion',
             bio: 'I worked as a Senior Laboratory Technician, managing laboratory operations and supporting research projects in a university setting.',
             points: [
                 'Managed laboratory operations, including equipment maintenance and safety protocols.',
