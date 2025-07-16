@@ -36,8 +36,6 @@
 }
 
 .pin {
-    /* width: 2vw;
-    height: 2vw; */
     min-width: 30px;
     min-height: 30px;
     border-radius: 50%;
@@ -76,8 +74,6 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    /* width: 2vw;
-    height: 2vw; */
     min-width: 30px;
     min-height: 30px;
     background-color: rgb(152, 213, 246);
@@ -90,7 +86,6 @@
   .pin:active {
     transform: translate(0, -50%) scale(0.9);
   }
-  
   
   @keyframes pulse {
     0% {

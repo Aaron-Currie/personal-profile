@@ -182,7 +182,7 @@ export const experience = [
         ,
         description: {
             company: 'Various',
-            position: 'Hospitality Work, Farm Work, Hostel Work',
+            position: 'Hospitality Work, Event Work, Hostel Work, Cocktail Bartender',
             time: '1 year 5 months',
             date: 'January 2019 - June 2020',
             location: "Unknown",

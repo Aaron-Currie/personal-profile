@@ -1,7 +1,8 @@
 import { UserProvider } from "@/context/user";
-import "./globals.css";
+import "../styles/globals.css";
+import "../styles/utility.css";
+import "../styles/animations.css";
 import Header from "@/components/header/header";
-import AnimatedLights from "@/components/animated-lights/animated-lights";
 
 export const metadata = {
   title: "Create Next App",
@@ -9,8 +10,6 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-
-  console.log("RootLayout initialized");
   return (
     <html lang="en">
       <body>
