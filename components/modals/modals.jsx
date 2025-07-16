@@ -8,9 +8,15 @@ const MissionModal = ({closeModal, children, pages, currentMission}) => {
     return (
         <div className={styles.modalOverlay} onClick={closeModal}>
             <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                {children}
-                <Button type='a' href={`/missions${currentMission.link}`} label={completed?'Replay Mission' : 'Launch Mission'} />
-                {completed && <Button type='a' href={`${currentMission.link}`} label={'Visit Page'} />}
+                <Button action={closeModal} label={'×'} type='icon' />
+                <h2>Mission: {currentMission.missionTitle}</h2>
+                <h3>Section: {currentMission.section}</h3>
+                <p>{currentMission.description}</p>
+                <div className="flex-row">
+                    <Button type='a' href={`/missions${currentMission.link}`} label={completed?'Replay Mission' : 'Launch Mission'} />
+                    {completed && <Button type='a' href={`${currentMission.link}`} label={'Visit Page'} />}
+                </div>
+
             </div>
         </div>
     );
@@ -34,4 +40,13 @@ const ModalOverlay = ({children, closeModal}) => {
     );
 }
 
-export {MissionModal, Modal, ModalOverlay};
+const ModalContent = ({children, closeModal}) => {
+    return (
+        <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+            <Button action={closeModal} label={'×'} type='icon' />
+            {children}
+        </div>
+    );
+}
+
+export {MissionModal, Modal, ModalOverlay, ModalContent};

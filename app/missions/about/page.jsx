@@ -55,18 +55,6 @@ const selectAgent = (key) => {
     }
 }
 
-const classProvider = (agent, trait, answer, selected) => {
-    if (!selected) {
-        return ''
-    } else if (trait === 'interests') {
-        return answer.includes(agent) ? styles.correctData : styles.incorrectData;
-    } else if (agent[trait] === answer) {
-        return styles.correctData;
-    } else {
-        return styles.incorrectData;
-    }
-}
-
   return (
     <main className={styles.main}>
       <section className={styles.section}>

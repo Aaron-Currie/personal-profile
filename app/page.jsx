@@ -44,9 +44,6 @@ export default function Home() {
     <main className={styles.main}>
       {currentMission && (
         <MissionModal currentMission={currentMission} closeModal={handleMissionClick} pages={pages}>
-            <h2>Mission: {currentMission.missionTitle}</h2>
-            <h3>Section: {currentMission.section}</h3>
-            <p>{currentMission.description}</p>
         </MissionModal>)}
       <section className={styles.section}>
       <img src="/globetactical.png" className={styles.map} />

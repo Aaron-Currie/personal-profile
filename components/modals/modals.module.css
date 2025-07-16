@@ -16,17 +16,19 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 80px 40px;
-    width: 500px;
-    height: 500px;
-    background: rgba(1, 26, 55, 0.9);
-    clip-path: polygon(
-      10% 0%, 90% 0%,
-      100% 10%, 100% 90%,
-      90% 100%, 10% 100%,
-      0% 90%, 0% 10%
-    );
+    padding: 40px;
+    width: 80%;
+    height: max-content;
+    overflow-y: scroll;
+    background: rgba(1, 26, 55, 0.95);
+    border: 1px solid var(--border-blue);
     z-index: 2;
+  }
+
+  .modalContent button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
   }
   
   .launchButton {
@@ -47,4 +49,11 @@
     box-shadow: none;
   }
 
-    
+  @media (max-width: 880px) {
+    .modalContent {
+        width: 90%;
+        height: max-content;
+        max-height: 65vh;
+        padding: 40px 20px;
+    }
+}
