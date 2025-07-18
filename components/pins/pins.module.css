@@ -23,8 +23,15 @@
     cursor: pointer;
   }
 
-.mission:hover p {
-    background-color: rgba(1, 26, 55, 0.9);
+.mission:not(:disabled):hover p {
+  background-color: rgba(1, 26, 55, 0.9);
+}
+
+.mission:disabled .pin {
+    cursor: not-allowed;
+    background-color: var(--border-blue);
+    animation: none;
+    opacity: 0;
 }
 
 .mission p {
@@ -36,12 +43,14 @@
 }
 
 .pin {
-    min-width: 30px;
-    min-height: 30px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     transform: translate(0, -50%);
     transition: 0.2s ease-in-out;
+    z-index:2;
   }
+
 
 .completed {
     background-color: rgb(7, 169, 7);
@@ -49,6 +58,7 @@
     font-size: 1.2rem;
     display: grid;
     place-items: center;
+    transition: 0.3s 0.8s linear;
   }
 
 .incomplete {
@@ -56,20 +66,30 @@
     border: 2px solid rgb(0, 43, 93);
   }
 
-  .mission:hover .incomplete {
+  .dead {
+    background-color: rgb(93, 93, 93);
+    border: 2px solid rgb(53, 53, 53);
+    cursor: not-allowed;
+  }
+
+  .mission:disabled .revealed {
+    opacity: 1;
+  }
+
+  .mission:not(:disabled):hover .incomplete {
     cursor: pointer;
     background-color: rgb(80, 187, 245);
     transform: translate(0, -50%) scale(1.2);
   }
 
-  .mission:hover .completed {
+  .mission:not(:disabled):hover .completed {
     cursor: pointer;
     color: white;
     background-color: rgb(0, 149, 0);
     transform: translate(0, -50%) scale(1.2);
   }
   
-  .incomplete::after {
+  .mission:not(:disabled) .incomplete:not(.failed)::after {
     content: '';
     position: absolute;
     top: 50%;
@@ -82,10 +102,20 @@
     animation: pulse 2s infinite;
     opacity: 0;
   }
-  
-  .pin:active {
+  .incomplete:active {
     transform: translate(0, -50%) scale(0.9);
   }
+
+  .timeLineScore {
+    animation: faideIn 0.3s 1s linear;
+  }
+
+  .failed {
+    background-color: red;
+    transition: background-color 0.3s linear;
+  }
+
+
   
   @keyframes pulse {
     0% {
@@ -97,3 +127,12 @@
       opacity: 0;
     }
   }
+
+    @keyframes faideIn {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }

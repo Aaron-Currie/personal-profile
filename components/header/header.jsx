@@ -8,7 +8,6 @@ import { ModalOverlay } from '../modals/modals';
 import { useUserContext } from '@/context/user';
 import useScreenSize from '@/hooks/screen-size';
 import QuickAccessButton from '../button/quick-access-button';
-import ResetButton from '../button/reset-button';
 
 const Header = () => {
     const pathname = usePathname();
@@ -25,7 +24,7 @@ const Header = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 100) {
+            if (window.scrollY > 2) {
                 setScrolled(true);
             } else {
                 setScrolled(false);

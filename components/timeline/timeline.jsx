@@ -1,7 +1,7 @@
 'use client';
 import React, { useState } from 'react';
 import styles from './timeline.module.css';
-import MissionPin from '../mission-pin/mission-pin';
+import {MissionPin} from '../pins/pins';
 import { ModalContent } from '../modals/modals';
 import Image from '../image/image';
 import useInViewPort from '@/hooks/in-viewport';

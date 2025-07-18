@@ -23,6 +23,7 @@
     background: rgba(1, 26, 55, 0.95);
     border: 1px solid var(--border-blue);
     z-index: 2;
+    scrollbar-color: var(--border-blue) rgba(1, 26, 55, 0.5);
   }
 
   .modalContent button {
