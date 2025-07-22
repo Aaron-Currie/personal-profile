@@ -39,13 +39,7 @@
     0% {
         opacity: 1;
     }
-    20% {
-        opacity: 0;
-    }
     40% {
-        opacity: 1;
-    }
-    60% {
         opacity: 0;
     }
     80% {

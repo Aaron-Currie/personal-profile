@@ -7,6 +7,7 @@ import Success from "@/components/mission-components/success-animation/success";
 import { TimeLinePin } from "@/components/pins/pins";
 import generateGrid from "./utils/generate-grid";
 import Button from "@/components/button/button";
+import LoadingPage from "@/components/loading/loading-page";
 
 export default function TimelineTraverse() {
   const GridSize = 9
@@ -19,7 +20,6 @@ export default function TimelineTraverse() {
   const [shields, setShields] = useState(1);
   const [warps, setWarps] = useState(1);
   const [shieldActive, setShieldActive] = useState(false);
-
   const { mobile } = useScreenSize()
 
   useEffect(() => {
@@ -147,7 +147,7 @@ export default function TimelineTraverse() {
     }
   }
 
-  if (!grid) return <div>Loading...</div>;
+  if (!grid) return <LoadingPage/>;
   return (
     <main className={styles.main}>
       <section className={styles.section}>

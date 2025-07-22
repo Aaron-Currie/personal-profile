@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "./animated-lights.module.css";
 
-const AnimatedBlips = () => {
+const AnimatedBlips = ({speed = 500}) => {
     const [flashingLights, setFlashingLights] = useState([]);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ const AnimatedBlips = () => {
             setTimeout(() => {
                 setFlashingLights((prev) => prev.slice(1));
             }, 1000);
-        }, 500);
+        }, speed);
 
         return () => {
             clearInterval(flashingInterval);

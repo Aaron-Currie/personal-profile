@@ -8,10 +8,12 @@ import Briefing from "../components/briefing/briefing";
 import AnimatedLights from "../components/animated-lights/animated-lights";
 import useScreenSize from "../hooks/screen-size";
 import { useUserContext } from "@/context/user";
+import LoadingPage from "@/components/loading/loading-page";
 
 export default function Home() {
   const [currentMission, setCurrentMission] = useState(null);
   const [briefing, setBriefing] = useState(true);
+  const [loading, setLoading] = useState(true);
   const { mobile } = useScreenSize()
 
   const { pages, updatePageStatus } = useUserContext();
@@ -25,8 +27,11 @@ export default function Home() {
   }, [mobile])
 
   useEffect(() => {
+    setLoading(false);
     updatePageStatus('/', true, false);
   }, [])
+
+  const [imageLoading, setimageLoading] = useState(true);
 
   const handleMissionClick = (mission) => {
     if(currentMission) {
@@ -36,17 +41,23 @@ export default function Home() {
     }
   }
 
+  const handleImageLoad = () => {
+    console.log('Image loaded');
+    setimageLoading(false);
+  }
+
   const handleBriefingClick = () => {
     setBriefing(!briefing);
   }
 
   return (
     <main className={styles.main}>
+      {loading || imageLoading ? <LoadingPage /> : null}
       {currentMission && (
         <MissionModal currentMission={currentMission} closeModal={handleMissionClick} pages={pages}>
         </MissionModal>)}
       <section className={styles.section}>
-      <img src="/globetactical.png" className={styles.map} />
+      <img src="/globetactical.png" onLoad={handleImageLoad} className={styles.map} />
         <div className={styles.overlay}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
             <h3>Profile: AARON CURRIE</h3>

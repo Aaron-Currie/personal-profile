@@ -7,6 +7,7 @@ import useScreenSize from "@/hooks/screen-size";
 import Success from "@/components/mission-components/success-animation/success";
 import CarouselWrapper from "@/components/carousel-wrapper/carousel-wrapper";
 import AgentCard from "@/components/mission-components/agent-card/agent-card";
+import LoadingPage from "@/components/loading/loading-page";
 
 export default function Home() {
   const [briefing, setBriefing] = useState(true);
@@ -48,7 +49,7 @@ const selectAgent = (key) => {
         setMissionDataState(null);
         setTimeout(() => {
             shuffleMissionData(); 
-        }, 1000);
+        }, 4000);
         setSelectedAgent([]);
     } else {
         setSelectedAgent([...selectedAgent, key]);
@@ -66,7 +67,7 @@ const selectAgent = (key) => {
             <p><strong>How to play:</strong> Select agents to reveal which traits they share with AC1178. Use this intel to eliminate false leads and zero in on the target.</p>
             <p><strong>⚠️ Caution:</strong> After three incorrect identifications, the agents will be alerted. AC1178 will relocate, and all revealed intel will be lost. Proceed with precision.</p>
           </Briefing>
-{!missionDataState? <p>Accquiring fresh safe house data</p> :
+{!missionDataState? <LoadingPage /> :
             <CarouselWrapper border={false} size='medium'>
                  {Object.keys(missionDataState).map((key, index) => {
                     return <AgentCard key={index} agent={missionDataState[key]} agentName={key} action={selectAgent} selectedAgent={selectedAgent} />
