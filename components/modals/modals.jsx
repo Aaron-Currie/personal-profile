@@ -32,6 +32,17 @@ const Modal = ({children, closeModal}) => {
     );
 }
 
+const LightModal = ({children, closeModal}) => {
+    return (
+        <div className={styles.modalOverlayLight} onClick={closeModal}>
+            <div className={styles.modalContentLight} onClick={(e) => e.stopPropagation()}>
+                <Button action={closeModal} label={'×'} type='icon' />
+                {children}
+            </div>
+        </div>
+    );
+}
+
 const ModalOverlay = ({children, closeModal}) => {
     return (
         <div className={styles.modalOverlay} onClick={closeModal}>
@@ -49,4 +60,4 @@ const ModalContent = ({children, closeModal}) => {
     );
 }
 
-export {MissionModal, Modal, ModalOverlay, ModalContent};
+export {MissionModal, Modal, ModalOverlay, ModalContent, LightModal};

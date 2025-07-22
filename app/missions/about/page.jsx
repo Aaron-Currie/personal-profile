@@ -67,7 +67,7 @@ const selectAgent = (key) => {
             <p><strong>⚠️ Caution:</strong> After three incorrect identifications, the agents will be alerted. AC1178 will relocate, and all revealed intel will be lost. Proceed with precision.</p>
           </Briefing>
 {!missionDataState? <p>Accquiring fresh safe house data</p> :
-            <CarouselWrapper>
+            <CarouselWrapper border={false} size='medium'>
                  {Object.keys(missionDataState).map((key, index) => {
                     return <AgentCard key={index} agent={missionDataState[key]} agentName={key} action={selectAgent} selectedAgent={selectedAgent} />
                 })}

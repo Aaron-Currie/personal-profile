@@ -6,6 +6,7 @@ export const projects = [
         tech: 'Next.js, React',
         link: '/',
         repo: '',
+        display: 'carousel',
         images: [],
         pinData: {
             top: '20%',
@@ -20,7 +21,8 @@ export const projects = [
         tech: 'Next.js, React',
         link: '/',
         repo: '',
-        images: [    
+        display: 'carousel',
+        images: [
             { image: '/questr/questr1.jpg' },
             { image: '/questr/questr2.jpg' },
             { image: '/questr/questr3.jpg' },
@@ -49,6 +51,7 @@ export const projects = [
         tech: 'Next.js, React',
         link: '/',
         repo: '',
+        display: 'carousel',
         images: [],
         pinData: {
             top: '47%',
@@ -63,6 +66,7 @@ export const projects = [
         tech: 'Next.js, React',
         link: '/',
         repo: '',
+        display: 'carousel',
         images: [],
         pinData: {
             top: '63%',
@@ -77,7 +81,15 @@ export const projects = [
         tech: 'Next.js, React',
         link: '/',
         repo: '',
-        images: [],
+        display: 'grid',
+        images: [
+            { image: '/hobbies/hobbies1.jpg' },
+            { image: '/hobbies/hobbies2.jpg' },
+            { image: '/hobbies/hobbies3.jpg' },
+            { image: '/hobbies/hobbies4.jpg' },
+            { image: '/hobbies/hobbies5.jpg' },
+            { image: '/hobbies/hobbies6.jpeg' },
+        ],
         pinData: {
             top: '43%',
             left: '30%',
@@ -91,6 +103,7 @@ export const projects = [
         tech: 'Next.js, React',
         link: '/',
         repo: '',
+        display: 'carousel',
         images: [],
         pinData: {
             top: '82%',

@@ -2,12 +2,10 @@
 import React, { useState } from 'react';
 import styles from './carousel-wrapper.module.css';
 
-const CarouselWrapper = ({ children }) => {
+const CarouselWrapper = ({ children, size='large', border=true }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
-
-    console.log(children, 'CHILDREN IN CAROUSEL WRAPPER');
 
     const prevSlide = () => {
         setCurrentIndex((prevIndex) =>
@@ -45,7 +43,7 @@ const CarouselWrapper = ({ children }) => {
     };
 
     return (
-        <div className={styles.carousel}
+        <div className={`${styles.carousel} ${styles[size]}`}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
@@ -53,7 +51,7 @@ const CarouselWrapper = ({ children }) => {
             <button className={styles.navButton} onClick={prevSlide}>
                 &#8249;
             </button>
-            <div className={styles.imagesContainer}>
+            <div className={`${styles.imagesContainer} ${border && styles.border}`}>
                 {children.map((child, index) => {
                     let position;
                     if (index === currentIndex) {
@@ -71,7 +69,7 @@ const CarouselWrapper = ({ children }) => {
                     }
 
                     return (
-                        <div key={index} className={`${styles.imageContainer} ${styles[position]}`}>
+                        <div key={index} className={`${styles.imageContainer} ${border && styles.border} ${styles[position]} ${styles[size]}`}>
                             {child}
                         </div>
                     );

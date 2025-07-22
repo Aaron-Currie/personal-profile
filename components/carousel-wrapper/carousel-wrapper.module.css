@@ -19,7 +19,6 @@
     width: 100%;
     max-width: 1300px;
     height: 100%;
-    /* border: 1px solid var(--border-blue); */
     transition: transform 0.5s ease-in-out;
 }
 
@@ -29,10 +28,29 @@
     height: 900px;
     object-fit: contain;
     padding: 20px;
-    /* border: 1px solid var(--border-blue); */
     opacity: 0;
     max-width: 100%;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.border {
+    border: 1px solid var(--border-blue);
+}
+
+.large {
+    height: 900px
+}
+
+.medium {
+    height: 750px;
+}
+
+.small {
+    height: 600px;
+}
+
+.dynamic {
+    height: 60vh
 }
 
 .image {
@@ -126,10 +144,7 @@
 
 @media (max-width: 880px) {
 
-    .carousel {
-        height: 700px;
-    }
-    .imagesContainer {
+    .large {
         height: 700px;
     }
 

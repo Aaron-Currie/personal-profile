@@ -1,37 +1,33 @@
-.portfolioContainer {
-    position: relative;
+.main {
+    width: 100vw;
+    height: max-content;
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
+    background-image: url('/timeline/lab.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.portfolioContainer {
+    position: relative;
     background-image: url('/locker.png');
     background-repeat: no-repeat;
     background-position: center;
-    min-height: 800px;
-    height: 100vh;
-    width: 900px;
-    margin: 100px auto;
+    max-width: 900px;
+    width: 100%;
+    aspect-ratio: 9/16;
+    margin: 100px 0 0 0;
     border: 1px solid rgb(0, 43, 93);
     border-radius: 10px;
     transition: all 0.3s linear;
 }
 
-.portfolioProject {
-    width: 90%;
-    height: 80%;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid var(--border-blue);
-    background-color: rgba(1, 26, 55, 0.70);
-    padding: 20px;
-    gap: 20px;
-    animation: 0.5s faideIn linear;
-}
-
 .carouselImage {
     width: max-content;
     height: 100%;
-    max-height: 750px;
+    max-height: 100%;
     object-fit: contain;
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
 }

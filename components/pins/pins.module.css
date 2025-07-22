@@ -107,8 +107,8 @@
     transform: translate(0, -50%) scale(0.9);
   }
 
-  .timeLineScore {
-    animation: faideIn 0.3s 1s linear;
+  .timeLineAnimation {
+    animation: faideIn 0.6s linear;
   }
 
   .failed {
