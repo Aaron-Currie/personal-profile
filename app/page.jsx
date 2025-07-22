@@ -31,8 +31,6 @@ export default function Home() {
     updatePageStatus('/', true, false);
   }, [])
 
-  const [imageLoading, setimageLoading] = useState(true);
-
   const handleMissionClick = (mission) => {
     if(currentMission) {
       setCurrentMission(null)
@@ -40,24 +38,18 @@ export default function Home() {
       setCurrentMission(mission);
     }
   }
-
-  const handleImageLoad = () => {
-    console.log('Image loaded');
-    setimageLoading(false);
-  }
-
   const handleBriefingClick = () => {
     setBriefing(!briefing);
   }
 
+  if (loading) return <LoadingPage />;
   return (
     <main className={styles.main}>
-      {loading || imageLoading ? <LoadingPage /> : null}
       {currentMission && (
         <MissionModal currentMission={currentMission} closeModal={handleMissionClick} pages={pages}>
         </MissionModal>)}
       <section className={styles.section}>
-      <img src="/globetactical.png" onLoad={handleImageLoad} className={styles.map} />
+      <img src="/globetactical.png" className={styles.map} />
         <div className={styles.overlay}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
             <h3>Profile: AARON CURRIE</h3>
