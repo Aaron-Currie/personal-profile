@@ -1,12 +1,11 @@
 
 import TimeLine from '@/components/timeline/timeline';
-import styles from './page.module.css'
 import { experience } from '@/constants/experience';
 
 export default function Experience() {
     return (
         <main>
-            {experience.map((exp, index) => {
+            {experience.map((exp) => {
                 return (
                     <TimeLine 
                         key={exp.title} 
