@@ -12,7 +12,8 @@ import LoadingPage from "@/components/loading/loading-page";
 export default function Home() {
   const [briefing, setBriefing] = useState(true);
   const [complete, setComplete] = useState(false);
-    const [missionDataState, setMissionDataState] = useState(null);
+  const [missionDataState, setMissionDataState] = useState(missionData);
+  const [loading, setLoading] = useState(true);
 
   const [selectedAgent, setSelectedAgent] = useState([]);
   const { mobile } = useScreenSize()
@@ -33,29 +34,33 @@ export default function Home() {
   }
 
   const shuffleMissionData = () => {
+    setLoading(true);
     const shuffledMissionData = Object.keys(missionData)
     .sort(() => Math.random() - 0.5)
     .reduce((acc, key) => {
         acc[key] = missionData[key];
         return acc;
     }, {});
-    setMissionDataState(shuffledMissionData)
+      setMissionDataState(shuffledMissionData)
+    setTimeout(() => {
+      setLoading(false)
+    }, 1600);
+    
 }
 
 const selectAgent = (key) => {
     if (key === 'agent3') {
         setComplete(true);
     } else if (selectedAgent.length > 1) {
-        setMissionDataState(null);
+        setSelectedAgent([...selectedAgent, key]);
         setTimeout(() => {
             shuffleMissionData(); 
-        }, 4000);
-        setSelectedAgent([]);
+            setSelectedAgent([]);
+        }, 500);
     } else {
         setSelectedAgent([...selectedAgent, key]);
     }
 }
-
   return (
     <main className={styles.main}>
       <section className={styles.section}>
@@ -67,12 +72,11 @@ const selectAgent = (key) => {
             <p><strong>How to play:</strong> Select agents to reveal which traits they share with AC1178. Use this intel to eliminate false leads and zero in on the target.</p>
             <p><strong>⚠️ Caution:</strong> After three incorrect identifications, the agents will be alerted. AC1178 will relocate, and all revealed intel will be lost. Proceed with precision.</p>
           </Briefing>
-{!missionDataState? <LoadingPage /> :
             <CarouselWrapper border={false} size='medium'>
                  {Object.keys(missionDataState).map((key, index) => {
-                    return <AgentCard key={index} agent={missionDataState[key]} agentName={key} action={selectAgent} selectedAgent={selectedAgent} />
+                    return <AgentCard key={index} loading={loading} agent={missionDataState[key]} agentName={key} action={selectAgent} selectedAgent={selectedAgent} />
                 })}
-            </CarouselWrapper>}
+            </CarouselWrapper>
         </div>
       </section>
     </main>

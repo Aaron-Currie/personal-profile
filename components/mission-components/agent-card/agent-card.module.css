@@ -1,15 +1,21 @@
 .agentCard {
-    width: 300px;
-    height: max-content;
+    width: 360px;
+    height: 700px;
     border-radius: 20px;
     border: 1px solid var(--border-blue);
     transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.2s ease-in-out;
     background: var(--border-blue);
     overflow: hidden;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     padding-bottom: 10px;
+    position: relative;
+}
+
+.innerCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .image {
@@ -39,17 +45,6 @@
     color: green;
   }
 
-
-  @media (max-width: 880px) {
-    .agentCard {
-        width: 375px;
-        height: auto;
-    }
-    .image {
-        height: 350px
-    }
-}
-
 @keyframes shake {
   0% { transform: translateX(0), translateY(0); }
   15% { transform: translateY(-10px); }
@@ -61,4 +56,13 @@
   75% { transform: translateY(10px); }
   85% { transform: translateX(10px); }
   100% { transform: translateX(0), translateY(0); }
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }

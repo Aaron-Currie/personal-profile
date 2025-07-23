@@ -39,7 +39,7 @@ export default function Portfolio() {
         <main className={styles.main}>
             <div style={{backgroundSize: backgroundZoom? '230% 240%' : '110% 120%', backgroundPosition: backgroundZoom? `${backgroundZoom.left} ${backgroundZoom.top}`: ''}} className={styles.portfolioContainer}>
                 {projects.map((project, index) => {
-                    return projectNo === null && <MissionPin mission={project.pinData} handleClick={() => {handleClick(project, index)}}/>
+                    return projectNo === null && <MissionPin mission={project.pinData} handleClick={() => {handleClick(project, index)}} key={project.name}/>
                 })}
             </div>
            {project && (

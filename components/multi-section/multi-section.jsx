@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './multi-section.module.css';
 import Button from '../button/button';
 import AnimatedBlips from '../animated-lights/animated-blips';
+import LoadingScan from '../loading/loading-scan';
 
 const MultiSection = ({ children }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -31,10 +32,7 @@ const MultiSection = ({ children }) => {
     return (
         <section className={styles.section}>
             {animationState === 'scanning' && (
-                    <div className={styles.scanContainer}>
-                        <AnimatedBlips/>
-                        <div className={styles.scan}></div>
-                    </div>
+                <LoadingScan />
             )}
             <h3>{children[currentIndex]?.props.sectionTitle}</h3>
                 {children[currentIndex]}

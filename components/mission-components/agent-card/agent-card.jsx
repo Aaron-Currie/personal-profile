@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './agent-card.module.css';
 import Button from '@/components/button/button';
+import LoadingScan from '@/components/loading/loading-scan';
 
-const AgentCard = ({ agent, agentName, action, selectedAgent }) => {
+const AgentCard = ({ agent, agentName, action, selectedAgent, loading }) => {
 console.log(agent, 'agent')
     const classProvider = (agent, trait, answer, selected) => {
         if (!selected) {
@@ -18,6 +19,9 @@ console.log(agent, 'agent')
     const isSelected = selectedAgent.includes(agentName);
     return (
         <div className={`${styles.agentCard} ${isSelected && styles.incorrectCard}`}>
+            {loading ? <LoadingScan text='Agent Relocating...'/> :  
+                    (                        
+                    <div className={styles.innerCard}>
                         <img className={styles.image} src={agent.image}/>
                         <div className={styles.cardContent}>
                             <p className={classProvider(agent, 'base', 'Leeds', isSelected)} >Base: {agent.base}</p>
@@ -32,6 +36,9 @@ console.log(agent, 'agent')
                             </ul>
                         </div>
                        <Button disabled={selectedAgent.includes(agentName)} label='Select Agent' type='button' action={() => action(agentName)}/>
+                    </div>
+                    )
+                }
         </div>
     );
 };
