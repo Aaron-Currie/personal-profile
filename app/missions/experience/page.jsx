@@ -8,6 +8,7 @@ import { TimeLinePin } from "@/components/pins/pins";
 import generateGrid from "./utils/generate-grid";
 import Button from "@/components/button/button";
 import LoadingPage from "@/components/loading/loading-page";
+import Failure from "@/components/mission-components/failed-overlay/failed-overlay";
 
 export default function TimelineTraverse() {
   const GridSize = 9
@@ -159,15 +160,13 @@ export default function TimelineTraverse() {
             <p><strong>How to plyay:</strong> Select connecting timeline nodes to progress through the grid, different nodes have different effects so plan your route carefully to finish with enough points to pass the final node.</p>
           </Briefing>
               <div className={styles.gameContainer}>
+              {failed && <Failure reset={resetTimeline}/>}  
                 <div className={styles.controls}>
                   <h2>Current Experience: {xp}</h2>
-                  <button className={styles.actionButton} onClick={() => activateShield()}>🛡️ {`${shields}`}</button>
-                  <button className={styles.actionButton} onClick={() => activateWarp()}>🌀 {warps}</button>
-                  {failed && <Button label='Reset TimeLine' action={resetTimeline} />}
+                  <button disabled={failed} className={styles.actionButton} onClick={() => activateShield()}>🛡️ {`${shields}`}</button>
+                  <button disabled={failed} className={styles.actionButton} onClick={() => activateWarp()}>🌀 {warps}</button>
                 </div>
-
-
-              <div className={styles.gridContainer} inert={failed}> 
+              <div className={styles.gridContainer} inert={failed}>
               {grid.map((row, x) =>
                 row.map((node, y) => {
                     const isCurrent = position[0] === x && position[1] === y;

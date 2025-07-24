@@ -33,7 +33,7 @@
     bottom: 0;
     left: 0;
     background-color: rgb(1, 26, 55, 0.99);
-    z-index: 20;
+    z-index: 7;
   }
 
   .gridContainer {
