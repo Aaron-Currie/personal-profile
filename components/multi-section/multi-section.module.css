@@ -15,10 +15,12 @@
     width: 100%;
     overflow-y: scroll;
     position: relative;
-    margin-top: 20px;
+    padding-top: 20px;
 }
 
 .controls {
+    height: 20%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;

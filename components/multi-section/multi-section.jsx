@@ -34,7 +34,7 @@ const MultiSection = ({ children }) => {
             {animationState === 'scanning' && (
                 <LoadingScan />
             )}
-            <h3>{children[currentIndex]?.props.sectionTitle}</h3>
+            {/* <h3>{children[currentIndex]?.props.sectionTitle}</h3> */}
                 {children[currentIndex]}
             <div className={styles.controls}>
                 <Button action={prevSection} disabled={currentIndex === 0} label={`← ${children[currentIndex - 1]?.props.sectionTitle || 'Details'}`} />
