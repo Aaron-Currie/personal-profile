@@ -9,7 +9,7 @@ import CarouselWrapper from "@/components/carousel-wrapper/carousel-wrapper";
 import AgentCard from "@/components/mission-components/agent-card/agent-card";
 import LoadingPage from "@/components/loading/loading-page";
 
-export default function Home() {
+export default function AboutMission() {
   const [briefing, setBriefing] = useState(true);
   const [complete, setComplete] = useState(false);
   const [missionDataState, setMissionDataState] = useState(missionData);
