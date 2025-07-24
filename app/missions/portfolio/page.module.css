@@ -17,8 +17,8 @@
   
   .missionGrid {
     display: grid;
-    grid-template-columns: repeat(5, 120px);
-    grid-template-rows: repeat(6, 130px);
+    grid-template-columns: repeat(5, clamp(50px, 18vw, 120px));
+    grid-template-rows: repeat(6, clamp(60px, 20vw, 130px));
     padding: 20px;
     justify-content: center;
     position: relative;
@@ -60,17 +60,4 @@
   }
   .failed {
     background-color: rgba(169, 0, 0, 0.5);
-  }
-
-  @media (max-width: 880px) {
-    .missionGrid {
-      grid-template-columns: repeat(5, 120px);
-      grid-template-rows: repeat(6, 130px);
-    }
-  }
-  @media (max-width: 500px) {
-    .missionGrid {
-      grid-template-columns: repeat(5, 80px);
-      grid-template-rows: repeat(6, 90px);
-    }
   }

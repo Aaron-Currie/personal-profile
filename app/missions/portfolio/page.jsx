@@ -8,6 +8,7 @@ import LoadingScan from "@/components/loading/loading-scan";
 import GridButton from "@/components/mission-components/grid-button/grid-button";
 import Button from "@/components/button/button";
 import generateRandomArray from "./utils/generate-grid";
+import Failure from "@/components/mission-components/failed-overlay/failed-overlay";
 
 export default function PortfolioMission() {
   const [briefing, setBriefing] = useState(true);
@@ -64,7 +65,6 @@ export default function PortfolioMission() {
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
             <h3>Mission: Locker Crack</h3>
             <p>Agent AC1178 successfully intercepted and secured a cache of highly sensitive technologies critical to our operation. However, during extraction, the data was encrypted and locked inside a cryptographically sealed vault.
-
 To regain access, we need you to decrypt the vault by matching the corresponding cipher keys. Time is of the essence — the mission depends on your precision.</p>
             <p><strong>How to play:</strong> Select tiles in the grid to reveal hidden cipher keys. Match identical pairs to unlock sections of the vault. Continue until all pairs have been revealed and the vault is fully decrypted.</p>
           </Briefing>
@@ -73,9 +73,9 @@ To regain access, we need you to decrypt the vault by matching the corresponding
               <div className={styles.energyFill} style={{width: `${energy}%`}}></div>
             </div>
             <p>Remaing Energy: {energy}%</p>
-            <Button label='Reset Mission' action={resetMission} />
           </div>
-          <div className={styles.missionGrid} inert={failed}>
+          <div className={styles.missionGrid}>
+            {failed && <Failure reset={resetMission}/>}
             {!grid? <LoadingScan/> : grid.map((item, index) => {
               return <GridButton setCounter={setCounter} energy={energy} setEnergy={setEnergy} item={item}/>
             })}

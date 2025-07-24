@@ -23,7 +23,7 @@ const GridButton = ({ item, setCounter, setEnergy, energy }) => {
     }
 
     return (
-        <button disabled={state !== null} onClick={handleClick} className={`${styles.gridButton} ${classSelector()} ${energy <= 0 && styles.locked}`}>
+        <button disabled={state !== null || energy === 0} onClick={handleClick} className={`${styles.gridButton} ${classSelector()} ${energy <= 0 && styles.locked}`}>
         </button>
     );
 };
