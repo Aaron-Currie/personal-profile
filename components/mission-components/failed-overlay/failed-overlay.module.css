@@ -4,13 +4,22 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    display: grid;
+    place-items: center;
+    z-index: 8;
+}
+
+.content {
+    text-align: center;
+    color: white;
+    background-color: rgba(33, 0, 0, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    animation: fadeInGrow 0.6s ease-in-out;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    z-index: 8;
-    animation: fadeInGrow 0.6s ease-in-out;
+    gap: 10px;
 }
 
 @keyframes fadeInGrow {
