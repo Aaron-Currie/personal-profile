@@ -37,7 +37,7 @@ export default function TimelineTraverse() {
     if(xp < 0) {
       setTimeout(() => {
         setFailed(true)
-      }, 1000);
+      }, 1400);
     }
   }, [xp]);
 

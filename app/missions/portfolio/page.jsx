@@ -32,7 +32,9 @@ export default function PortfolioMission() {
 
   useEffect(() => {
     if (energy === 0) {
-      setFailed(true);
+      setTimeout(() => {
+        setFailed(true);
+      }, 1000);
     }
   }, [energy]);
 

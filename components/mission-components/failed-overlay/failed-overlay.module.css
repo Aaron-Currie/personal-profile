@@ -10,6 +10,7 @@
     justify-content: center;
     align-items: center;
     z-index: 8;
+    animation: fadeInGrow 0.6s ease-in-out;
 }
 
 @keyframes fadeInGrow {
