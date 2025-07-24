@@ -162,7 +162,7 @@ export default function TimelineTraverse() {
               <div className={styles.gameContainer}>
               {failed && <Failure reset={resetTimeline}/>}  
                 <div className={styles.controls}>
-                  <h2>Current Experience: {xp}</h2>
+                  <h3>Current Experience: {xp}</h3>
                   <button disabled={failed} className={styles.actionButton} onClick={() => activateShield()}>🛡️ {`${shields}`}</button>
                   <button disabled={failed} className={styles.actionButton} onClick={() => activateWarp()}>🌀 {warps}</button>
                 </div>
