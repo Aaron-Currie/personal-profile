@@ -30,6 +30,7 @@
     background-size: contain;
     background-position: center;
     margin: 30px auto 150px auto;
+    overflow: hidden;
   }
 
   .energyContainer {

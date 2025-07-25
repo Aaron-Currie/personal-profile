@@ -5,7 +5,7 @@ import { tech } from '@/constants/tech';
 import CollapsableSection from '@/components/collapsable-section/collapsable-section';
 import FlipGrid from '@/components/flip-grid/flip-grid';
 import Cards from '@/components/cards/cards';
-import AnimatedLights from '@/components/animated-lights/animated-lights';
+import AnimatedLights from '@/components/animations/animated-lights';
 
 const SkillsPage = () => {
     return (

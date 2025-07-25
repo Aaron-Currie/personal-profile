@@ -1,0 +1,119 @@
+.screenContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 90vh;
+    max-height: 800px;
+    width: 90%;
+    max-width: 1000px;
+    border: 1px solid var(--border-blue);
+    border-radius: 10px;
+    margin: auto;
+    padding: 10px;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--border-blue);
+    border-radius: 10px;
+    box-shadow: inset 0 0 30px 4px var(--primary-blue);
+    overflow: hidden;
+    position: relative;
+}
+
+.positioner {
+    position: absolute;
+    transform: translate(-50%, -50%);
+}
+
+.radar {
+    width: 50vw;
+    height: 50vw;
+    max-width: 300px;
+    max-height: 300px;
+    opacity: 0.8;
+}
+
+.opacity {
+    opacity: 0.6;
+}
+
+.cv {
+    width: 70%;
+    height: 80%;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 450px;
+}
+.cv::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(1, 26, 55, 0.4);
+
+}
+
+.cvImage {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+.analyiser {
+    padding: 10px;
+    border: 1px solid var(--border-blue);
+    width: 95%;
+    height: max-content;
+    background-color: rgba(1, 26, 55, 0.8);
+    text-align: center;
+    position: relative;
+}
+
+.profileContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 20px;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+    text-align: left;
+}
+
+.profilePic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 2px solid var(--border-blue);
+}
+
+@media (max-width: 880px) {
+    .profileContainer {
+        padding: 5px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .profilePic {
+        width: 120px;
+        height: 120px;
+    }
+}
+
+@media (max-width: 460px) {
+    .details p {
+        font-size: 0.7rem;
+    }
+    .profilePic {
+        width: 100px;
+        height: 100px;
+    }
+}

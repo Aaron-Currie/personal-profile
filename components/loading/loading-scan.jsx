@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './loading.module.css';
-import AnimatedBlips from '../animated-lights/animated-blips';
+import AnimatedBlips from '../animations/animated-blips';
 
 const LoadingScan = ({text=null}) => {
     return (

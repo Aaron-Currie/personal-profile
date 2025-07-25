@@ -3,7 +3,7 @@ import styles from './page.module.css'
 import { qestrArray } from '@/constants/questrArray';
 import ImageGrid from '@/components/image-grid/image-grid';
 import { hobbies } from '@/constants/hobbies';
-import AnimatedLights from '@/components/animated-lights/animated-lights';
+import AnimatedLights from '@/components/animations/animated-lights';
 import CarouselWrapper from '@/components/carousel-wrapper/carousel-wrapper';
 
 export default function AboutMe() {
