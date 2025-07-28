@@ -67,6 +67,7 @@
 .analyiser {
     padding: 10px;
     border: 1px solid var(--border-blue);
+    border-radius: 10px;
     width: 95%;
     height: max-content;
     background-color: rgba(1, 26, 55, 0.8);
@@ -94,6 +95,117 @@
     height: 150px;
     border-radius: 50%;
     border: 2px solid var(--border-blue);
+}
+
+.scannerContainer {
+    position: relative;
+    width: 70%;
+    height: 30%;
+    max-width: 450px;
+    margin: auto;
+}
+
+.scannerBox {
+    width: 50px;
+    height: 25px;
+    border: 1px solid var(--border-blue);
+    animation: scannerFlash 1s infinite alternate, scannerMove 10s linear infinite;
+    position: absolute;
+    transition: all 0.3s ease-in-out;
+}
+@keyframes scannerFlash {
+    0% {
+        background-color: rgba(1, 26, 55, 0.2);
+    }
+    100% {
+        background-color: rgba(0, 120, 255, 0.3);
+    }
+}
+@keyframes scannerMove {
+    0% {
+        top: 10%;
+        left: 0%; 
+    }
+    5% {
+        top: 10%;
+        left: 20%;
+    }
+    10% {
+        top: 10%;
+        left: 50%;
+    }
+    15% {
+        top: 10%;
+        left: 60%;
+    }
+    20% {
+        top: 10%;
+        left: 60%;
+    }
+    25% {
+        top: 25%;
+        left: 30%;
+    }
+    30% {
+        top: 25%;
+        left: 40%;
+    }
+    35% {
+        top: 25%;
+        left: 40%;
+    }
+    40% {
+        top: 25%;
+        left: 50%;
+    }
+    45% {
+        top: 25%;
+        left: 60%;
+    }
+    50% {
+        top: 35%;
+        left: 20%;
+    }
+    55% {
+        top: 35%;
+        left: 30%;
+    }
+    60% {
+        top: 25%;
+        left: 40%;
+    }
+    65% {
+        top: 25%;
+        left: 40%;
+    }
+    70% {
+        top: 45%;
+        left: 50%;
+    }
+    75% {
+        top: 45%;
+        left: 50%;
+    }
+    80% {
+        top: 45%;
+        left: 60%;
+    }
+    85% {
+        top: 55%;
+        left: 10%;
+    }
+    90% {
+        top: 55%;
+        left: 10%;
+    }
+    95% {
+        top: 55%;
+        left: 20%;
+    }
+    100% {
+        top: 10%;
+        left: 0%;
+    }
 }
 
 @media (max-width: 880px) {

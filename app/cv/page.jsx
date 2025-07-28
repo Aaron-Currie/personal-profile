@@ -28,11 +28,11 @@ const CVPage = () => {
                         <div style={{top: '60%', left: '50%'}} className={`${styles.positioner} ${styles.cv}`}>
                             <img className={styles.cvImage} src='/cv-image.png'/>
                         </div>
-                        <div style={{bottom: '-35vw', left: '5%'}} className={`${styles.positioner} ${styles.radar}`}>
+                        {/* <div style={{bottom: '-35vw', left: '5%'}} className={`${styles.positioner} ${styles.radar}`}>
                             <Radar />
-                        </div>
+                        </div> */}
                     </div>
-                    <div style={{top: '5%', left: '2.5%'}} className={` ${styles.analyiser}`}>
+                    <div style={{top: '2.5%', left: '2.5%'}} className={` ${styles.analyiser}`}>
                         <h2>Analysing Data</h2>
                         <div className={styles.profileContainer}>
                             <img className={styles.profilePic} src='/profilepic.png'/>
@@ -48,7 +48,10 @@ const CVPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div style={{top: '70%', left: '50%'}} className={`${styles.positioner}`}>
+                    <div className={styles.scannerContainer}>
+                        <div className={styles.scannerBox}></div>
+                    </div>
+                    <div style={{bottom: '5%', left: '50%'}} className={`${styles.positioner}`}>
                         <Button action={tempClick} label='Download CV' />
                     </div>
                 </div>

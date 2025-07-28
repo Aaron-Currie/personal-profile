@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from "react";
-import styles from "./animated-lights.module.css";
+import styles from './animated-lights.module.css';
 
 const AnimatedBlips = ({speed = 500}) => {
     const [flashingLights, setFlashingLights] = useState([]);
