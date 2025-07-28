@@ -16,7 +16,7 @@
   left: 50%;
   transform: translate(-50% , 5%);
   width: max-content;
-  max-width: 150px;
+  max-width: 120px;
 }
 
 .mission:hover {

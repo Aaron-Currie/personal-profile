@@ -1,7 +1,6 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import Button from "@/components/button/button";
 import { ContentFirst, ContentSecond, ContentThird } from "./content";
 import LoadingScan from "@/components/loading/loading-scan";
 
@@ -71,7 +70,8 @@ const CVPage = () => {
                         </div>
                     </div>
                     <div className={styles.scannerContainer}>
-                        <div className={styles.scannerBox}></div>
+                        <div className={`${styles.scannerBox} ${styles.scannerAnimationDown}`}></div>
+                        <div className={`${styles.scannerBox} ${styles.scannerAnimationUp}`}></div>
                     </div>
                     <div style={{bottom: '5%', left: '50%'}} className={`${styles.positioner}`}>
                         <button className={styles.downloadButton} onClick={tempClick}>Download CV</button>

@@ -79,7 +79,7 @@ To regain access, we need you to decrypt the vault by matching the corresponding
           <div className={styles.missionGrid}>
             {failed && <Failure reset={resetMission}/>}
             {!grid? <LoadingScan/> : grid.map((item, index) => {
-              return <GridButton setCounter={setCounter} energy={energy} setEnergy={setEnergy} item={item}/>
+              return <GridButton setCounter={setCounter} key={index} energy={energy} setEnergy={setEnergy} item={item}/>
             })}
           </div>
         </div>

@@ -3,6 +3,7 @@
     top: 100px;
     left: 20px;
     min-height: 200px;
+    max-height: 85%;
     width: calc(100% - 60px);
     display: flex;
     padding: 20px;
@@ -11,6 +12,8 @@
     background-color: rgba(1, 26, 55, 0.6);
     z-index: 10;
     animation: fadeIn 0.3s ease-in-out;
+    scrollbar-color: var(--border-blue) rgba(1, 26, 55, 0.5);
+    overflow-y: auto;
 }
 
 .briefingHeader button {
@@ -46,6 +49,7 @@
         top: 20px;
         right: 20px;
         z-index: 98;
+        padding: 10px;
     }
 
     .briefing {
@@ -54,7 +58,7 @@
         align-items: center;
         padding: 20px 15px 40px 15px;
         background-color: rgba(1, 26, 55, 0.9);
-        gap: 40px;
+        gap: 20px;
         width: calc(100% - 40px);
     }
 
@@ -66,8 +70,8 @@
     
 
     .profilePic {
-        width: 158px;
-        max-height: 158px;
+        width: 100px;
+        max-height: 100px;
     }
 
     .briefingOverlay {
