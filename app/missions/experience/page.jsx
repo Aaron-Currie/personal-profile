@@ -76,6 +76,7 @@ export default function TimelineTraverse() {
     setShields(1);
     setWarps(1);
     setShieldActive(false);
+    setWarpActive(false);
     setComplete(false);
     setFailed(false);
   }
