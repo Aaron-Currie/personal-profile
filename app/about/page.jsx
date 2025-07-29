@@ -5,6 +5,7 @@ import ImageGrid from '@/components/image-grid/image-grid';
 import { hobbies } from '@/constants/hobbies';
 import AnimatedLights from '@/components/animations/animated-lights';
 import CarouselWrapper from '@/components/carousel-wrapper/carousel-wrapper';
+import Typewriter from '@/components/animations/typewriter';
 
 export default function AboutMe() {
     return (
@@ -13,8 +14,11 @@ export default function AboutMe() {
                 <img src='/profilepic.png'/>
                 <div className='flex-col'>
                     <h1>Dossier: Aaron Currie</h1>
-                    <h2>Agent Code: AC1178</h2>
-                    <p>Full-Stack Software Engineer | React & Next.js | Google Cloud Certified</p>
+                    <Typewriter speed={60} pause={200}>
+                        <p>Agent Code: AC1178</p>
+                        <p>Full-Stack Software Engineer | React & Next.js | Google Cloud Certified</p>
+                    </Typewriter>
+      
                 </div>
             </section>
             <CollapsableSection title='Bio'>
