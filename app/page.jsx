@@ -27,7 +27,7 @@ export default function Home() {
   }, [mobile])
 
   useEffect(() => {
-    setLoading(true);
+    setLoading(false);
     updatePageStatus('/', true, false);
   }, [])
 
