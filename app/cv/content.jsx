@@ -16,7 +16,6 @@
         return (
             <Typewriter speed={60} pause={1000}>
                 <p>Agent is a full-stack developer with a strong focus on modern frontend frameworks and growing experience in cloud-native backend systems.</p>
-                <p>On previous missions they built accessible, modular, production-ready features using React, Next.js, and GCP - contributing across the full software pfecycle from infrastructure to UI.</p>
             </Typewriter>
         )
     }

@@ -64,7 +64,7 @@ const CVPage = () => {
                                 {animation && <LoadingScan />}
                                 <img className={styles.profilePic} src={imageSRC}/>
                             </div>
-                                                                                    <div className={styles.details}>
+                                <div className={styles.details}>
                                 {analyzierContent}
                             </div>
                         </div>

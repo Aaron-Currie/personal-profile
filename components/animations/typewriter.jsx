@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect, cloneElement } from "react";
 
 export default function Typewriter({ children, speed = 50, pause = 800 }) {
