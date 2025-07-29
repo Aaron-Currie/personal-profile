@@ -15,7 +15,7 @@ const generateGrid = (GRID_SIZE) => {
     grid[0][3] = {...grid[0][3], reachable: true };
     grid[0][1] = {...grid[0][1], reachable: true };
     grid[1][2] = {...grid[1][2], reachable: true };
-    grid[0][2] = { type: 'start', visited: true, };
+    grid[0][2] = { type: 'start', visited: true, reachable: false };
     grid[GRID_SIZE - 1][5 - 1] = { type: 'final', visited: false, revealed: true, score: -100 };
     return grid;
   };

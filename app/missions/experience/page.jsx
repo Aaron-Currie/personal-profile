@@ -21,6 +21,9 @@ export default function TimelineTraverse() {
   const [shields, setShields] = useState(1);
   const [warps, setWarps] = useState(1);
   const [shieldActive, setShieldActive] = useState(false);
+  const [warpActive, setWarpActive] = useState(false);
+  const [usingWarp, setUsingWarp] = useState(false);
+  const [usingShield, setUsingShield] = useState(false);
   const { mobile } = useScreenSize()
 
   useEffect(() => {
@@ -41,8 +44,29 @@ export default function TimelineTraverse() {
     }
   }, [xp]);
 
+  useEffect(() => {
+      if(warpActive && noReachablePoints(grid)) {
+      setTimeout(() => {
+        setFailed(true)
+      }, 1400);
+    }
+  }, [warpActive]);
+
+
   const handleBriefingClick = () => {
     setBriefing(!briefing);
+  }
+
+  const noReachablePoints = (grid) => {
+    if (!grid) return false;
+    for (let row of grid) {
+      for (let node of row) {
+        if (node.reachable && !node.visited && node.type !== 'dead') {
+          return false;
+        }
+      }
+    }
+    return true;
   }
 
   const resetTimeline = () => {
@@ -63,11 +87,13 @@ export default function TimelineTraverse() {
     let xpGain;
     if (shieldActive) {
       xpGain = 0
+      setUsingShield(true);
       setShieldActive(false);
     } else {
       xpGain = node.score;
     }
-    
+    const newXp = xp + xpGain;
+    setXp(newXp);
     switch (node.type) {
       case 'shield':
         setShields(prev => prev + 1);
@@ -76,25 +102,51 @@ export default function TimelineTraverse() {
         setWarps(prev => prev + 1);
         break;
       case 'final':
-        if (xp >= 0) {
+        if (newXp >= 0) {
           setTimeout(() => {
             setComplete(true)
           }, 1000);
           break
         } else {
-          return;
+          break;
         }
       default:
         break;
     }
 
     const newGrid = getSurrounding(x, y, false);
-    
+
+    if (wasWarpUsed(position, [x, y])) {
+      setUsingWarp(true);
+    }
+
     newGrid[x][y].visited = true;
     newGrid[position[0]][position[1]].from = getMoveDirection(position, [x, y]);
     setGrid(newGrid);
-    setXp(prev => prev + xpGain);
+
+    if(warps === 0 && noReachablePoints(newGrid)) {
+      setTimeout(() => {
+        setFailed(true)
+      }, 1400);
+    }
+
+    setTimeout(() => {
+      setUsingShield(false);
+      setUsingWarp(false);
+    }, 1000);
+
+    setWarpActive(false);
     setPosition([x, y]);
+  };
+
+  const wasWarpUsed = (prev, current) => {
+    if (!prev) return false;
+    const [prevX, prevY] = prev;
+    const [currentX, currentY] = current;
+    return (
+      (Math.abs(currentX - prevX) === 2 && currentY === prevY) ||
+      (Math.abs(currentY - prevY) === 2 && currentX === prevX)
+    );
   };
 
   const getMoveDirection = (prev, current) => {
@@ -133,6 +185,7 @@ export default function TimelineTraverse() {
 
   const activateWarp = () => {
     if (warps > 0) {
+      setWarpActive(true);
       setWarps(prev => prev - 1);
       const newGrid = getSurrounding(position[0], position[1], true);
       setGrid(newGrid);
@@ -152,6 +205,8 @@ export default function TimelineTraverse() {
   return (
     <main className={styles.main}>
       <section className={styles.section}>
+        {usingWarp && <img src='/warp.png' className={`${styles.animation}`}/>}
+        {usingShield && <img src='/shield.png' className={`${styles.animation} ${styles.shield}`}/>}
         {complete && <Success page='/experience'></Success>}
         <div className={`briefing-offset`}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
@@ -163,11 +218,10 @@ export default function TimelineTraverse() {
               {failed && <Failure reset={resetTimeline}/>}  
                 <div className={styles.controls}>
                   <h3>Current Experience: {xp}</h3>
-                  <button disabled={failed} className={styles.actionButton} onClick={() => activateShield()}>🛡️ {`${shields}`}</button>
-                  <button disabled={failed} className={styles.actionButton} onClick={() => activateWarp()}>🌀 {warps}</button>
+                  <button disabled={failed || shieldActive} className={styles.actionButton} onClick={() => activateShield()}>🛡️ {`${shields}`}</button>
+                  <button disabled={failed || warpActive} className={styles.actionButton} onClick={() => activateWarp()}>🌀 {warps}</button>
                 </div>
-              <div className={styles.gridContainer} inert={failed}>
-              {grid.map((row, x) =>
+              <div className={styles.gridContainer} inert={failed}>              {grid.map((row, x) =>
                 row.map((node, y) => {
                     const isCurrent = position[0] === x && position[1] === y;
                     const direction = node?.from;
@@ -184,6 +238,7 @@ export default function TimelineTraverse() {
                         currentXp={xp}
                         isCurrent={isCurrent}
                         failed={failed}
+                        shieldActive={shieldActive}
                       >
                       </TimeLinePin>
                     </div>

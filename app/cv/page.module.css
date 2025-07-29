@@ -41,11 +41,11 @@
 }
 
 .cv {
-    width: 70%;
-    height: 80%;
+    width: 450px;
+    height: 75%;
     border-radius: 10px;
     overflow: hidden;
-    max-width: 450px;
+    max-width: 95%;
 }
 .cv::after {
     content: '';
