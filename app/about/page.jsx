@@ -22,9 +22,9 @@ export default function AboutMe() {
                 </div>
             </section>
             <CollapsableSection title='Bio'>
-                <p>Agent is a full-stack developer with a strong focus on modern frontend frameworks and growing experience in cloud-native backend systems. On previous missions they built accessible, modular, production-ready features using React, Next.js, and GCP - contributing across the full software lifecycle from infrastructure to UI.</p>
-                <p>They write clean, maintainable code, mentoring junior developers, and continuously levelling up skills whether it’s leading a project, improving pipelines with Terraform, or implementing scalable architecture.</p>
-                <p>Originally from a non-tech background, They bring a grounded, hands-on approach to building software that works.</p>
+                <p>I'm a full-stack developer with a strong focus on modern frontend frameworks and growing experience in cloud-native backend systems. At Sky, I’ve built accessible, modular, production-ready features using React, Next.js, and GCP - contributing across the full software lifecycle from infrastructure to UI.</p>
+                <p>I take pride in writing clean, maintainable code, mentoring junior developers, and continuously levelling up my skills whether it’s leading a project, improving pipelines with Terraform, or implementing scalable architecture.</p>
+                <p>Originally from a non-tech background, I bring a grounded, hands-on approach to building software that works.</p>
             </CollapsableSection>
             <CollapsableSection title='Current Mission'>
                 <div className='flex-col'>
@@ -37,7 +37,7 @@ export default function AboutMe() {
                             <li>Migrated search from Azure to Elasticsearch, enhancing search performance and reliability.</li>
                             <li>Mentored new engineers and technically led a graduate team on an internal tool, covering planning, PR reviews, and architectural guidance.</li>
                             <li>Integrated authentication across stage sites with NextAuth and custom middleware.</li>
-                            <li>{'Cybersecurity Champion (Green Belt Level), ensuring best practices across development'}</li>
+                            <li>{'Cybersecurity Champion for my team, ensuring best practices across development'}</li>
                             <li>{'Key contributor on a team building a dynamic website builder platform (similar to Squarespace/Wix) for Sky-branded sites using Next.js and React.'}</li>
                             <li>{'Built reusable component libraries and introduced a column-based layout system, significantly enhancing editorial design flexibility.'}</li>
                             <li>{'Built and maintained CI/CD infrastructure with CircleCI, Octopus, and Terraform.'}</li>
@@ -80,7 +80,7 @@ export default function AboutMe() {
                     </div>
             </ CollapsableSection>
             <CollapsableSection title='Technologies'>
-                <p>As a full-stack engineer, the agent has operated across the entire tech stack, from crafting front-end interfaces to deploying robust cloud infrastructure.</p>
+                <p>As a full-stack engineer, I have operated across the entire tech stack, building front-end interfaces, REST APIs, and deploying cloud infrastructure.</p>
                 <ul>
                     <li>Front-end: React, React Native, Next.js, HTML, CSS</li>
                     <li>Back-end: Node.js, Express, Koa, REST APIs</li>
