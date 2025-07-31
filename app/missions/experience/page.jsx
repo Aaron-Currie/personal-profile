@@ -59,6 +59,7 @@ export default function TimelineTraverse() {
 
   const noReachablePoints = (grid) => {
     if (!grid) return false;
+    if (grid[position[0]][position[1]].type === 'final') return false;
     for (let row of grid) {
       for (let node of row) {
         if (node.reachable && !node.visited && node.type !== 'dead') {
