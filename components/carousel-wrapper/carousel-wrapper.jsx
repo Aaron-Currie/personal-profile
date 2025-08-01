@@ -6,17 +6,26 @@ const CarouselWrapper = ({ children, size='large', border=true }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [touchStart, setTouchStart] = useState(null);
     const [touchEnd, setTouchEnd] = useState(null);
+    const [scrolling, setScrolling] = useState(false);
 
     const prevSlide = () => {
+        setScrolling(true);
         setCurrentIndex((prevIndex) =>
             prevIndex === 0 ? children.length - 1 : prevIndex - 1
         );
+        setTimeout(() => {
+            setScrolling(false);
+        }, 300);
     };
 
     const nextSlide = () => {
+        setScrolling(true);
         setCurrentIndex((prevIndex) =>
             prevIndex === children.length - 1 ? 0 : prevIndex + 1
         );
+        setTimeout(() => {
+            setScrolling(false);
+        }, 300);
     };
 
     const handleTouchStart = (e) => {
@@ -48,7 +57,7 @@ const CarouselWrapper = ({ children, size='large', border=true }) => {
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
         >
-            <button className={styles.navButton} onClick={prevSlide}>
+            <button disabled={scrolling} className={styles.navButton} onClick={prevSlide}>
                 &#8249;
             </button>
             <div className={`${styles.imagesContainer} ${border && styles.border}`}>
@@ -75,7 +84,7 @@ const CarouselWrapper = ({ children, size='large', border=true }) => {
                     );
                 })}
             </div>
-            <button className={styles.navButton} onClick={nextSlide}>
+            <button disabled={scrolling} className={styles.navButton} onClick={nextSlide}>
                 &#8250;
             </button>
         </div>

@@ -6,11 +6,15 @@ import CollapsableSection from '@/components/collapsable-section/collapsable-sec
 import FlipGrid from '@/components/flip-grid/flip-grid';
 import Cards from '@/components/cards/cards';
 import AnimatedLights from '@/components/animations/animated-lights';
+import { skills } from './skills-data';
+import Tabs from '@/components/tabs/tabs';
 
 const SkillsPage = () => {
     return (
         <main className={`flex-col flex-center main-offset ${styles.container}`}>
             <h1>Skills</h1>
+            <Tabs tabs={skills} />
+
             <CollapsableSection title="Tech At A Glance">
             <FlipGrid>
                 {tech.map((item, index) => {
@@ -27,27 +31,6 @@ const SkillsPage = () => {
             </FlipGrid>
             </CollapsableSection>
             <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Tech Stacks</h2>
-                <CollapsableSection title="Frontend">
-                    <h3>React, Next.js, JavaScript, TypeScript, HTML, CSS, SCSS, Styled Components</h3>
-                    <p>Agent developed frontend skills through intensive project work while self learning with code academy and during the Northcoders bootcamp. They continue to sharpen these skills at there role with Sky, where they architect reusable UI components and design responsive, accessible interfaces. React and Next.js is used on a daily basis to build performant web applications, with CSS, SCSS and Styled Components to streamline styling.</p>
-                </CollapsableSection>
-                <CollapsableSection title="Backend">
-                    <h3>Node.js, Express, Koa, REST APIs</h3>
-                    <p>Agents backend experience began during full-stack bootcamp projects, building RESTful APIs and integrating databases. At Sky, they expanded their skills working on ingestion pipelines and backend services using Node.js, GCP and KOA. Recently they have implemented user authentication, data validation, and built backend logic across personal and professional projects.</p>
-                </CollapsableSection>
-                <CollapsableSection title="DevOps & Cloud">
-                    <h3>Google Cloud Platform, AWS, Docker, Terraform, Octopus Deploy, Circle CI</h3>
-                    <p>As a google certified Associate Cloud Engineer, the agent has deployed services using GCP and AWS, highlighting their working around building an ingestion pipeline using webhooks, cloud functions, pub sub and api gateways. At Sky, they manage infrastructure using Terraform and Octopus, and have containerized applications with Docker. They are tasked with maintaining and improving the CI/CD pipelines to automate testing and deployments, ensuring smooth and reliable releases.</p>
-                </CollapsableSection>
-                <CollapsableSection title="Other Technologies">
-                    <h3>Git, GitHub, Jest, React Testing Library, Cypress, Insomnia, Postman, Docker, Len - Kubernetes dashboard, Husky</h3>
-                    <p>Agent uses a broad range of supporting technologies to ensure software quality, maintainability, and collaboration. Git and GitHub are used daily for version control, managing branches and pull requests in team environments. Jest and React Testing Library are used extenstively to write effective unit and integration tests, while Cypress supports end-to-end testing of complex user flows. Tools like Insomnia and Postman are essential for API testing and validation during backend development.</p>
-                    <p>The agent has used Docker to containerize apps for local development and deployment, and Lens to monitor Kubernetes clusters and troubleshoot deployed services. These tools enable testable code and support robust, well-monitored software throughout the development lifecycle.</p>
-                </CollapsableSection>
-            </section>
-            <section className={styles.section}>
-                <h2 className={styles.sectionTitle}>Skills</h2>
                 <Cards>
                     <Cards.Item size='md'>
                         <img src="/skills/coms.png" />
