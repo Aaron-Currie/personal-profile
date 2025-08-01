@@ -67,10 +67,10 @@ const selectAgent = (key) => {
         {complete && <Success page='/about'></Success>}
         <div className={`briefing-offset`}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
-            <h3>Mission: Identify Agent</h3>
-            <p>Agent AC1178 has successfully gone to ground in one of our secure safe houses. Your task is to identify their current location using a dossier of potential agents. Each suspect shares traits with our man, but only one is our operative.</p>
-            <p><strong>How to play:</strong> Select agents to reveal which traits they share with AC1178. Use this intel to eliminate false leads and zero in on the target.</p>
-            <p><strong>⚠️ Caution:</strong> After three incorrect identifications, the agents will be alerted. AC1178 will relocate, and all revealed intel will be lost. Proceed with precision.</p>
+            <h3>Mission: Dossier Search</h3>
+            <p>A search of one of our safe houses in this location has uncovered a list of dossiers of all the agents who frequented the safe house, we must analyse these dossiers to uncover the target’s Identity.</p>
+            <p>Select agents to reveal which traits they share with AC1178. Use this intel to eliminate false leads and zero in on the target.</p>
+            <p><strong>⚠️ Caution:</strong> After three incorrect identifications, the agents will be alerted, they will relocate to a new safe house and all revealed intel will be lost. Proceed with precision.</p>
           </Briefing>
             <CarouselWrapper border={false} size='medium'>
                  {Object.keys(missionDataState).map((key, index) => {

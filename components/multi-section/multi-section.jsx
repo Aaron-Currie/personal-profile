@@ -36,14 +36,14 @@ const MultiSection = ({ children }) => {
             )}
                 {children[currentIndex]}
             <div className={styles.controls}>
-                <Button action={prevSection} disabled={currentIndex === 0} label={`← ${children[currentIndex - 1]?.props.sectionTitle || 'Details'}`} />
-                <Button action={nextSection} disabled={currentIndex === children.length - 1} label={`${children[currentIndex + 1]?.props.sectionTitle || 'Images'} →`}/>
+                <Button action={prevSection} disabled={currentIndex === 0} label={`← ${children[0]?.props.sectionTitle}`} />
+                <Button action={nextSection} disabled={currentIndex === children.length - 1} label={`${children[1]?.props.sectionTitle} →`}/>
             </div>
         </section>
     );
 };
 
-MultiSection.Section = ({ children, sectionTitle }) => {
+MultiSection.Section = ({ children }) => {
     return (
         <div className={`${styles.sectionContent}`}>
             {children}

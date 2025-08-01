@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import styles from './button.module.css';
 
-const QuickAccessButton = ({pages, updatePageStatus}) => {
+const QuickAccessButton = ({pages, updatePageStatus, inText}) => {
 
     const [allUnlocked, setAllUnlocked] = useState(false);
 
@@ -21,7 +21,7 @@ const QuickAccessButton = ({pages, updatePageStatus}) => {
 
     return (
         <button
-            className={`${styles.button} ${styles.defaultButton} ${allUnlocked && styles.fadeOut}`}
+            className={`${styles.button} ${styles.defaultButton} ${inText && styles.inText} ${(allUnlocked && !inText) && styles.fadeOut}`}
             onClick={quickAccess}
         >
             Quick Access

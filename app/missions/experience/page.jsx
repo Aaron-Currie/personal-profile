@@ -213,8 +213,9 @@ export default function TimelineTraverse() {
         <div className={`briefing-offset`}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
             <h3>Mission: Timeline Alignment</h3>
-            <p>Agent AC1178’s operational history is hidden within a volatile timeline simulation. To verify their credentials, you must safely navigate through their career path — from early deployments in hospitality to tactical transitions into software engineering.</p>
-            <p><strong>How to plyay:</strong> Select connecting timeline nodes to progress through the grid, different nodes have different effects so plan your route carefully to finish with enough points to pass the final node.</p>
+            <p>AC1178 has hidden their background in a corrupted timeline simulation, We must traverse the simulation to uncover the truth of the agents past.</p>
+            <p>You must navigate your way through the simulation to the present destination via a series of interconnected nodes, each representing a key moment in the agent's history.</p>
+            <p>Be careful however as each node will have various effects on your experience, if your experience drops below zero you will be ejected from the simulation.</p>
           </Briefing>
               <div className={styles.gameContainer}>
               {failed && <Failure reset={resetTimeline}/>}  

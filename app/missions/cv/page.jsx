@@ -65,10 +65,10 @@ const CVMission = () => {
         <main className={'briefing-offset '}>
             {complete && <Success page='/cv'></Success>}
             <Briefing handleClick={handleBriefingClick} briefing={briefing}>
-            <h3>Mission: Decode CV</h3>
-            <p>We have gained access to agent ac117's personal terminal, we need to to break the password so we can access the agents classified cv.</p>
-            <p><strong>How to play:</strong> Guess the agents password by typing guesses in the input</p>
-            <p><strong>Tips:</strong> The terminal may reveal information to help you guess the password if you look carefully.</p>
+            <h3>Mission: Terminal Hack</h3>
+            <p>The targets highly classified CV is locked behind a secure terminal. We need you to bypass the security protocols and retrieve the information.</p>
+            <p>We must get into the terminal by cracking the agents password, luckily this terminal is an older model and may have vulnerabilities we can exploit.</p>
+            <p>Pay attention to the terminal output, it may contain hints about the password.</p>
             </Briefing>
             <div className={styles.screenContainer}>
                 <div className={styles.screen} ref={screenRef}>
