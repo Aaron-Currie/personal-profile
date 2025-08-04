@@ -9,6 +9,7 @@ import generateGrid from "./utils/generate-grid";
 import Button from "@/components/button/button";
 import LoadingPage from "@/components/loading/loading-page";
 import Failure from "@/components/mission-components/failed-overlay/failed-overlay";
+import MultiSection from "@/components/multi-section/multi-section";
 
 export default function TimelineTraverse() {
   const GridSize = 9
@@ -212,10 +213,25 @@ export default function TimelineTraverse() {
         {complete && <Success page='/experience'></Success>}
         <div className={`briefing-offset`}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
-            <h3>Mission: Timeline Alignment</h3>
-            <p>AC1178 has hidden their background in a corrupted timeline simulation, We must traverse the simulation to uncover the truth of the agents past.</p>
-            <p>You must navigate your way through the simulation to the present destination via a series of interconnected nodes, each representing a key moment in the agent's history.</p>
-            <p>Be careful however as each node will have various effects on your experience, if your experience drops below zero you will be ejected from the simulation.</p>
+            <MultiSection>
+              <MultiSection.Section sectionTitle="Briefing">
+                <h3>Mission: Timeline Alignment</h3>
+                <p>Ac1178's previous missions and experience will contain vital intel that can help us locate them. We recplicated a timeline simulation to navigate their past.</p>
+                <p>You must navigate your way through the simulation to the present day via a series of interconnected nodes, each representing a key moment in the agent's history.</p>
+                <p>Be careful however as each node will have various effects on your experiences, if your experience drops below zero you will be ejected from the simulation.</p>
+              </MultiSection.Section>
+              <MultiSection.Section sectionTitle="Instructions">
+                <h3>How to play</h3>
+                <p>Click the nodes to navigate to them through the time line. The final destination is located in the bottom right.</p>
+                <p>Each node will drain or gain experience points, how much is displayed on each visible node, you must get to the final destination with enough experience to pass the final node (100pts). You cannot revisit previously visited nodes so plan you route carefully, if you trap your self with no viable moves you will be ejected from the simulation.</p>
+                <p>As well as experience some nodes will also gain you shields and warps that you can use to help you navigate the maze.</p>
+              </MultiSection.Section>
+              <MultiSection.Section sectionTitle="Equipment">
+                <h3>Equipment</h3>
+                <p>Shields: When activated these negate the effects of the next node you choose (prevents positive experience as well as negative)</p>
+                <p>Warps: These allow you to jump over nodes, bypassing their effects entirely. These can also be used to jump over dead nodes and previously visited nodes.</p>
+              </MultiSection.Section>
+          </MultiSection>
           </Briefing>
               <div className={styles.gameContainer}>
               {failed && <Failure reset={resetTimeline}/>}  
