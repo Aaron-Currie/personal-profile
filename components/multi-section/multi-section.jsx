@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import styles from './multi-section.module.css';
 import Button from '../button/button';
-import AnimatedBlips from '../animations/animated-blips';
 import LoadingScan from '../loading/loading-scan';
 
 const MultiSection = ({ children }) => {
