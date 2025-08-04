@@ -44,6 +44,7 @@ export default function Portfolio() {
             </div>
            {project && (
             <LightModal closeModal={closeModal}>
+                <div className={styles.modalContent}>
                 {project && (
                     <MultiSection>
                         <MultiSection.Section sectionTitle='Details'>
@@ -77,6 +78,7 @@ export default function Portfolio() {
                         </MultiSection.Section>
                     </MultiSection>
                         )}
+                </div>
             </LightModal>
             )}
         </main>

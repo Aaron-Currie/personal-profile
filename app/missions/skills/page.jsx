@@ -43,11 +43,9 @@ export default function SkillsMission() {
         {complete && <Success page='/skills'></Success>}
         <div className={`briefing-offset`}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
-            <h3>Mission: Obtain Technology</h3>
-            <p>Agent AC1178 successfully intercepted and secured a cache of highly sensitive technologies critical to our operation. However, during extraction, the data was encrypted and locked inside a cryptographically sealed vault.
-
-To regain access, we need you to decrypt the vault by matching the corresponding cipher keys. Time is of the essence — the mission depends on your precision.</p>
-            <p><strong>How to play:</strong> Select tiles in the grid to reveal hidden cipher keys. Match identical pairs to unlock sections of the vault. Continue until all pairs have been revealed and the vault is fully decrypted.</p>
+            <h3>Mission: Tech Stash</h3>
+            <p>Agent AC1178 successfully unlocked a cache of highly sensitive technologies critical to our operation. However the cache has been encrypted using graphical image pairs. To regain access, we need you to decrypt the vault to discover what our target was working on.</p>
+            <p><strong>How to play:</strong> Select tiles in the grid to reveal keys. Match identical pairs to unlock sections of the cache. Continue until all pairs have been revealed and the cache is fully decrypted.</p>
           </Briefing>
           <div className={styles.missionGrid}>
             {!missionDataState? <LoadingScan/> : missionDataState.map((mission, index) => {

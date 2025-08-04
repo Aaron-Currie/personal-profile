@@ -7,13 +7,12 @@
     width: calc(100% - 60px);
     display: flex;
     padding: 20px;
-    gap: 40px;
+    gap: 10px;
     border: 1px solid rgb(0, 43, 93);
     background-color: rgba(1, 26, 55, 0.6);
     z-index: 10;
     animation: fadeIn 0.3s ease-in-out;
     scrollbar-color: var(--border-blue) rgba(1, 26, 55, 0.5);
-    overflow-y: auto;
 }
 
 .briefingHeader button {

@@ -66,9 +66,9 @@ export default function PortfolioMission() {
         <div className={`briefing-offset`}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
             <h3>Mission: Locker Crack</h3>
-            <p>Agent AC1178 successfully intercepted and secured a cache of highly sensitive technologies critical to our operation. However, during extraction, the data was encrypted and locked inside a cryptographically sealed vault.
-To regain access, we need you to decrypt the vault by matching the corresponding cipher keys. Time is of the essence — the mission depends on your precision.</p>
-            <p><strong>How to play:</strong> Select tiles in the grid to reveal hidden cipher keys. Match identical pairs to unlock sections of the vault. Continue until all pairs have been revealed and the vault is fully decrypted.</p>
+            <p>Agent AC1178s previous mission equipment is locked in a vault at this location, we must break the vault to gain access to this equipment so we can assess its operational capabilities.</p>
+            <p>We have identified potential vulnerabilities in the vault and can use our lazer cracking tools to exploit them.</p>
+            <p>You must select the areas of the vault to target with the laser, if you can identify all the weak points before the lazers energy is depleted, you will successfully breach the vault.</p>
           </Briefing>
           <div className={styles.energyContainer}>
             <div className={`${styles.energyBar} ${failed && styles.failed}`}>
