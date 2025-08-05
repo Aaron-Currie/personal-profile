@@ -53,7 +53,7 @@ export default function Home() {
       <section className={styles.section}>
       <img src="/globetactical.png" className={styles.map} />
         <div className={styles.overlay}>
-          <Briefing handleClick={handleBriefingClick} briefing={briefing}>
+          <Briefing handleClick={handleBriefingClick} briefing={briefing} exitable={true}>
           <MultiSection>
             <MultiSection.Section sectionTitle="Welcome">
               <h3>Profile: AARON CURRIE</h3>

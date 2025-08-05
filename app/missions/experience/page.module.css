@@ -15,11 +15,17 @@
     background-size: cover;
     overflow: hidden;
   }
+
+  .briefingOffset {
+    padding-top: 425px;
+  }
   
   .gameContainer {
     width: 100%;
     padding: 20px;
     height: 1000px;
+    max-width: 1200px;
+    margin: 0 auto;
   }
 
   .controls {

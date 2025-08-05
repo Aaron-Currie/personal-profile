@@ -4,7 +4,7 @@ import Button from '../button/button';
 
 const Briefing = ({handleClick, briefing, children}) => {
     if (!briefing) {
-        return <div className={styles.briefingButton}><Button action={handleClick} label={'i'} type='icon' /></div>
+        return <div className={styles.briefingButton}><Button action={handleClick} label={<img className={styles.briefingIcon} src='/briefing.png' />} type='icon' /></div>
     }
     return (
         <div onClick={handleClick} className={styles.briefingOverlay}>

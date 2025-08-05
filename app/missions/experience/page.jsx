@@ -211,7 +211,7 @@ export default function TimelineTraverse() {
         {usingWarp && <img src='/warp.png' className={`${styles.animation}`}/>}
         {usingShield && <img src='/shield.png' className={`${styles.animation} ${styles.shield}`}/>}
         {complete && <Success page='/experience'></Success>}
-        <div className={`briefing-offset`}>
+        <div className={styles.briefingOffset}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
             <MultiSection>
               <MultiSection.Section sectionTitle="Briefing">

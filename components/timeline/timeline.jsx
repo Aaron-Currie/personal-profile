@@ -15,7 +15,7 @@ const TimeLine = ({ layout='center', backgroundImage, details, description, imag
     const layoutPositions = {
         center: ['calc(50% - 13px)', {top: '35%', left: '2%'}, {top: '20%', left: '70%'}, {top: '55%', left: '18%'}, {bottom: '0', right: '0'}],
         left: ['calc(25% - 13px)', {top: '5%', left: '70%'}, {top: '35%', left: '55%'}, {top: '55%', left: '35%'}, {top: '0', left: '0'}],
-        right: ['calc(75% - 13px)', {top: '35%', left: '2%'}, {top: '5%', left: '40%'}, {top: '55%', left: '25%'}, {top: '0', left: '0'}],
+        right: ['calc(75% - 13px)', {top: '15%', left: '15%'}, {top: '5%', left: '40%'}, {top: '55%', left: '25%'}, {top: '0', left: '0'}],
     }
 
 
@@ -24,7 +24,6 @@ const TimeLine = ({ layout='center', backgroundImage, details, description, imag
             {images.map((image, index) => {
                 return <Image key={'image'+index} src={image} position={layoutPositions[layout][index + 1]} />
             })}
-
             <div className={`${styles.lineContainer} ${inViewPort? styles.height100 : styles.height0}`}>
                 {children}
                 <MissionPin mission={{...details, top: '50%',left: layoutPositions[layout][0] }} handleClick={() => setModalOpen(true)} completed={false} />
