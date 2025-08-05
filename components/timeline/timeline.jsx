@@ -21,9 +21,9 @@ const TimeLine = ({ layout='center', backgroundImage, details, description, imag
 
     return (
         <section ref={ref} style={{backgroundImage: `url(${backgroundImage})`}} className={`${styles.heroContainer}`}>
-            {images.map((image, index) => {
+            {/* {images.map((image, index) => {
                 return <Image key={'image'+index} src={image} position={layoutPositions[layout][index + 1]} />
-            })}
+            })} */}
             <div className={`${styles.lineContainer} ${inViewPort? styles.height100 : styles.height0}`}>
                 {children}
                 <MissionPin mission={{...details, top: '50%',left: layoutPositions[layout][0] }} handleClick={() => setModalOpen(true)} completed={false} />

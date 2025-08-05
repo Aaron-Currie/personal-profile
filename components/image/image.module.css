@@ -3,12 +3,12 @@
     height: 100%;
     border-radius: 20px;
     border: 1px solid var(--border-blue);
-    object-fit: cover;
+    object-fit: fill;
 }
 
 .imageContainer {
-    width: 300px;
-    height: 300px;
+    width: 30%;
+    max-width: 450px;
     overflow: hidden;
     padding: 10px;
     border: 1px solid var(--border-blue);
@@ -20,6 +20,8 @@
 @media (max-width: 880px) {
     .imageContainer {
         width: 200px;
-        height: 300px;
+    }
+    .image {
+        object-fit: cover;
     }
 }

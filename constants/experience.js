@@ -5,7 +5,7 @@ export const experience = [
         title: 'Software Engineer',
         backgroundImage: '/timeline/apartment.png',
         layout: 'center',
-        images: ['/personal/hobbies1.jpg'],
+        images: ['/personal/skygroup.png', '/personal/skygroup2.png'],
         timeline : <div aria-hidden={true} inert className={`${styles.timeLine} ${styles.middle100} `}></div>,
         description: {
             company: 'Sky',
@@ -29,7 +29,7 @@ export const experience = [
         title: 'Associate Software Engineer',
         backgroundImage: '/timeline/city.png',
         layout: 'right',
-        images: ['/personal/hobbies3.jpg'],
+        images: ['/personal/bestream.png', 'personal/studios.png'],
         timeline : <>
             <div className={`${styles.timeLine} ${styles.top50} `}></div>
             <div className={`${styles.timeLine} ${styles.right50} `}></div>
@@ -57,7 +57,7 @@ export const experience = [
         title: 'Northcoders Bootcamp',
         backgroundImage: '/timeline/campus.png',
         layout: 'center',
-        images: ['/personal/hobbies2.jpg'],
+        images: ['/personal/ac-nc.jpeg', 'questr/questr1.jpg'],
         timeline : <>
             <div className={`${styles.timeLine} ${styles.topRight50} `}></div>
             <div className={`${styles.timeLine} ${styles.right50} `}></div>
