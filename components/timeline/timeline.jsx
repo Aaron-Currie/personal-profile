@@ -28,13 +28,11 @@ const TimeLine = ({ layout='center', backgroundImage, details, description, imag
                 {children}
                 <MissionPin mission={{...details, top: '50%',left: layoutPositions[layout][0] }} handleClick={() => setModalOpen(true)} completed={false} />
             </div>
-            {!mobile && (
-                <div className={`${styles.textContainer} ${inViewPort? 'opacity-1': 'opacity-0'}`} style={layoutPositions[layout][4]}>
+                <div className={`${styles.textContainer} ${inViewPort? 'opacity-1': 'opacity-0'}`} style={mobile? {bottom: 0, left: 0} : layoutPositions[layout][4]}>
                     <p>Operation: {description.codename}</p>
                     <p>Location: {description.location}</p>
                     <p>Mission Length: {description.time}</p>
                 </div>
-            )}
             {modalOpen && (
                 <ModalContent closeModal={() => setModalOpen(false)}>
                     <h2>{description.company}</h2>

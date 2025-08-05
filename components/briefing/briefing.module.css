@@ -1,3 +1,7 @@
+.briefingOverlay {
+    padding: 100px 20px 0 20px;
+}
+
 .briefing {
     position: absolute;
     top: 100px;
@@ -44,12 +48,24 @@
     width: 60px;
     height: 60px;
     animation: fadeIn 0.3s ease-in-out;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 50%;
 }
 
 .briefingIcon {
     width: 100%;
     height: 100%;
+    background-color: transparent;
 }
+
+.briefingButton button:hover{
+    background-color: rgba(152, 213, 246, 0.3);
+    box-shadow: 0 0 20px 2px rgba(152, 213, 246, 0.6), 0 0 40px rgb(0, 43, 93, 0.6);
+}
+
 
 @media (max-width: 1000px) {
     .briefingContent {
@@ -61,11 +77,11 @@
     .briefingButton {
         display: block;
         position: fixed;
-        top: 20px;
+        top: 0px;
         left: none;
-        right: 20px;
+        right: 0px;
         z-index: 98;
-        padding: 10px;
+        padding: 20px;
     }
 
     .briefing {
