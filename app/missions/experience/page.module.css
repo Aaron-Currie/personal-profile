@@ -10,7 +10,7 @@
     height: max-content;
     min-height: 100vh;
     width: 100%;
-    background-image: url('/timeline/jungle.png');
+    background-image: url('/backgrounds/jungle.png');
     background-repeat: no-repeat;
     background-size: cover;
     overflow: hidden;

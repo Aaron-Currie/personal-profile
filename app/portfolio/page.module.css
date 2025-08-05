@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url('/timeline/lab.png');
+    background-image: url('/backgrounds/lab.png');
     background-repeat: no-repeat;
     background-size: cover;
 }

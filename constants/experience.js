@@ -3,7 +3,7 @@ import styles from '../app/experience/page.module.css';
 export const experience = [
     {
         title: 'Software Engineer',
-        backgroundImage: '/timeline/apartment.png',
+        backgroundImage: '/backgrounds/apartment.png',
         layout: 'center',
         images: ['/personal/skygroup.png', '/personal/skygroup2.png'],
         timeline : <div aria-hidden={true} inert className={`${styles.timeLine} ${styles.middle100} `}></div>,
@@ -27,7 +27,7 @@ export const experience = [
     },
     {
         title: 'Associate Software Engineer',
-        backgroundImage: '/timeline/city.png',
+        backgroundImage: '/backgrounds/city.png',
         layout: 'right',
         images: ['/personal/bestream.png', 'personal/studios.png'],
         timeline : <>
@@ -55,7 +55,7 @@ export const experience = [
     },
     {
         title: 'Northcoders Bootcamp',
-        backgroundImage: '/timeline/campus.png',
+        backgroundImage: '/backgrounds/campus.png',
         layout: 'center',
         images: ['/personal/ac-nc.jpeg', 'questr/questr1.jpg'],
         timeline : <>
@@ -82,7 +82,7 @@ export const experience = [
     },
     {
         title: 'Bar Manager',
-        backgroundImage: '/timeline/shore.png',
+        backgroundImage: '/backgrounds/shore.png',
         layout: 'left',
         images: ['/personal/hobbies1.jpg'], 
         timeline : <><div className={`${styles.timeLine} ${styles.top50} `}></div>
@@ -110,7 +110,7 @@ export const experience = [
     },
     {
         title: 'Self Learning Code Academy',
-        backgroundImage: 'timeline/city-mountains.png',
+        backgroundImage: '/backgrounds/city-mountains.png',
         layout: 'right',
         images: ['/personal/hobbies5.jpg'], 
         timeline : <><div className={`${styles.timeLine} ${styles.topRight50} `}></div>
@@ -135,7 +135,7 @@ export const experience = [
     },
     {
         title: 'Bar Supervisor',
-        backgroundImage: 'timeline/mountain-town.png',
+        backgroundImage: '/backgrounds/mountain-town.png',
         layout: 'center',
         images: ['/personal/hobbies1.jpg'], 
         timeline : <><div className={`${styles.timeLine} ${styles.topRight50} `}></div>
@@ -163,7 +163,7 @@ export const experience = [
     },
     {
         title: 'Various Roles and Travel',
-        backgroundImage: '/timeline/jungle.png',
+        backgroundImage: '/backgrounds/jungle.png',
         layout: 'left',
         images: ['/personal/hobbies1.jpg'], 
         timeline : <><div className={`${styles.timeLine} ${styles.top50} `}></div>
@@ -187,7 +187,7 @@ export const experience = [
     },
     {
         title: 'Senior Laboratory Technician',
-        backgroundImage: 'timeline/lab.png',
+        backgroundImage: '/backgrounds/lab.png',
         layout: 'center',
         images: ['/personal/hobbies4.jpg'], 
         timeline : <><div className={`${styles.timeLine} ${styles.topLeft50} `}></div>
