@@ -23,14 +23,14 @@
     position: absolute;
     inset: -2px;
     border-radius: 6px;
-    background: conic-gradient(
+    /* background: conic-gradient(
         from var(--angle) at 100% 50%,
         transparent 60%,
         rgba(0, 208, 255, 0.15) 70%,
         rgba(140, 210, 255, 0.55) 74%,
         rgba(0, 208, 255, 0.15) 78%,
         transparent 88%
-    );
+    ); */
     opacity: 0;
     transition: opacity 0.35s ease;
     z-index: -1;
