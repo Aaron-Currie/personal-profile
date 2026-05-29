@@ -10,6 +10,7 @@ import styles from './portfolio-hologram.module.css';
 function ImageStrip({ images, projectName }) {
     const x = useMotionValue(0);
     const ITEM_W = 440;
+    const constraintsRef = useRef(null)
 
     if (!images || images.length === 0) {
         return (
@@ -24,24 +25,26 @@ function ImageStrip({ images, projectName }) {
             <motion.div
                 className={styles.strip}
                 drag="x"
-                dragConstraints={{ left: -(images.length - 1) * ITEM_W, right: 0 }}
-                style={{ x, width: 'auto' }}
+                dragConstraints={constraintsRef}
                 dragElastic={0.08}
                 whileTap={{ cursor: 'grabbing' }}
             >
-                {images.map((img, i) => (
-                    <div key={i} className={styles.stripItem} style={{ width: ITEM_W }}>
-                        <img
-                            src={img.image}
-                            alt={`${projectName} screenshot ${i + 1}`}
-                            className={styles.stripImg}
-                            draggable={false}
-                        />
-                        <span className={styles.imgCounter}>
-                            {String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
-                        </span>
-                    </div>
-                ))}
+                <motion.div className={styles.stripInner} ref={constraintsRef}>
+                    {images.map((img, i) => (
+                        <div key={i} className={styles.stripItem}>
+                            <img
+                                src={img.image}
+                                alt={`${projectName} screenshot ${i + 1}`}
+                                className={styles.stripImg}
+                                draggable={false}
+                            />
+                            <span className={styles.imgCounter}>
+                                {String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+                            </span>
+                        </div>
+                    ))}
+                </motion.div>
+
             </motion.div>
             <div className={styles.stripFadeLeft} aria-hidden="true" />
             <div className={styles.stripFadeRight} aria-hidden="true" />
@@ -122,12 +125,6 @@ function HologramScreen({ children, active }) {
                         <div
                             className={`${styles.glitchFringe} ${styles.fringeBlue}`}
                             style={{ left: `calc(${lensPos.x}% + 6px)`, top: `calc(${lensPos.y}% - 3px)` }}
-                            aria-hidden="true"
-                        />
-                        {/* Horizontal tear line at cursor Y */}
-                        <div
-                            className={styles.glitchTear}
-                            style={{ top: `${lensPos.y}%` }}
                             aria-hidden="true"
                         />
                     </>

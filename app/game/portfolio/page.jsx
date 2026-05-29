@@ -7,8 +7,17 @@ import CarouselWrapper from '@/components/carousel-wrapper/carousel-wrapper';
 import { LightModal } from '@/components/modals/modals';
 import MultiSection from '@/components/multi-section/multi-section';
 import ImageGrid from '@/components/image-grid/image-grid';
+import MissionLoadingScreen from '@/components/loading/mission-loading-screen';
+import PortfolioHologram from '@/components/quick-profile-comps/portfolio-hologram';
+
+const INTRO_IMAGES = [
+    '/backgrounds/lab.png',
+    '/locker.png',
+    ...projects.flatMap(p => p.images.map(img => img.image)).filter(Boolean),
+];
 
 export default function Portfolio() {
+    const [introLoading, setIntroLoading] = useState(true);
     const [projectNo, setProjectNo] = useState(null);
     const [backgroundZoom, setBackgroundZoom] = useState(null);
     const [project, setProject] = useState(null);
@@ -36,7 +45,24 @@ export default function Portfolio() {
     }, [projectNo]);
 
     return (
-        <main className={styles.main}>
+        <>
+            {introLoading && (
+                <MissionLoadingScreen
+                    images={INTRO_IMAGES}
+                    buttonText="Access Projects"
+                    title="MISSION DEBRIEF"
+                    onComplete={() => setIntroLoading(false)}
+                >
+                    <h3>Vault Breach Successful</h3>
+                    <p>Operative, the vault infiltration operation has concluded successfully.</p>
+                    <p>Agent AC1178's classified project portfolio has been accessed. Files contain mission records, technical blueprints, and deployment data for multiple operations.</p>
+                    <p>Proceed to review the extracted project files.</p>
+                </MissionLoadingScreen>
+            )}
+            <main className={`${styles.main}`}>
+                <PortfolioHologram />
+            </main>
+            {/* <main className={styles.main}>
             <div style={{backgroundSize: backgroundZoom? '230% 240%' : '110% 120%', backgroundPosition: backgroundZoom? `${backgroundZoom.left} ${backgroundZoom.top}`: ''}} className={styles.portfolioContainer}>
                 {projects.map((project, index) => {
                     return projectNo === null && <MissionPin mission={project.pinData} handleClick={() => {handleClick(project, index)}} key={project.name}/>
@@ -81,6 +107,7 @@ export default function Portfolio() {
                 </div>
             </LightModal>
             )}
-        </main>
+        </main> */}
+        </>
     );
 }

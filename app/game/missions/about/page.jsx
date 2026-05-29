@@ -3,17 +3,21 @@ import Briefing from "@/components/briefing/briefing";
 import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
 import { missionData } from "./mission-data";
+import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 import Success from "@/components/mission-components/success-animation/success";
 import CarouselWrapper from "@/components/carousel-wrapper/carousel-wrapper";
 import AgentCard from "@/components/mission-components/agent-card/agent-card";
 
+const INTRO_IMAGES = [...Object.values(missionData).map(a => a.image), '/backgrounds/campus.png'];
+
 
 export default function AboutMission() {
-  const [briefing, setBriefing] = useState(true);
+  const [briefing, setBriefing] = useState(false);
   const [complete, setComplete] = useState(false);
   const [missionDataState, setMissionDataState] = useState(missionData);
   const [loading, setLoading] = useState(true);
+  const [introLoading, setIntroLoading] = useState(true);
 
   const [selectedAgent, setSelectedAgent] = useState([]);
 
@@ -54,7 +58,20 @@ const selectAgent = (key) => {
     }
 }
   return (
-    <main className={styles.main}>
+    <>
+      {introLoading && (
+        <MissionLoadingScreen
+          images={INTRO_IMAGES}
+          buttonText="Accept Mission"
+          onComplete={() => setIntroLoading(false)}
+        >
+          <h3>Mission: Dossier Search</h3>
+          <p>A search of one of our safe houses in this location has uncovered a list of dossiers of all the agents who frequented the safe house, we must analyse these dossiers to uncover the target&#39;s Identity.</p>
+          <p>Select agents to reveal which traits they share with AC1178. Use this intel to eliminate false leads and zero in on the target.</p>
+          <p><strong>&#x26A0;&#xFE0F; Caution:</strong> After three incorrect identifications, the agents will be alerted, they will relocate to a new safe house and all revealed intel will be lost. Proceed with precision.</p>
+        </MissionLoadingScreen>
+      )}
+      <main className={styles.main}>
       <section className={styles.section}>
         {complete && <Success page='/about'></Success>}
         <div className={`briefing-offset`}>
@@ -72,5 +89,6 @@ const selectAgent = (key) => {
         </div>
       </section>
     </main>
+    </>
   );
 }

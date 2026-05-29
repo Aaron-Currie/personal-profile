@@ -22,7 +22,7 @@
     height: 100%;
     opacity: 0;
     border-radius: inherit;
-    background: rgb(152, 213, 246);
+    background: rgb(0, 61, 95);
     z-index: -1;
     animation: pulse 1.5s infinite ease-in-out;
 }

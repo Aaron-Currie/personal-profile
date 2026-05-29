@@ -20,7 +20,7 @@
   --cyan: rgb(0, 208, 255);
   --cyan-glow: rgba(0, 208, 255, 0.6);
   --cyan-dim: rgba(0, 208, 255, 0.08);
-  --hud-bg: rgba(1, 20, 45, 0.92);
+  --hud-bg: rgba(1, 20, 45, 1);
   --hud-border: rgba(0, 208, 255, 0.35);
   --green-active: rgb(0, 255, 136);
   --red-locked: rgb(255, 60, 60);
