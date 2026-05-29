@@ -176,6 +176,7 @@
 
 .strip {
     height: 100%;
+    padding: 10px;
 }
 
 .stripInner {
@@ -195,10 +196,8 @@
 }
 
 .stripImg {
-    width: 100%;
+    width: auto;
     height: 100%;
-    object-fit: contain;
-    object-position: top left;
     display: block;
     pointer-events: none;
     user-select: none;

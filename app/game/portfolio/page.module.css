@@ -3,8 +3,7 @@
     background-image: url('/backgrounds/lab.png');
     background-repeat: no-repeat;
     background-size: cover;
-    margin-top: 100px;
-
+    padding: 80px 0;
 }
 
 .portfolioContainer {

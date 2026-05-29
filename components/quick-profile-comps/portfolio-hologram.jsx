@@ -1,5 +1,5 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { projects } from '@/constants/projects';
 import HudFrame from '@/components/hud/hud-frame';
@@ -8,9 +8,29 @@ import styles from './portfolio-hologram.module.css';
 
 /* ── Draggable image strip ──────────────────────── */
 function ImageStrip({ images, projectName }) {
-    const x = useMotionValue(0);
-    const ITEM_W = 440;
-    const constraintsRef = useRef(null)
+    const viewportRef = useRef(null);
+    const innerRef = useRef(null);
+    const [dragLeft, setDragLeft] = useState(0);
+    const [loadedCount, setLoadedCount] = useState(0);
+
+    const measure = () => {
+        if (!innerRef.current || !viewportRef.current) return;
+        const max = innerRef.current.scrollWidth - viewportRef.current.offsetWidth;
+        setDragLeft(Math.max(0, max));
+    };
+
+    // Re-measure whenever an image finishes loading
+    useEffect(() => {
+        measure();
+    }, [loadedCount]);
+
+    // Also re-measure on viewport resize
+    useEffect(() => {
+        if (!viewportRef.current) return;
+        const ro = new ResizeObserver(measure);
+        ro.observe(viewportRef.current);
+        return () => ro.disconnect();
+    }, []);
 
     if (!images || images.length === 0) {
         return (
@@ -21,30 +41,33 @@ function ImageStrip({ images, projectName }) {
     }
 
     return (
-        <div className={styles.stripViewport}>
+        <div className={styles.stripViewport} ref={viewportRef}>
             <motion.div
                 className={styles.strip}
                 drag="x"
-                dragConstraints={constraintsRef}
+                dragConstraints={{ left: -dragLeft, right: 0 }}
                 dragElastic={0.08}
                 whileTap={{ cursor: 'grabbing' }}
             >
-                <motion.div className={styles.stripInner} ref={constraintsRef}>
+                <div className={styles.stripInner} ref={innerRef}>
                     {images.map((img, i) => (
-                        <div key={i} className={styles.stripItem}>
+                        <div
+                            key={i}
+                            className={styles.stripItem}
+                        >
                             <img
                                 src={img.image}
                                 alt={`${projectName} screenshot ${i + 1}`}
                                 className={styles.stripImg}
                                 draggable={false}
+                                onLoad={() => setLoadedCount(c => c + 1)}
                             />
                             <span className={styles.imgCounter}>
                                 {String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
                             </span>
                         </div>
                     ))}
-                </motion.div>
-
+                </div>
             </motion.div>
             <div className={styles.stripFadeLeft} aria-hidden="true" />
             <div className={styles.stripFadeRight} aria-hidden="true" />

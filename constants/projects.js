@@ -1,5 +1,17 @@
 export const projects = [
     {
+        name: 'CMS Custom AI Categorisation Tool',
+        concept: 'A custom field extension for Contentstack CMS that automatically categorises content using AI. It analyses the current entry and assigns it to predefined categories, reducing manual tagging and speeding up editorial workflows.',
+        technical: `Built as a lightweight React app using the Contentstack SDK to read entry data and update fields in real time. The content is sent to a GCP Vertex AI (Gemini) model with a structured prompt and predefined categories, which returns the most relevant classification.
+The result is written back to the entry instantly, allowing editors to validate and publish without additional steps.`,
+        outcome: "Improved consistency in tagging and reduced manual effort for editorial teams.",
+        learning: "Gained experience integrating AI into production workflows, designing structured prompts, and working with CMS extension SDKs to create seamless editorial tooling.",
+        tech: 'React, Vite, GCP Vertex AI (Gemini), Contentstack SDK',
+        link: '/',
+        repo: '',
+        images: []
+    },
+    {
         name: 'Portfolio',
         concept: 'A portfolio showcasing my skills and experience as a full-stack developer.',
         description: 'This portfolio is designed to highlight my skills and experience as a full-stack developer. It includes various projects that demonstrate my expertise in modern web development technologies such as React, Next.js, and Google Cloud Platform.',
