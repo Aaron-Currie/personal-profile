@@ -1,13 +1,13 @@
 'use client';
 import Briefing from "@/components/briefing/briefing";
 import styles from "./page.module.css";
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { missionData } from "./mission-data";
-import useScreenSize from "@/hooks/screen-size";
+
 import Success from "@/components/mission-components/success-animation/success";
 import CarouselWrapper from "@/components/carousel-wrapper/carousel-wrapper";
 import AgentCard from "@/components/mission-components/agent-card/agent-card";
-import LoadingPage from "@/components/loading/loading-page";
+
 
 export default function AboutMission() {
   const [briefing, setBriefing] = useState(true);
@@ -16,14 +16,6 @@ export default function AboutMission() {
   const [loading, setLoading] = useState(true);
 
   const [selectedAgent, setSelectedAgent] = useState([]);
-  const { mobile } = useScreenSize()
-
-
-  useEffect(() => {
-    if(!mobile) {
-      setBriefing(true);
-    }
-  }, [mobile])
 
   useEffect(() => {
     shuffleMissionData();

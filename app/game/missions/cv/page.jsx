@@ -15,16 +15,7 @@ const CVMission = () => {
     const [complete, setComplete] = useState(false);
     const [correct, setCorrect] = useState(false);
     const screenRef = useRef(null);
-
-    const { mobile } = useScreenSize()
-
-    useEffect(() => {
-        if(!mobile) {
-          setBriefing(true);
-        }
-    }, [mobile])
     
-
     const handleBriefingClick = () => {
         setBriefing(!briefing);
     }

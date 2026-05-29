@@ -71,4 +71,4 @@ const ModalContent = ({children, closeModal}) => {
     );
 }
 
-export {MissionModal, Modal, ModalOverlay, ModalContent, LightModal};
+export {MissionModal, Modal, ModalOverlay, ModalContent, LightModal, ModalHudChrome};

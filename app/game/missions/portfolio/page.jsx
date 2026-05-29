@@ -38,12 +38,6 @@ export default function PortfolioMission() {
     }
   }, [energy]);
 
-  useEffect(() => {
-    if(!mobile) {
-      setBriefing(true);
-    }
-  }, [mobile])
-
   const handleBriefingClick = () => {
     setBriefing(!briefing);
   }
@@ -74,7 +68,7 @@ export default function PortfolioMission() {
             <div className={`${styles.energyBar} ${failed && styles.failed}`}>
               <div className={styles.energyFill} style={{width: `${energy}%`}}></div>
             </div>
-            <p>Remaing Energy: {energy}%</p>
+            <p>Remaining Energy: {energy}%</p>
           </div>
           <div className={styles.missionGrid}>
             {failed && <Failure reset={resetMission}/>}

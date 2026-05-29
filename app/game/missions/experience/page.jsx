@@ -25,13 +25,6 @@ export default function TimelineTraverse() {
   const [warpActive, setWarpActive] = useState(false);
   const [usingWarp, setUsingWarp] = useState(false);
   const [usingShield, setUsingShield] = useState(false);
-  const { mobile } = useScreenSize()
-
-  useEffect(() => {
-    if(!mobile) {
-      setBriefing(true);
-    }
-  }, [mobile])
 
   useEffect(() => {
     setGrid(generateGrid(GridSize));
@@ -208,8 +201,8 @@ export default function TimelineTraverse() {
   return (
     <main className={styles.main}>
       <section className={styles.section}>
-        {usingWarp && <img src='/warp.png' className={`${styles.animation}`}/>}
-        {usingShield && <img src='/shield.png' className={`${styles.animation} ${styles.shield}`}/>}
+        {usingWarp && <div className={styles.warpOverlay}/>}
+        {usingShield && <div className={styles.shieldOverlay}/>}
         {complete && <Success page='/experience'></Success>}
         <div className={styles.briefingOffset}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>

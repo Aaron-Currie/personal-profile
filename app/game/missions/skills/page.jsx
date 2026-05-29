@@ -13,19 +13,13 @@ export default function SkillsMission() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [missionDataState, setMissionDataState] = useState(null);
   const [complete, setComplete] = useState(false);
-  const { mobile } = useScreenSize()
+
 
 
   useEffect(() => {
     const shuffledData = [...missionData].sort(() => Math.random() - 0.5);
     setMissionDataState(shuffledData);
   }, []);
-
-  useEffect(() => {
-    if(!mobile) {
-      setBriefing(true);
-    }
-  }, [mobile])
 
   useEffect(() => {
     if(missionDataState && missionDataState.every((mission) => mission.matched)) {

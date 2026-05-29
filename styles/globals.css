@@ -13,7 +13,7 @@
 
 :root {
   --primary-blue: rgb(152, 213, 246);
-  --border-blue: rgb(0, 43, 93);
+  --border-blue: rgba(0, 208, 255, 0.22);
   --background-blue: rgba(1, 26, 55, 0.4);
   --modal-overlay: rgba(0, 0, 0, 0.7);
   /* HUD system variables */
