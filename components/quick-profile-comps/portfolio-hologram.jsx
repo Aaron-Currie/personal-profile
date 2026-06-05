@@ -184,7 +184,9 @@ function HologramScreen({ children, active }) {
 export default function PortfolioHologram() {
     const [active, setActive] = useState(0);
     const [activeTab, setActiveTab] = useState('brief');
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const ref = useRef(null);
+    const dropdownRef = useRef(null);
     const inView = useInView(ref, { once: true, margin: '-80px' });
 
     const project = projects[active];
@@ -193,6 +195,17 @@ export default function PortfolioHologram() {
     useEffect(() => {
         setActiveTab('brief');
     }, [active]);
+
+    // Close dropdown on outside click
+    useEffect(() => {
+        function handleClickOutside(e) {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setDropdownOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     return (
         <section id="portfolio" className={styles.section} ref={ref}>
@@ -212,18 +225,39 @@ export default function PortfolioHologram() {
                 transition={{ duration: 0.6 }}
             >
                 {/* Left: project nav */}
-                <nav className={styles.sidebar} aria-label="Project list">
-                    {projects.map((p, i) => (
-                        <button
-                            key={p.name}
-                            className={`${styles.projectItem} ${active === i ? styles.projectItemActive : ''}`}
-                            onClick={() => setActive(i)}
+                <div
+                    ref={dropdownRef}
+                    className={`${styles.sidebarWrapper}${dropdownOpen ? ` ${styles.dropdownOpen}` : ''}`}
+                >
+                    {/* Mobile-only dropdown trigger */}
+                    <button
+                        className={styles.dropdownTrigger}
+                        onClick={() => setDropdownOpen(o => !o)}
+                        aria-expanded={dropdownOpen}
+                        aria-label="Select project"
+                    >
+                        <span>{projects[active].name}</span>
+                        <svg
+                            className={`${styles.dropdownChevron}${dropdownOpen ? ` ${styles.chevronUp}` : ''}`}
+                            width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"
                         >
-                            <span className={styles.projectNum}>{String(i + 1).padStart(2, '0')}</span>
-                            <span className={styles.projectName}>{p.name}</span>
-                        </button>
-                    ))}
-                </nav>
+                            <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+
+                    <nav className={styles.sidebar} aria-label="Project list">
+                        {projects.map((p, i) => (
+                            <button
+                                key={p.name}
+                                className={`${styles.projectItem} ${active === i ? styles.projectItemActive : ''}`}
+                                onClick={() => { setActive(i); setDropdownOpen(false); }}
+                            >
+                                <span className={styles.projectNum}>{String(i + 1).padStart(2, '0')}</span>
+                                <span className={styles.projectName}>{p.name}</span>
+                            </button>
+                        ))}
+                    </nav>
+                </div>
 
                 {/* Right: screen + info */}
                 <div className={styles.main}>
