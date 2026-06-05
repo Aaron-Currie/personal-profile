@@ -113,7 +113,6 @@
     background: rgb(0, 4, 14);
     border: 1px solid rgba(0, 208, 255, 0.45);
     overflow: hidden;
-    transform-style: preserve-3d;
     box-shadow:
         0 0 30px rgba(0, 208, 255, 0.15),
         0 20px 60px rgba(0, 0, 0, 0.7),
