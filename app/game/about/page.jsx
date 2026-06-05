@@ -23,7 +23,6 @@ export default function AboutMe() {
             {introLoading && (
                 <MissionLoadingScreen
                     images={INTRO_IMAGES}
-                    buttonText="View Dossier"
                     title="MISSION DEBRIEF"
                     onComplete={() => setIntroLoading(false)}
                 >

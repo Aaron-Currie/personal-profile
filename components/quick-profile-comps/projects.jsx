@@ -7,7 +7,6 @@ const ProjectsSection = ({projects}) => {
                         <h2>{project.name}</h2>
                         <em>{project.tech}</em>
                         <p>{project.concept}</p>
-                        <p>{project.description}</p>
                     </div>
                 )
             })}

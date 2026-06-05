@@ -45,7 +45,6 @@ export default function Home() {
       {loading && (
         <MissionLoadingScreen
           images={['/globetactical.png', 'profilepic.png']}
-          buttonText="Commence Mission"
           onComplete={handleLoadingComplete}
         >
           <h3>Briefing</h3>

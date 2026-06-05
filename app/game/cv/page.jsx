@@ -57,7 +57,6 @@ const CVPage = () => {
             {introLoading && (
                 <MissionLoadingScreen
                     images={INTRO_IMAGES}
-                    buttonText="View Classified Files"
                     title="MISSION DEBRIEF"
                     onComplete={() => setIntroLoading(false)}
                 >

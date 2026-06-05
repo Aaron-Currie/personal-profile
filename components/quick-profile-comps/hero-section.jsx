@@ -244,9 +244,6 @@ export default function HeroSection() {
             </motion.div>
 
             {/* Bottom scrolling ticker */}
-            <div className={styles.ticker}>
-                <DataTicker />
-            </div>
         </section>
     );
 }

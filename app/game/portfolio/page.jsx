@@ -1,12 +1,7 @@
 'use client';
-import { MissionPin } from '@/components/pins/pins';
 import styles from './page.module.css';
 import { projects } from '@/constants/projects';
 import { useEffect, useState } from 'react';
-import CarouselWrapper from '@/components/carousel-wrapper/carousel-wrapper';
-import { LightModal } from '@/components/modals/modals';
-import MultiSection from '@/components/multi-section/multi-section';
-import ImageGrid from '@/components/image-grid/image-grid';
 import MissionLoadingScreen from '@/components/loading/mission-loading-screen';
 import PortfolioHologram from '@/components/quick-profile-comps/portfolio-hologram';
 
@@ -49,7 +44,6 @@ export default function Portfolio() {
             {introLoading && (
                 <MissionLoadingScreen
                     images={INTRO_IMAGES}
-                    buttonText="Access Projects"
                     title="MISSION DEBRIEF"
                     onComplete={() => setIntroLoading(false)}
                 >

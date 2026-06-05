@@ -28,7 +28,6 @@ const SkillsPage = () => {
             {introLoading && (
                 <MissionLoadingScreen
                     images={INTRO_IMAGES}
-                    buttonText="View Capabilities"
                     title="MISSION DEBRIEF"
                     onComplete={() => setIntroLoading(false)}
                 >

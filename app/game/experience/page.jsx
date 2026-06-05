@@ -14,7 +14,6 @@ export default function Experience() {
             {introLoading && (
                 <MissionLoadingScreen
                     images={INTRO_IMAGES}
-                    buttonText="View Timeline"
                     title="MISSION DEBRIEF"
                     onComplete={() => setIntroLoading(false)}
                 >

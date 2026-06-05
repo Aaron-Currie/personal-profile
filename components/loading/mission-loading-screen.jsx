@@ -4,7 +4,7 @@ import styles from './mission-loading-screen.module.css';
 import Button from '@/components/button/button';
 
 const SEGMENT_COUNT = 20;
-const MIN_DURATION = 1000;
+const MIN_DURATION = 500;
 
 function getStatusMessage(progress) {
   if (progress >= 100) return 'SYSTEMS READY';
@@ -14,7 +14,7 @@ function getStatusMessage(progress) {
   return 'INITIALIZING SYSTEMS...';
 }
 
-export default function MissionLoadingScreen({ images = [], buttonText = 'Accept Mission', onComplete, children, title = 'CLASSIFIED MISSION BRIEFING' }) {
+export default function MissionLoadingScreen({ images = [], buttonText, onComplete, children, title = 'CLASSIFIED MISSION BRIEFING' }) {
   const [progress, setProgress] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(false);
   const [timerDone, setTimerDone] = useState(false);
@@ -24,6 +24,9 @@ export default function MissionLoadingScreen({ images = [], buttonText = 'Accept
     if (images.length === 0) {
       setProgress(100);
       setImagesLoaded(true);
+      if(!buttonText) {
+        onComplete()
+      }
       return;
     }
     let loaded = 0;
@@ -33,7 +36,12 @@ export default function MissionLoadingScreen({ images = [], buttonText = 'Accept
       img.onload = img.onerror = () => {
         loaded++;
         setProgress(Math.round((loaded / total) * 100));
-        if (loaded === total) setImagesLoaded(true);
+        if (loaded === total) {
+          setImagesLoaded(true)
+          if(!buttonText) {
+            onComplete()
+          }
+        };
       };
       img.src = url;
     });
@@ -46,7 +54,6 @@ export default function MissionLoadingScreen({ images = [], buttonText = 'Accept
 
   const filledCount = Math.floor((progress / 100) * SEGMENT_COUNT);
   const statusMessage = getStatusMessage(progress);
-  const childrenArray = React.Children.toArray(children);
 
   return (
     <div className={styles.overlay}>
