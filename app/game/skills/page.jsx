@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './page.module.css';
 import { tech } from '@/constants/tech';
 import CollapsableSection from '@/components/collapsable-section/collapsable-section';
@@ -8,28 +8,40 @@ import Cards from '@/components/cards/cards';
 import AnimatedLights from '@/components/animations/animated-lights';
 import { skills } from './skills-data';
 import Tabs from '@/components/tabs/tabs';
+import MissionLoadingScreen from '@/components/loading/mission-loading-screen';
+import TechSection from '@/components/quick-profile-comps/tech-section';
+
+const INTRO_IMAGES = [
+    ...tech.map(t => t.icon),
+    '/skills/coms.png',
+    '/skills/leadership.png',
+    '/skills/learning.png',
+    '/skills/teamwork.png',
+    '/skills/problem.png',
+    '/skills/adaptability.png',
+];
 
 const SkillsPage = () => {
+    const [introLoading, setIntroLoading] = useState(true);
     return (
-        <main className={`flex-col flex-center main-offset ${styles.container}`}>
+        <>
+            {introLoading && (
+                <MissionLoadingScreen
+                    images={INTRO_IMAGES}
+                    title="MISSION DEBRIEF"
+                    onComplete={() => setIntroLoading(false)}
+                >
+                    <h3>Tech Cache Decrypted</h3>
+                    <p>Operative, the decryption operation has concluded successfully.</p>
+                    <p>Agent AC1178's technical capabilities and full skillset have been exposed. Records include verified technical competencies, tools, frameworks, and soft skill assessments.</p>
+                    <p>Proceed to review the decrypted capabilities report.</p>
+                </MissionLoadingScreen>
+            )}
+            <main className={`flex-col flex-center main-offset ${styles.container}`}>
             <h1>Skills</h1>
             <Tabs tabs={skills} />
 
-            <CollapsableSection title="Tech At A Glance">
-            <FlipGrid>
-                {tech.map((item, index) => {
-                    return <FlipGrid.Item key={index}>
-                        <FlipGrid.ItemFront>
-                            <img src={item.icon} alt="Skills Icon" className={styles.logo} />
-                        </FlipGrid.ItemFront>
-                        <FlipGrid.ItemBack>
-                            <h3>{item.name}</h3>
-                            <p>{item.description}</p>
-                        </FlipGrid.ItemBack>
-                    </FlipGrid.Item>
-                })}
-            </FlipGrid>
-            </CollapsableSection>
+            <TechSection/>
             <section className={styles.section}>
                 <Cards>
                     <Cards.Item size='md'>
@@ -78,6 +90,7 @@ const SkillsPage = () => {
             </section>
             <AnimatedLights />
         </main>
+        </>
     );
 };
 

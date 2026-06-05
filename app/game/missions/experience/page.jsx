@@ -10,14 +10,16 @@ import Button from "@/components/button/button";
 import LoadingPage from "@/components/loading/loading-page";
 import Failure from "@/components/mission-components/failed-overlay/failed-overlay";
 import MultiSection from "@/components/multi-section/multi-section";
+import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 export default function TimelineTraverse() {
   const GridSize = 9
-  const [briefing, setBriefing] = useState(true);
+  const [briefing, setBriefing] = useState(false);
   const [complete, setComplete] = useState(false);
   const [failed, setFailed] = useState(false);
   const [grid, setGrid] = useState(null);
   const [position, setPosition] = useState([0, 2]);
+  const [introLoading, setIntroLoading] = useState(true);
   const [xp, setXp] = useState(100);
   const [shields, setShields] = useState(1);
   const [warps, setWarps] = useState(1);
@@ -25,13 +27,6 @@ export default function TimelineTraverse() {
   const [warpActive, setWarpActive] = useState(false);
   const [usingWarp, setUsingWarp] = useState(false);
   const [usingShield, setUsingShield] = useState(false);
-  const { mobile } = useScreenSize()
-
-  useEffect(() => {
-    if(!mobile) {
-      setBriefing(true);
-    }
-  }, [mobile])
 
   useEffect(() => {
     setGrid(generateGrid(GridSize));
@@ -204,12 +199,25 @@ export default function TimelineTraverse() {
     }
   }
 
-  if (!grid) return <LoadingPage/>;
   return (
-    <main className={styles.main}>
+    <>
+      {introLoading && (
+        <MissionLoadingScreen
+          images={['/backgrounds/jungle.png']}
+          buttonText="Begin Traverse"
+          onComplete={() => setIntroLoading(false)}
+        >
+          <h3>Mission: Timeline Alignment</h3>
+          <p>AC1178&apos;s previous missions and experience contain vital intel that can help us locate them. We have replicated a timeline simulation to navigate their past.</p>
+          <p>You must navigate your way through the simulation to the present day via a series of interconnected nodes, each representing a key moment in the agent&apos;s history.</p>
+          <p>Be careful — each node will have various effects on your experience score. If your experience drops below zero you will be ejected from the simulation.</p>
+        </MissionLoadingScreen>
+      )}
+      {!grid ? <LoadingPage /> : (
+      <main className={styles.main}>
       <section className={styles.section}>
-        {usingWarp && <img src='/warp.png' className={`${styles.animation}`}/>}
-        {usingShield && <img src='/shield.png' className={`${styles.animation} ${styles.shield}`}/>}
+        {usingWarp && <div className={styles.warpOverlay}/>}
+        {usingShield && <div className={styles.shieldOverlay}/>}
         {complete && <Success page='/experience'></Success>}
         <div className={styles.briefingOffset}>
           <Briefing handleClick={handleBriefingClick} briefing={briefing}>
@@ -269,5 +277,7 @@ export default function TimelineTraverse() {
           </div>
       </section>
     </main>
+      )}
+    </>
   );
 }

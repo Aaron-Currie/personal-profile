@@ -1,13 +1,9 @@
 .main {
-    width: 100vw;
-    height: max-content;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     background-image: url('/backgrounds/lab.png');
     background-repeat: no-repeat;
     background-size: cover;
+    padding: 80px 0;
+    overflow-x: hidden;
 }
 
 .portfolioContainer {

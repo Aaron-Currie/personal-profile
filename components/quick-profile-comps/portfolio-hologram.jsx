@@ -1,15 +1,43 @@
 'use client';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence, useInView, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { projects } from '@/constants/projects';
+
+const INFO_TABS = [
+    { id: 'brief',     label: 'BRIEF' },
+    { id: 'technical', label: 'TECHNICAL' },
+    { id: 'outcome',   label: 'OUTCOME' },
+    { id: 'learning',  label: 'LEARNING' },
+];
 import HudFrame from '@/components/hud/hud-frame';
 import StatusIndicator from '@/components/hud/status-indicator';
 import styles from './portfolio-hologram.module.css';
 
 /* ── Draggable image strip ──────────────────────── */
 function ImageStrip({ images, projectName }) {
-    const x = useMotionValue(0);
-    const ITEM_W = 440;
+    const viewportRef = useRef(null);
+    const innerRef = useRef(null);
+    const [dragLeft, setDragLeft] = useState(0);
+    const [loadedCount, setLoadedCount] = useState(0);
+
+    const measure = () => {
+        if (!innerRef.current || !viewportRef.current) return;
+        const max = innerRef.current.scrollWidth - viewportRef.current.offsetWidth;
+        setDragLeft(Math.max(0, max));
+    };
+
+    // Re-measure whenever an image finishes loading
+    useEffect(() => {
+        measure();
+    }, [loadedCount]);
+
+    // Also re-measure on viewport resize
+    useEffect(() => {
+        if (!viewportRef.current) return;
+        const ro = new ResizeObserver(measure);
+        ro.observe(viewportRef.current);
+        return () => ro.disconnect();
+    }, []);
 
     if (!images || images.length === 0) {
         return (
@@ -20,28 +48,33 @@ function ImageStrip({ images, projectName }) {
     }
 
     return (
-        <div className={styles.stripViewport}>
+        <div className={styles.stripViewport} ref={viewportRef}>
             <motion.div
                 className={styles.strip}
                 drag="x"
-                dragConstraints={{ left: -(images.length - 1) * ITEM_W, right: 0 }}
-                style={{ x, width: 'auto' }}
+                dragConstraints={{ left: -dragLeft, right: 0 }}
                 dragElastic={0.08}
                 whileTap={{ cursor: 'grabbing' }}
             >
-                {images.map((img, i) => (
-                    <div key={i} className={styles.stripItem} style={{ width: ITEM_W }}>
-                        <img
-                            src={img.image}
-                            alt={`${projectName} screenshot ${i + 1}`}
-                            className={styles.stripImg}
-                            draggable={false}
-                        />
-                        <span className={styles.imgCounter}>
-                            {String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
-                        </span>
-                    </div>
-                ))}
+                <div className={styles.stripInner} ref={innerRef}>
+                    {images.map((img, i) => (
+                        <div
+                            key={i}
+                            className={styles.stripItem}
+                        >
+                            <img
+                                src={img.image}
+                                alt={`${projectName} screenshot ${i + 1}`}
+                                className={styles.stripImg}
+                                draggable={false}
+                                onLoad={() => setLoadedCount(c => c + 1)}
+                            />
+                            <span className={styles.imgCounter}>
+                                {String(i + 1).padStart(2, '0')} / {String(images.length).padStart(2, '0')}
+                            </span>
+                        </div>
+                    ))}
+                </div>
             </motion.div>
             <div className={styles.stripFadeLeft} aria-hidden="true" />
             <div className={styles.stripFadeRight} aria-hidden="true" />
@@ -52,14 +85,20 @@ function ImageStrip({ images, projectName }) {
 /* ── 3D mouse-tilt + glitch-lens screen ─────────── */
 function HologramScreen({ children, active }) {
     const ref = useRef(null);
+    const [isExpanded, setIsExpanded] = useState(false);
+
+    // Reset expanded state when project changes
+    useEffect(() => {
+        setIsExpanded(false);
+    }, [active]);
 
     // 3D tilt
     const rawX = useMotionValue(0);
     const rawY = useMotionValue(0);
-    const springX = useSpring(rawX, { stiffness: 80, damping: 22 });
-    const springY = useSpring(rawY, { stiffness: 80, damping: 22 });
-    const rotateY = useTransform(springX, [-1, 1], [-10, 10]);
-    const rotateX = useTransform(springY, [-1, 1], [7, -7]);
+    const springX = useSpring(rawX, { stiffness: 90, damping: 22 });
+    const springY = useSpring(rawY, { stiffness: 90, damping: 22 });
+    const rotateY = useTransform(springX, [-1, 1], [-3, 3]);
+    const rotateX = useTransform(springY, [-1, 1], [1, -1]);
 
     // Glitch lens position (% within screen)
     const [lensPos, setLensPos] = useState({ x: -999, y: -999, active: false });
@@ -82,10 +121,19 @@ function HologramScreen({ children, active }) {
 
     return (
         <div className={styles.screenOuter} ref={ref} onMouseMove={onMove} onMouseLeave={onLeave}>
+            {/* Expand button */}
             <motion.div
-                className={styles.screen}
+                className={`${styles.screen} ${isExpanded ? styles.screenExpanded : ''}`}
                 style={{ rotateX, rotateY, transformPerspective: 1600 }}
             >
+            <button
+                className={styles.expandBtn}
+                onClick={() => setIsExpanded(!isExpanded)}
+                title={isExpanded ? 'Collapse' : 'Expand'}
+                aria-label={isExpanded ? 'Collapse screen' : 'Expand screen'}
+            >
+                <span className={styles.expandIcon}>{isExpanded ? '⊗' : '⊙'}</span>
+            </button>
                 {/* Scanlines */}
                 <div className={styles.scanlines} aria-hidden="true" />
                 {/* Edge glow ring */}
@@ -124,12 +172,6 @@ function HologramScreen({ children, active }) {
                             style={{ left: `calc(${lensPos.x}% + 6px)`, top: `calc(${lensPos.y}% - 3px)` }}
                             aria-hidden="true"
                         />
-                        {/* Horizontal tear line at cursor Y */}
-                        <div
-                            className={styles.glitchTear}
-                            style={{ top: `${lensPos.y}%` }}
-                            aria-hidden="true"
-                        />
                     </>
                 )}
             </motion.div>
@@ -141,10 +183,29 @@ function HologramScreen({ children, active }) {
 
 export default function PortfolioHologram() {
     const [active, setActive] = useState(0);
+    const [activeTab, setActiveTab] = useState('brief');
+    const [dropdownOpen, setDropdownOpen] = useState(false);
     const ref = useRef(null);
+    const dropdownRef = useRef(null);
     const inView = useInView(ref, { once: true, margin: '-80px' });
 
     const project = projects[active];
+
+    // Reset to BRIEF whenever the selected project changes
+    useEffect(() => {
+        setActiveTab('brief');
+    }, [active]);
+
+    // Close dropdown on outside click
+    useEffect(() => {
+        function handleClickOutside(e) {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+                setDropdownOpen(false);
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
 
     return (
         <section id="portfolio" className={styles.section} ref={ref}>
@@ -164,57 +225,112 @@ export default function PortfolioHologram() {
                 transition={{ duration: 0.6 }}
             >
                 {/* Left: project nav */}
-                <nav className={styles.sidebar} aria-label="Project list">
-                    {projects.map((p, i) => (
-                        <button
-                            key={p.name}
-                            className={`${styles.projectItem} ${active === i ? styles.projectItemActive : ''}`}
-                            onClick={() => setActive(i)}
+                <div
+                    ref={dropdownRef}
+                    className={`${styles.sidebarWrapper}${dropdownOpen ? ` ${styles.dropdownOpen}` : ''}`}
+                >
+                    {/* Mobile-only dropdown trigger */}
+                    <button
+                        className={styles.dropdownTrigger}
+                        onClick={() => setDropdownOpen(o => !o)}
+                        aria-expanded={dropdownOpen}
+                        aria-label="Select project"
+                    >
+                        <span>{projects[active].name}</span>
+                        <svg
+                            className={`${styles.dropdownChevron}${dropdownOpen ? ` ${styles.chevronUp}` : ''}`}
+                            width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"
                         >
-                            <span className={styles.projectNum}>{String(i + 1).padStart(2, '0')}</span>
-                            <span className={styles.projectName}>{p.name}</span>
-                            <span className={styles.projectTech}>{p.tech}</span>
-                        </button>
-                    ))}
-                </nav>
+                            <path d="M2 4l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+
+                    <nav className={styles.sidebar} aria-label="Project list">
+                        {projects.map((p, i) => (
+                            <button
+                                key={p.name}
+                                className={`${styles.projectItem} ${active === i ? styles.projectItemActive : ''}`}
+                                onClick={() => { setActive(i); setDropdownOpen(false); }}
+                            >
+                                <span className={styles.projectNum}>{String(i + 1).padStart(2, '0')}</span>
+                                <span className={styles.projectName}>{p.name}</span>
+                            </button>
+                        ))}
+                    </nav>
+                </div>
 
                 {/* Right: screen + info */}
                 <div className={styles.main}>
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={active + '-header'}
+                                className={styles.infoHeader}
+                                initial={{ opacity: 0, y: 8 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.25 }}
+                            >
+                                <div className={styles.projectTitle}>
+                                    <h3>{project.name}</h3>
+                                </div>
+                                <div className={styles.infoHeaderRight}>
+                                    <div className={styles.techTags}>
+                                        {project.tech.split(',').map((t) => (
+                                            <span key={t} className={styles.tag}>{t.trim()}</span>
+                                        ))}
+                                    </div>
+                                    <div className={styles.links}>
+                                        {project.link && project.link !== '/' && (
+                                            <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>LIVE SITE</a>
+                                        )}
+                                        {project.repo && (
+                                            <a href={project.repo} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>REPO</a>
+                                        )}
+                                    </div>
+                                </div>
+                            </motion.div>
+                        </AnimatePresence>
                     <HologramScreen active={active}>
                         <ImageStrip images={project.images} projectName={project.name} />
                     </HologramScreen>
 
-                    {/* Info bar below screen */}
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={active + '-info'}
-                            className={styles.infoBar}
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: -10 }}
-                            transition={{ duration: 0.28 }}
-                        >
-                            <div className={styles.infoLeft}>
-                                <h3 className={styles.projectTitle}>{project.name}</h3>
-                                <p className={styles.projectDesc}>{project.description}</p>
-                            </div>
-                            <div className={styles.infoRight}>
-                                <div className={styles.techTags}>
-                                    {project.tech.split(',').map((t) => (
-                                        <span key={t} className={styles.tag}>{t.trim()}</span>
-                                    ))}
-                                </div>
-                                <div className={styles.links}>
-                                    {project.link && project.link !== '/' && (
-                                        <a href={project.link} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>LIVE SITE</a>
-                                    )}
-                                    {project.repo && (
-                                        <a href={project.repo} target="_blank" rel="noopener noreferrer" className={styles.linkBtn}>REPO</a>
-                                    )}
-                                </div>
-                            </div>
-                        </motion.div>
-                    </AnimatePresence>
+                    {/* Info panel below screen */}
+                    <div className={styles.infoPanel}>
+                        {/* Tab bar */}
+                        <div className={styles.tabBar} role="tablist">
+                            {INFO_TABS.map((tab) => (
+                                <button
+                                    key={tab.id}
+                                    role="tab"
+                                    aria-selected={activeTab === tab.id}
+                                    className={`${styles.tab} ${activeTab === tab.id ? styles.tabActive : ''}`}
+                                    onClick={() => setActiveTab(tab.id)}
+                                >
+                                    {tab.label}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Tab content */}
+                        <AnimatePresence mode="wait">
+                            <motion.div
+                                key={`${active}-${activeTab}`}
+                                className={styles.tabContent}
+                                initial={{ opacity: 0, y: 6 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                exit={{ opacity: 0, y: -6 }}
+                                transition={{ duration: 0.2 }}
+                            >
+                                {(() => {
+                                    const field = activeTab === 'brief' ? 'concept' : activeTab;
+                                    const text = project[field];
+                                    return text
+                                        ? <p className={styles.tabText}>{text}</p>
+                                        : <span className={styles.noDataLabel}>[ NO DATA ]</span>;
+                                })()}
+                            </motion.div>
+                        </AnimatePresence>
+                    </div>
                 </div>
             </motion.div>
         </section>

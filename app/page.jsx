@@ -234,8 +234,6 @@ export default function MenuPage() {
                     )}
                 </div>
             </motion.div>
-
-            <DataTicker />
         </main>
     );
 }

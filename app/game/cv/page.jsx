@@ -3,8 +3,12 @@ import React, { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import { ContentFirst, ContentSecond, ContentThird } from "./content";
 import LoadingScan from "@/components/loading/loading-scan";
+import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
+
+const INTRO_IMAGES = ['/profilepic.png', '/agents/agent6.png', '/cv-image.png'];
 
 const CVPage = () => {
+    const [introLoading, setIntroLoading] = useState(true);
     const content = [ContentFirst(), ContentSecond(), ContentThird()];
     const [imageSRC, setImageSRC] = useState('/profilepic.png');
     const [analyzierContent, setAnalyzierContent] = useState(content[0]);
@@ -49,7 +53,20 @@ const CVPage = () => {
     }, [content]);
 
     return (
-        <main className={'main-offset'}>
+        <>
+            {introLoading && (
+                <MissionLoadingScreen
+                    images={INTRO_IMAGES}
+                    title="MISSION DEBRIEF"
+                    onComplete={() => setIntroLoading(false)}
+                >
+                    <h3>Terminal Access Granted</h3>
+                    <p>Operative, the terminal infiltration operation has concluded successfully.</p>
+                    <p>Agent AC1178's classified dossier has been fully retrieved. The file contains comprehensive records including operational history, technical capabilities, and verified credentials.</p>
+                    <p>Proceed to review the classified CV data.</p>
+                </MissionLoadingScreen>
+            )}
+            <main className={'main-offset'}>
             <div className={styles.screenContainer}>
                 <div className={styles.screen}>
                     <div className={styles.opacity}>
@@ -80,6 +97,7 @@ const CVPage = () => {
             </div>
             
         </main>
+        </>
     );
 };
 

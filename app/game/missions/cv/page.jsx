@@ -7,24 +7,17 @@ import Briefing from "@/components/briefing/briefing";
 import useScreenSize from "@/hooks/screen-size";
 import Button from "@/components/button/button";
 import PasswordDecryptor from "@/components/mission-components/password-text/password-text";
+import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 const CVMission = () => {
-    const [briefing, setBriefing] = useState(true);
+    const [briefing, setBriefing] = useState(false);
     const [inputValue, setInputValue] = useState([]);
     const [currentInput, setCurrentInput] = useState('');
     const [complete, setComplete] = useState(false);
+    const [introLoading, setIntroLoading] = useState(true);
     const [correct, setCorrect] = useState(false);
     const screenRef = useRef(null);
-
-    const { mobile } = useScreenSize()
-
-    useEffect(() => {
-        if(!mobile) {
-          setBriefing(true);
-        }
-    }, [mobile])
     
-
     const handleBriefingClick = () => {
         setBriefing(!briefing);
     }
@@ -62,7 +55,20 @@ const CVMission = () => {
     }
 
     return (
-        <main className={'briefing-offset '}>
+        <>
+            {introLoading && (
+                <MissionLoadingScreen
+                    images={[]}
+                    buttonText="Access Terminal"
+                    onComplete={() => setIntroLoading(false)}
+                >
+                    <h3>Mission: Terminal Hack</h3>
+                    <p>The target&apos;s highly classified CV is locked behind a secure terminal. We need you to bypass the security protocols and retrieve the information.</p>
+                    <p>We must get into the terminal by cracking the agent&apos;s password. Luckily this terminal is an older model and may have vulnerabilities we can exploit.</p>
+                    <p>Pay attention to the terminal output — it may contain hints about the password.</p>
+                </MissionLoadingScreen>
+            )}
+            <main className={'briefing-offset '}>
             {complete && <Success page='/cv'></Success>}
             <Briefing handleClick={handleBriefingClick} briefing={briefing}>
             <h3>Mission: Terminal Hack</h3>
@@ -112,6 +118,7 @@ const CVMission = () => {
                 />
             </div>
         </main>
+        </>
     );
 };
 

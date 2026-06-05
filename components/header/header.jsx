@@ -7,13 +7,12 @@ import MobileMenu from './mobile-menu';
 import { ModalOverlay } from '../modals/modals';
 import { useUserContext } from '@/context/user';
 import useScreenSize from '@/hooks/screen-size';
-import QuickAccessButton from '../button/quick-access-button';
 
 const Header = () => {
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false);
-    const { pages, updatePageStatus } = useUserContext();
+    const { pages } = useUserContext();
     const { mobile } = useScreenSize()
 
     useEffect(() => {
@@ -54,7 +53,7 @@ const Header = () => {
             <MobileMenu handleBurgerClick={handleBurgerClick} isOpen={isOpen}/>
             {isOpen && <ModalOverlay closeModal={handleBurgerClick} />} 
             <nav className={`${styles.nav} ${isOpen? styles.mobileMenu : styles.desktopNav}`}>
-                {pathname === '/game' && <Button type='a' href='/' label='Main Menu' />}
+                <Button type='a' href='/' label='Main Menu' />
                 {pages.map((page, index) => {
                     if(pathname === page.link) return null
                     return <Button key={index} type='a' href={`/game${page.link}`} action={closeBurgerMenu} label={page.mission} disabled={!page.completed} recentUnlock={page.recentUnlock} />

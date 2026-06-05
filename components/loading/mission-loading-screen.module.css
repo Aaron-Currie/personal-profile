@@ -1,0 +1,192 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: var(--hud-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.container {
+  width: 100%;
+  max-width: 760px;
+  border: 1px solid var(--hud-border);
+  background: rgba(1, 14, 35, 0.98);
+  padding: 36px 40px;
+  box-shadow:
+    0 0 60px rgba(0, 208, 255, 0.06),
+    inset 0 0 80px rgba(0, 0, 0, 0.5);
+  animation: fadein 0.6s ease;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.headerText {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  animation: flicker 7s infinite;
+}
+
+.diamond {
+  color: var(--cyan);
+  font-size: 1.1rem;
+  opacity: 0.6;
+}
+
+/* ── Divider ── */
+.divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--hud-border), transparent);
+  margin-bottom: 28px;
+}
+
+/* ── Briefing content ── */
+.briefingArea {
+  margin-bottom: 28px;
+  color: var(--primary-blue);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+.briefingLine {
+  opacity: 1;
+  animation: fadein 0.5s ease forwards;
+  margin-bottom: 10px;
+}
+
+.briefingLine:last-child {
+  margin-bottom: 0;
+}
+
+.briefingLine h3 {
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+}
+
+/* ── Bar / Button container — grid stacking for crossfade ── */
+.barButtonContainer {
+  display: grid;
+}
+
+.barState {
+  grid-area: 1 / 1;
+  transition: opacity 0.5s ease;
+  opacity: 1;
+}
+
+.barHidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Segment row ── */
+.segmentRow {
+  position: relative;
+  display: flex;
+  gap: 3px;
+  height: 16px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.segment {
+  flex: 1;
+  height: 100%;
+  background: rgba(0, 208, 255, 0.05);
+  border: 1px solid rgba(0, 208, 255, 0.1);
+  transition: background 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.segmentFilled {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 6px var(--cyan-glow);
+}
+
+/* ── Scan line overlay ── */
+.scanLine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 8px 2px var(--cyan), 0 0 18px var(--cyan-glow);
+  animation: scanSweep 1.8s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanSweep {
+  0%   { left: 0; opacity: 0.5; }
+  50%  { opacity: 1; }
+  100% { left: calc(100% - 4px); opacity: 0.5; }
+}
+
+/* ── Status row ── */
+.statusRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.statusText {
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  color: var(--cyan);
+  animation: flicker 4s infinite;
+}
+
+.percentage {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: var(--primary-blue);
+  font-weight: 700;
+}
+
+/* ── Button state ── */
+.buttonState {
+  grid-area: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+.buttonVisible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+  .container {
+    padding: 28px 20px;
+  }
+
+  .headerText {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+
+  .briefingArea {
+    font-size: 0.85rem;
+  }
+}
