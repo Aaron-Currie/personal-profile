@@ -1,3 +1,5 @@
+'use client';
+import { useState } from 'react';
 import CollapsableSection from '@/components/collapsable-section/collapsable-section';
 import styles from './page.module.css'
 import { qestrArray } from '@/constants/questrArray';
@@ -6,10 +8,31 @@ import { hobbies } from '@/constants/hobbies';
 import AnimatedLights from '@/components/animations/animated-lights';
 import CarouselWrapper from '@/components/carousel-wrapper/carousel-wrapper';
 import Typewriter from '@/components/animations/typewriter';
+import MissionLoadingScreen from '@/components/loading/mission-loading-screen';
+
+const INTRO_IMAGES = [
+    '/profilepic.png',
+    ...hobbies,
+    ...qestrArray.map(q => q.image),
+];
 
 export default function AboutMe() {
+    const [introLoading, setIntroLoading] = useState(true);
     return (
-        <main className={`main-offset ${styles.profileMain}`}>
+        <>
+            {introLoading && (
+                <MissionLoadingScreen
+                    images={INTRO_IMAGES}
+                    title="MISSION DEBRIEF"
+                    onComplete={() => setIntroLoading(false)}
+                >
+                    <h3>Mission Complete</h3>
+                    <p>Operative, the identity retrieval operation has concluded successfully.</p>
+                    <p>Agent AC1178's identity has been confirmed and a full profile assembled from recovered dossiers. All personal history, career records, and background intelligence have been retrieved.</p>
+                    <p>Proceed to review the classified agent file.</p>
+                </MissionLoadingScreen>
+            )}
+            <main className={`main-offset ${styles.profileMain}`}>
             <section className={`${styles.section} ${styles.profileHeader}`}>
                 <img src='/profilepic.png'/>
                 <div className='flex-col'>
@@ -98,5 +121,6 @@ export default function AboutMe() {
             </CollapsableSection>
             <AnimatedLights />
         </main>
+        </>
     );
 }

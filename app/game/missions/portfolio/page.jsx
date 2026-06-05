@@ -9,15 +9,17 @@ import GridButton from "@/components/mission-components/grid-button/grid-button"
 import Button from "@/components/button/button";
 import generateRandomArray from "./utils/generate-grid";
 import Failure from "@/components/mission-components/failed-overlay/failed-overlay";
+import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 export default function PortfolioMission() {
-  const [briefing, setBriefing] = useState(true);
+  const [briefing, setBriefing] = useState(false);
   const [complete, setComplete] = useState(false);
   const [failed, setFailed] = useState(false);
   const [counter, setCounter] = useState(0);
   const [grid, setGrid] = useState(null);
   const [energy, setEnergy] = useState(100);
-  const { mobile } = useScreenSize()
+  const { mobile } = useScreenSize();
+  const [introLoading, setIntroLoading] = useState(true);
 
 
   useEffect(() => {
@@ -38,12 +40,6 @@ export default function PortfolioMission() {
     }
   }, [energy]);
 
-  useEffect(() => {
-    if(!mobile) {
-      setBriefing(true);
-    }
-  }, [mobile])
-
   const handleBriefingClick = () => {
     setBriefing(!briefing);
   }
@@ -60,7 +56,20 @@ export default function PortfolioMission() {
   }
 
   return (
-    <main className={styles.main}>
+    <>
+      {introLoading && (
+        <MissionLoadingScreen
+          images={['/backgrounds/lab.png', '/locked.png']}
+          buttonText="Access Files"
+          onComplete={() => setIntroLoading(false)}
+        >
+          <h3>Mission: Locker Crack</h3>
+          <p>Agent AC1178&apos;s previous mission equipment is locked in a vault at this location. We must break the vault to gain access to this equipment so we can assess its operational capabilities.</p>
+          <p>We have identified potential vulnerabilities in the vault and can use our laser cracking tools to exploit them.</p>
+          <p>Select the areas of the vault to target with the laser. Identify all the weak points before the laser&apos;s energy is depleted to successfully breach the vault.</p>
+        </MissionLoadingScreen>
+      )}
+      <main className={styles.main}>
       <section className={styles.section}>
         {complete && <Success page='/portfolio'></Success>}
         <div className={`briefing-offset`}>
@@ -74,7 +83,7 @@ export default function PortfolioMission() {
             <div className={`${styles.energyBar} ${failed && styles.failed}`}>
               <div className={styles.energyFill} style={{width: `${energy}%`}}></div>
             </div>
-            <p>Remaing Energy: {energy}%</p>
+            <p>Remaining Energy: {energy}%</p>
           </div>
           <div className={styles.missionGrid}>
             {failed && <Failure reset={resetMission}/>}
@@ -85,5 +94,6 @@ export default function PortfolioMission() {
         </div>
       </section>
     </main>
+    </>
   );
 }

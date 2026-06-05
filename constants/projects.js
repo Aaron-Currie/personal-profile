@@ -1,24 +1,96 @@
 export const projects = [
     {
-        name: 'Portfolio',
-        concept: 'A portfolio showcasing my skills and experience as a full-stack developer.',
-        description: 'This portfolio is designed to highlight my skills and experience as a full-stack developer. It includes various projects that demonstrate my expertise in modern web development technologies such as React, Next.js, and Google Cloud Platform.',
-        tech: 'Next.js, React',
+        name: 'CMS Custom AI Categorisation Tool',
+        concept: 'A custom field extension for Contentstack CMS that automatically categorises content using AI. It analyses the current entry and assigns it to predefined categories, reducing manual tagging and speeding up editorial workflows.',
+        technical: `Built as a lightweight React app using the Contentstack SDK to read entry data and update fields in real time. The content is sent to a GCP Vertex AI (Gemini) model with a structured prompt and predefined categories, which returns the most relevant classification.\nThe result is written back to the entry instantly, allowing editors to validate and publish without additional steps.`,
+        outcome: 'Improved consistency in tagging and reduced manual effort for editorial teams.',
+        learning: 'Gained experience integrating AI into production workflows, designing structured prompts, and working with CMS extension SDKs to create seamless editorial tooling.',
+        tech: 'React, Vite, GCP Vertex AI (Gemini), Contentstack SDK',
         link: '/',
         repo: '',
         display: 'carousel',
         images: [],
         pinData: {
-            top: '20%',
-            left: '31%',
-            missionTitle: 'Portfolio',
-        }    
+            top: '18%',
+            left: '24%',
+            missionTitle: 'CMS AI Tool',
+        }
     },
     {
-        name: 'Questr',
-        concept: 'A portfolio showcasing my skills and experience as a full-stack developer.',
-        description: 'This portfolio is designed to highlight my skills and experience as a full-stack developer. It includes various projects that demonstrate my expertise in modern web development technologies such as React, Next.js, and Google Cloud Platform.',
-        tech: 'Next.js, React',
+        name: 'LifeQuests',
+        concept: 'LifeQuests is a goal-tracking application designed to help users break down long-term ambitions into smaller, achievable challenges spread across the year. Instead of relying on a single high-level resolution, users define multiple goals that can be completed incrementally, maintaining motivation through consistent progress and feedback.',
+        technical: 'Built with Next.js using API routes as a backend layer, connected to a Supabase relational database. Users can create, tag, and track goals, add notes, and view progress through dashboards. The database is structured across multiple related tables with row-level security (RLS) and indexing for performance. The app is wrapped with Capacitor to run as a mobile application, and includes authentication and payments via Stripe.',
+        outcome: 'Delivered a full-stack application with end-to-end functionality, including authentication, goal management, analytics, and cross-platform deployment (web and mobile). The system supports persistent user data and is designed to scale with increasing user and data volume.',
+        learning: 'Gained experience in full-stack product development, including data modelling, auth flows, and building user-focused features with measurable state and progress.',
+        tech: 'Next.js, TypeScript, Supabase, Stripe, Capacitor, Vercel',
+        link: '/',
+        repo: '',
+        display: 'carousel',
+        images: [],
+        pinData: {
+            top: '22%',
+            left: '52%',
+            missionTitle: 'LifeQuests',
+        }
+    },
+    {
+        name: 'Helpful Finance Calculators',
+        concept: 'A web app focused on practical personal finance decisions, helping users compare pathways for building long-term wealth.',
+        technical: 'Built with Next.js as a multi-tool calculator platform. It includes scenarios such as overpay mortgage vs invest, pay off student loan vs invest, and stocks vs property investment. Each calculator uses interactive inputs and clear comparison outputs to make trade-offs easier to understand.',
+        outcome: 'Delivered a single place for users to model multiple finance decisions with side-by-side outcomes they can act on.',
+        learning: 'Improved skills in translating real-world financial decision logic into clear, user-friendly calculator workflows and reusable Next.js components.',
+        tech: 'Next.js, React, JavaScript',
+        link: '/',
+        repo: '',
+        display: 'carousel',
+        images: [],
+        pinData: {
+            top: '70%',
+            left: '58%',
+            missionTitle: 'Finance Calculators',
+        }
+    },
+    {
+        name: 'Elastic Ingestion Pipeline',
+        concept: 'A scalable ingestion pipeline that indexes CMS content into Elasticsearch to power fast and reliable search across a large newsroom archive.',
+        technical: 'Triggered by a CMS publish webhook, the pipeline routes data through GCP API Gateway into a Cloud Function. The function sanitises and reshapes the content to match the Elasticsearch schema, then publishes it to Pub/Sub. A downstream Cloud Function consumes the message and writes the document into an Elasticsearch index. To handle about 9000 legacy articles, a bulk ingestion process was also built using an Octopus runbook. It batches requests to the Contentstack API and feeds them through the same pipeline, ensuring consistency between historical and new data.',
+        outcome: 'Enabled indexing of more than 9000 articles and reduced search response times by moving to a dedicated search index.',
+        learning: 'Developed a strong understanding of event-driven architecture, message queues, and data transformation for search indexing at scale.',
+        tech: 'GCP (Cloud Functions, API Gateway, Pub/Sub), Webhooks, Elasticsearch, Octopus Deploy',
+        link: '/',
+        repo: '',
+        display: 'carousel',
+        images: [],
+        pinData: {
+            top: '18%',
+            left: '78%',
+            missionTitle: 'Elastic Pipeline',
+        }
+    },
+    {
+        name: 'Sci-fi Spy Themed Portfolio',
+        concept: 'An interactive portfolio designed as a sci-fi themed experience where users unlock information by completing mini games, rather than viewing a static site.',
+        technical: 'Built with Next.js (App Router) and deployed on Vercel. The interface uses custom CSS Modules and bespoke animations instead of component libraries. The app includes lightweight game logic and state management to drive progression through the experience.',
+        outcome: 'An interactive portfolio that showcases frontend skills through a distinctive game-inspired experience.',
+        learning: 'Strengthened frontend skills in animation, interaction design, and building non-standard user experiences without relying on UI libraries.',
+        tech: 'Next.js, React, Vercel',
+        link: '/',
+        repo: '',
+        display: 'carousel',
+        images: [],
+        pinData: {
+            top: '46%',
+            left: '33%',
+            missionTitle: 'Sci Spy Portfolio',
+        }
+    },
+    {
+        name: 'City Questr',
+        concept: 'Questr is a gamified mobile app designed to get users off the couch and into their local environment. The app overlays real-world quests onto a city map, turning everyday locations into opportunities for discovery. Users complete location-based missions such as photos, puzzles, questions, and mini battle games, earning experience points and in-game currency for avatar customisation and upgrades.',
+        technical: 'Built by a team of four during the Northcoders bootcamp. The app uses React Native (Expo) on the frontend, with AWS services on the backend including Cognito for authentication and DynamoDB for data storage. Users complete location-based tasks to earn rewards and customise their profile.',
+        outcome: 'Delivered a fully functional mobile app within a limited bootcamp timeframe as part of a collaborative team.',
+        learning: 'Developed experience building mobile-first features, and integrating cloud services for authentication and persistence.',
+        tech: 'React Native, Expo, AWS, DynamoDB, Cognito',
         link: '/',
         repo: '',
         display: 'carousel',
@@ -39,46 +111,18 @@ export const projects = [
             { image: '/questr/questr14.jpg' },
         ],
         pinData: {
-            top: '20%',
-            left: '80%',
-            missionTitle: 'Questr',
-        }    
+            top: '48%',
+            left: '73%',
+            missionTitle: 'City Questr',
+        }
     },
     {
-        name: 'Snowboard Trick Tracker',
-        concept: 'A portfolio showcasing my skills and experience as a full-stack developer.',
-        description: 'This portfolio is designed to highlight my skills and experience as a full-stack developer. It includes various projects that demonstrate my expertise in modern web development technologies such as React, Next.js, and Google Cloud Platform.',
-        tech: 'Next.js, React',
-        link: '/',
-        repo: '',
-        display: 'carousel',
-        images: [],
-        pinData: {
-            top: '47%',
-            left: '70%',
-            missionTitle: 'Trick Tracker',
-        }    
-    },
-    {
-        name: 'Stocks Vs Property',
-        concept: 'A portfolio showcasing my skills and experience as a full-stack developer.',
-        description: 'This portfolio is designed to highlight my skills and experience as a full-stack developer. It includes various projects that demonstrate my expertise in modern web development technologies such as React, Next.js, and Google Cloud Platform.',
-        tech: 'Next.js, React',
-        link: '/',
-        repo: '',
-        display: 'carousel',
-        images: [],
-        pinData: {
-            top: '63%',
-            left: '60%',
-            missionTitle: 'Stocks Vs Property',
-        }    
-    },
-    {
-        name: 'AC NC News',
-        concept: 'A portfolio showcasing my skills and experience as a full-stack developer.',
-        description: 'This portfolio is designed to highlight my skills and experience as a full-stack developer. It includes various projects that demonstrate my expertise in modern web development technologies such as React, Next.js, and Google Cloud Platform.',
-        tech: 'Next.js, React',
+        name: 'NCAC News',
+        concept: 'A data-driven news platform where users can read, comment on, and react to articles.',
+        technical: 'Built as a full-stack learning project. The backend is a RESTful CRUD API built with Express and SQL, deployed on Heroku, and connected to a React frontend. The app supports commenting, voting, and filtering articles, with optimistic updates to improve perceived performance and user experience.',
+        outcome: 'Delivered a complete full-stack application with real-time user interactions and persistent data.',
+        learning: 'Built a solid foundation in API design, relational databases, and frontend-backend integration, including handling asynchronous state and user interactions.',
+        tech: 'React, Express, SQL, Heroku',
         link: '/',
         repo: '',
         display: 'grid',
@@ -93,22 +137,8 @@ export const projects = [
         pinData: {
             top: '43%',
             left: '30%',
-            missionTitle: 'AC NC News',
-        }    
+            missionTitle: 'NCAC News',
+        }
     },
-    {
-        name: 'Frontend Mentor',
-        concept: 'A portfolio showcasing my skills and experience as a full-stack developer.',
-        description: 'This portfolio is designed to highlight my skills and experience as a full-stack developer. It includes various projects that demonstrate my expertise in modern web development technologies such as React, Next.js, and Google Cloud Platform.',
-        tech: 'Next.js, React',
-        link: '/',
-        repo: '',
-        display: 'carousel',
-        images: [],
-        pinData: {
-            top: '82%',
-            left: '27%',
-            missionTitle: 'Frontend Mentor Projects',
-        }    
-    },
+
 ]

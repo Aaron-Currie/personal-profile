@@ -43,7 +43,7 @@
     align-items: center;
     gap: 10px;
     padding: 20px;
-    background-color: rgb(1, 26, 55, 0.99);
+    background-color: rgba(0, 21, 46, 0.99);
     z-index: 20;
   }
   .energyBar {

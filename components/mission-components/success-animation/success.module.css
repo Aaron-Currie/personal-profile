@@ -4,12 +4,13 @@
     justify-content: center;
     align-items: center;
     gap: 20px;
-    background: rgba(1, 26, 55, 1);
+    background: rgba(1, 12, 30, 0.94);
     padding: 100px;
-    border-radius: 20px;
+    border-radius: 4px;
     border: 1px solid var(--border-blue);
     animation: fadeInGrow 0.5s ease-in-out;
     position: relative; /* Required for ::after positioning */
+    max-width: 90%;
 }
 
 .content::after {
@@ -21,7 +22,7 @@
     height: 100%;
     opacity: 0;
     border-radius: inherit;
-    background: rgb(152, 213, 246);
+    background: rgb(0, 61, 95);
     z-index: -1;
     animation: pulse 1.5s infinite ease-in-out;
 }

@@ -2,6 +2,15 @@ import Button from "../button/button";
 import styles from "./modals.module.css";
 import React from "react";
 
+const ModalHudChrome = () => (
+    <>
+        <span className={`${styles.hudCorner} ${styles.tl}`} aria-hidden="true" />
+        <span className={`${styles.hudCorner} ${styles.tr}`} aria-hidden="true" />
+        <span className={`${styles.hudCorner} ${styles.bl}`} aria-hidden="true" />
+        <span className={`${styles.hudCorner} ${styles.br}`} aria-hidden="true" />
+    </>
+);
+
 const MissionModal = ({closeModal, children, pages, currentMission}) => {
     const completed = pages.find((page) => page.link === `${currentMission.link}`)?.completed;
 
@@ -9,6 +18,7 @@ const MissionModal = ({closeModal, children, pages, currentMission}) => {
         <div className={styles.modalOverlay} onClick={closeModal}>
             <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
                 <Button action={closeModal} label={'×'} type='icon' />
+                {/* <ModalHudChrome /> */}
                 <h2>Mission: {currentMission.missionTitle}</h2>
                 <h3>Section: {currentMission.section}</h3>
                 <p>{currentMission.description}</p>
@@ -36,6 +46,7 @@ const LightModal = ({children, closeModal}) => {
         <div className={styles.modalOverlayLight} onClick={closeModal}>
             <div className={styles.modalContentLight} onClick={(e) => e.stopPropagation()}>
                 <Button action={closeModal} label={'×'} type='icon' />
+                {/* <ModalHudChrome /> */}
                 {children}
             </div>
         </div>
@@ -54,9 +65,10 @@ const ModalContent = ({children, closeModal}) => {
     return (
         <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
             <Button action={closeModal} label={'×'} type='icon' />
+            {/* <ModalHudChrome /> */}
             {children}
         </div>
     );
 }
 
-export {MissionModal, Modal, ModalOverlay, ModalContent, LightModal};
+export {MissionModal, Modal, ModalOverlay, ModalContent, LightModal, ModalHudChrome};

@@ -8,11 +8,11 @@ import Briefing from "@/components/briefing/briefing";
 import AnimatedLights from "@/components/animations/animated-lights";
 import useScreenSize from "@/hooks/screen-size";
 import { useUserContext } from "@/context/user";
-import LoadingPage from "@/components/loading/loading-page";
+import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 export default function Home() {
   const [currentMission, setCurrentMission] = useState(null);
-  const [briefing, setBriefing] = useState(true);
+  const [briefing, setBriefing] = useState(false);
   const [loading, setLoading] = useState(true);
   const { mobile } = useScreenSize()
 
@@ -23,11 +23,11 @@ export default function Home() {
       setBriefing(false);
     } 
   }, [mobile])
-
-  useEffect(() => {
+  console.log(pages, 'PAGES IN HOME')
+  const handleLoadingComplete = () => {
     setLoading(false);
     updatePageStatus('/', true, false);
-  }, [])
+  };
 
   const handleMissionClick = (mission) => {
     if(currentMission) {
@@ -40,9 +40,21 @@ export default function Home() {
     setBriefing(!briefing);
   }
 
-  if (loading) return <LoadingPage />;
   return (
-    <main className={styles.main}>
+    <>
+      {loading && (
+        <MissionLoadingScreen
+          images={['/globetactical.png', 'profilepic.png']}
+          onComplete={handleLoadingComplete}
+        >
+          <h3>Briefing</h3>
+          <p>Welcome, Operative. Your mission is to track down Agent AC1178 who has gone dark.</p>
+          <p>Last known contact was made during an undercover operation. Intel suggests they may be compromised — or deeper undercover than we anticipated. Your mission is to track down AC1178 by revisiting their last known operational sites.</p>
+          <p>We must search each site and retrace our agents steps to uncover clues to the agents whereabouts and identity.</p>
+          <p>Time is of the essence. Good luck.</p>
+        </MissionLoadingScreen>
+      )}
+      <main className={styles.main}>
       {currentMission && (
         <MissionModal currentMission={currentMission} closeModal={handleMissionClick} pages={pages}>
         </MissionModal>)}
@@ -64,5 +76,6 @@ export default function Home() {
         </div>
       </section>
     </main>
+    </>
   );
 }

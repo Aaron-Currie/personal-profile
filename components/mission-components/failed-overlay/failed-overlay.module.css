@@ -13,13 +13,14 @@
     text-align: center;
     color: white;
     background-color: rgba(33, 0, 0, 0.95);
-    padding: 20px;
-    border-radius: 10px;
+    padding: 40px;
+    border-radius: 4px;
     animation: fadeInGrow 0.6s ease-in-out;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    position: relative;
 }
 
 @keyframes fadeInGrow {
