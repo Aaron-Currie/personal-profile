@@ -1,6 +1,6 @@
 'use client';
 import { useRef, useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform, useScroll } from 'framer-motion';
 import Typewriter from '@/components/animations/typewriter';
 import HudFrame from '@/components/hud/hud-frame';
 import DataTicker from '@/components/hud/data-ticker';
@@ -156,6 +156,15 @@ const item = {
 export default function HeroSection() {
     const sectionRef = useRef(null);
 
+    // Scroll-driven image exit
+    const { scrollYProgress } = useScroll({
+        target: sectionRef,
+        offset: ['start start', 'end start'],
+    });
+    const imageOpacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.5]);
+    const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '-25%']);
+    const imageScale = useTransform(scrollYProgress, [0, 1], [1.05, 1.0]);
+
     // Mouse parallax for content block
     const rawX = useMotionValue(0);
     const rawY = useMotionValue(0);
@@ -184,14 +193,19 @@ export default function HeroSection() {
             onMouseLeave={handleMouseLeave}
         >
             {/* Interactive particle field */}
-            <img src='/backgrounds/leeds-skyline-v2.png' className={styles.heroImage} />
+            <motion.div
+                className={styles.heroImageWrapper}
+                style={{ opacity: imageOpacity, y: imageY, scale: imageScale }}
+            >
+                <img src='/backgrounds/leeds-skyline-v2.png' className={styles.heroImage} alt="" />
+            </motion.div>
             <ParticleField />
 
             {/* Scanline overlay */}
-            <div className={styles.scanlines} aria-hidden="true" />
+            {/* <div className={styles.scanlines} aria-hidden="true" /> */}
 
             {/* Vignette */}
-            <div className={styles.vignette} aria-hidden="true" />
+            {/* <div className={styles.vignette} aria-hidden="true" /> */}
 
             {/* Top-right live readout */}
             <div className={styles.readout}>
@@ -215,20 +229,15 @@ export default function HeroSection() {
                 </motion.p>
 
                 <motion.div variants={item} className={styles.nameRow}>
-                    <Typewriter speed={65} pause={500}>
                         <h1 className={styles.name}>Aaron Currie</h1>
-                    </Typewriter>
-                </motion.div>
-
-                <motion.div variants={item} className={styles.subtitleWrapper}>
-                    <Typewriter speed={38} pause={800}>
-                        <p className={styles.subtitle}>
-                            Software Engineer · Sky · Leeds UK
-                        </p>
-                    </Typewriter>
                 </motion.div>
 
                 <motion.div variants={item} className={styles.dividerLine} />
+                <motion.div variants={item} className={styles.nameRow}>
+                    <p className={styles.subtitle}>
+                        Software Engineer · Sky · Leeds UK
+                    </p>
+                </motion.div>
 
                 <motion.div variants={item} className={styles.ctas}>
                     <a href="#about" className={styles.ctaPrimary}>
