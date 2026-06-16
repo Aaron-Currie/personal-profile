@@ -184,6 +184,7 @@ export default function HeroSection() {
             onMouseLeave={handleMouseLeave}
         >
             {/* Interactive particle field */}
+            <img src='/backgrounds/leeds-skyline-v2.png' className={styles.heroImage} />
             <ParticleField />
 
             {/* Scanline overlay */}
@@ -208,7 +209,6 @@ export default function HeroSection() {
                 variants={stagger}
                 initial="hidden"
                 animate="show"
-                style={{ rotateX, rotateY, transformPerspective: 1200 }}
             >
                 <motion.p variants={item} className={styles.label}>
                     AGENT DOSSIER // FULL-STACK ENGINEER
@@ -242,8 +242,6 @@ export default function HeroSection() {
                     </a>
                 </motion.div>
             </motion.div>
-
-            {/* Bottom scrolling ticker */}
         </section>
     );
 }

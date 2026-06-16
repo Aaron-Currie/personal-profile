@@ -7,6 +7,7 @@
     justify-content: center;
     overflow: hidden;
     background: rgb(0, 8, 20);
+    border-bottom: 1px solid rgba(0, 208, 255, 0.12);
 }
 
 /* Full-bleed interactive canvas */
@@ -16,6 +17,16 @@
     width: 100%;
     height: 100%;
     z-index: 0;
+}
+
+.heroImage {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.6;
 }
 
 .scanlines {
@@ -69,6 +80,9 @@
     text-align: center;
     padding: 2rem;
     will-change: transform;
+    background: #000612e0;
+    width: max-content;
+    border: 1px solid #00d0ff2e;
 }
 
 .label {
@@ -212,7 +226,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
     padding: 2rem;
 }
 
