@@ -206,7 +206,7 @@ export default function HeroSection() {
                 animate="show"
             >
                 <motion.p variants={item} className={styles.label}>
-                    AGENT DOSSIER // FULL-STACK ENGINEER
+                    FULL-STACK ENGINEER
                 </motion.p>
 
                 <motion.div variants={item} className={styles.nameRow}>
