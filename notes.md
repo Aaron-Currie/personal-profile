@@ -1,5 +1,10 @@
-1. Fix project display to not changes sizes when text length changes
+1. Fix project display to not changes sizes when text length changes ✅
 2. Make all the games play smaller so they look good on all screen sizes
+    - Tech Stash ✅
+    - Vault Cracker ✅
+    - Timeline
+    - Terminal
+    - Dossier
 3. adjust quick portfolio to look better on mobile, shrink margins
 4. make all briefing details visible in the loading briefing
 5. load in images on the main menu while the load happens

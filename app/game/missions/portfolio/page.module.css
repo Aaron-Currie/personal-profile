@@ -17,8 +17,8 @@
   
   .missionGrid {
     display: grid;
-    grid-template-columns: repeat(5, clamp(50px, 18vw, 120px));
-    grid-template-rows: repeat(6, clamp(60px, 20vw, 130px));
+    grid-template-columns: repeat(5, clamp(50px, 18vw, 65px));
+    grid-template-rows: repeat(6, clamp(60px, 20vw, 75px));
     padding: 20px;
     justify-content: center;
     position: relative;
