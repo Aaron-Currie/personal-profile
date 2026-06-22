@@ -104,6 +104,7 @@
     background: #000612e0;
     width: max-content;
     border: 1px solid #00d0ff2e;
+    max-width: 80%;
 }
 
 .label {

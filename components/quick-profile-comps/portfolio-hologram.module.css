@@ -589,15 +589,18 @@
     }
 
     .screen {
-        aspect-ratio: 16 / 12;
+        aspect-ratio: 16 / 16;
     }
 
     .screenExpanded {
-        aspect-ratio: 1 / 1;
+        aspect-ratio: 1 / 1.5;
     }
 
     .projectTech {
         display: none;
+    }
+    .infoPanel {
+        padding: 1.5rem 1rem;
     }
 
     .infoHeader {
@@ -611,5 +614,7 @@
 
     .tabBar {
         overflow-x: auto;
+        overflow-y: hidden;
+        height: max-content;
     }
 }

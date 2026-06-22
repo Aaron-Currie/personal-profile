@@ -5,7 +5,7 @@
     - Timeline
     - Terminal
     - Dossier
-3. adjust quick portfolio to look better on mobile, shrink margins
+3. adjust quick portfolio to look better on mobile, shrink margins ✅
 4. make all briefing details visible in the loading briefing
 5. load in images on the main menu while the load happens
 6. load images for quick portfolio

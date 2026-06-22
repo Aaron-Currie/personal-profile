@@ -8,7 +8,7 @@ const SPRING = { type: 'spring', stiffness: 280, damping: 22 };
  * Wraps children in Iron-Man-style targeting-reticle corner brackets.
  * Pass entrance=true + delay (seconds) to animate the brackets opening on mount.
  */
-const HudFrame = ({ children, className = '', label = '', entrance = false, delay = 0 }) => {
+const HudFrame = ({ children, className = '', label = '', entrance = false, delay = 0}) => {
     if (!entrance) {
         return (
             <div className={`${styles.frame} ${className}`}>

@@ -72,6 +72,9 @@
 }
 
 @media (max-width: 880px) {
+    .about {
+        padding: 4rem 1.5rem;
+    }
     .content {
         flex-direction: column;
     }
