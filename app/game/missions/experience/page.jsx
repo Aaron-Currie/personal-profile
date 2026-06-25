@@ -249,7 +249,6 @@ export default function TimelineTraverse() {
           <Briefing handleClick={handleBriefingClick} briefing={briefing} sections={[{ title: 'Briefing', content: briefingContent }, { title: 'Instructions', content: instructionsContent }, { title: 'Equipment', content: equipmentContent }]}>
           </Briefing>
               <div className={styles.gameContainer}>
-              {failed && <Failure reset={resetTimeline}/>}  
                 <div className={styles.controls}>
                   <h3>Current Experience: {xp}</h3>
                   <button disabled={failed || shieldActive} className={styles.actionButton} onClick={() => activateShield()}>🛡️ {`${shields}`}</button>
@@ -283,6 +282,7 @@ export default function TimelineTraverse() {
             </div>
           </div>
       </section>
+      {failed && <Failure reset={resetTimeline}/>}  
     </main>
       )}
     </>

@@ -224,12 +224,6 @@ export default function HeroSection() {
                     <a href="#about" className={styles.ctaPrimary}>
                         VIEW DOSSIER
                     </a>
-                    <a
-                        href="mailto:aaroncurrie34@gmail.com"
-                        className={styles.ctaSecondary}
-                    >
-                        OPEN CHANNEL
-                    </a>
                 </motion.div>
             </motion.div>
         </section>
