@@ -9,10 +9,11 @@ import { useUserContext } from '@/context/user';
 import useScreenSize from '@/hooks/screen-size';
 
 const Header = () => {
+    const { briefing } = useUserContext();
     const pathname = usePathname();
     const [isOpen, setIsOpen] = useState(false)
     const [scrolled, setScrolled] = useState(false);
-    const { pages } = useUserContext();
+    const { pages, setBriefing } = useUserContext();
     const { mobile } = useScreenSize()
 
     useEffect(() => {
@@ -58,6 +59,9 @@ const Header = () => {
                     if(pathname === page.link) return null
                     return <Button key={index} type='a' href={`/game${page.link}`} action={closeBurgerMenu} label={page.mission} disabled={!page.completed} recentUnlock={page.recentUnlock} />
                 })}
+                <div className={styles.briefingButton}>
+                    {!briefing && <Button type='button' action={() => {setBriefing(true); closeBurgerMenu()}} label='Briefing' />}
+                </div>
             </nav>
         </header>
     );

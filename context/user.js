@@ -13,6 +13,8 @@ export const UserProvider = ({ children }) => {
         { mission: 'CV', link: '/cv', completed: false, recentUnlock: false },
     ]);
 
+    const [briefing, setBriefing] = useState(false);
+
     const updatePageStatus = (link, completed, recentUnlock) => {
         setPages((prevPages) =>
             prevPages.map((page) =>
@@ -37,8 +39,12 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem("unlockedPages", JSON.stringify(pages));
       }, [pages]);
 
+      useEffect(() => {
+        console.log('Briefing state changed:', briefing);
+      }, [briefing]);
+
     return (
-        <UserContext.Provider value={{pages, updatePageStatus}}>
+        <UserContext.Provider value={{pages, updatePageStatus, briefing, setBriefing}}>
             {children}
         </UserContext.Provider>
     );

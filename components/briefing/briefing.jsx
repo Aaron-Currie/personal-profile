@@ -5,7 +5,7 @@ import { ModalContent, ModalOverlay } from '../modals/modals';
 
 const Briefing = ({handleClick, briefing, children, sections = []}) => {
     if (!briefing) {
-        return <div className={styles.briefingButton}><Button label={'Briefing'} action={handleClick}/></div>
+        return null;
     }
     const [active, setActive] = React.useState(sections[0].title || '');
     return (

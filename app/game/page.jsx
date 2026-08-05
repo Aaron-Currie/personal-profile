@@ -12,7 +12,7 @@ import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 export default function Home() {
   const [currentMission, setCurrentMission] = useState(null);
-  const [briefing, setBriefing] = useState(false);
+  const { briefing, setBriefing } = useUserContext();
   const [loading, setLoading] = useState(true);
   const { mobile } = useScreenSize()
 

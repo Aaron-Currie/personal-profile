@@ -6,9 +6,9 @@ FRONT END IMPROVEMENTS
     - Timeline
     - Terminal
     - Dossier
-3. make failed mission a model that covers the screen similar to the mission success
+3. make failed mission a model that covers the screen similar to the mission success ✅
 3. adjust quick portfolio to look better on mobile, shrink margins ✅
-4. make all briefing details visible in the loading briefing
+4. make all briefing details visible in the loading briefing, briefing, 
 5. load in images on the main menu while the load happens
 6. load images for quick portfolio
 10. add loading on project screen for images. 
@@ -21,6 +21,7 @@ FRONT END IMPROVEMENTS
 CODE IMPROVEMENTS
 20. Condense all css into vars to use across the site
 21. Scale images on mobile for faster loads
+22. speed up image loading, scale down images or lazy load below the fold
 
 CONTENT IMPROVEMENTS
 7. Update all briefing texts and instructions on playing the games
@@ -32,6 +33,7 @@ CONTENT IMPROVEMENTS
 NEW FEATURES IMPROVEMENTS
 12. add new game load animation and briefing
 8. Add a final level complete that links to the quick portfolio, maybe another level/boss fight, spotlight search?? 
+23. 3D interactive world map
 
 
 
