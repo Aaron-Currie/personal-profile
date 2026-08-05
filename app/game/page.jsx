@@ -2,7 +2,6 @@
 import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
 import { missions } from "@/constants/missions";
-import { MissionModal } from "@/components/modals/modals";
 import Briefing from "@/components/briefing/briefing";
 import AnimatedLights from "@/components/animations/animated-lights";
 import { useUserContext } from "@/context/user";
@@ -14,7 +13,6 @@ const MissionGlobe = dynamic(() => import("@/components/globe/mission-globe"), {
 });
 
 export default function Home() {
-  const [currentMission, setCurrentMission] = useState(null);
   const { briefing, setBriefing } = useUserContext();
   const [loading, setLoading] = useState(true);
 
@@ -38,13 +36,6 @@ export default function Home() {
     }
   };
 
-  const handleMissionClick = (mission) => {
-    if(currentMission) {
-      setCurrentMission(null)
-    } else {
-      setCurrentMission(mission);
-    }
-  }
   const handleBriefingClick = () => {
     setBriefing(!briefing);
   }
@@ -64,11 +55,8 @@ export default function Home() {
         </MissionLoadingScreen>
       )}
       <main className={styles.main}>
-      {currentMission && (
-        <MissionModal currentMission={currentMission} closeModal={handleMissionClick} pages={pages}>
-        </MissionModal>)}
       <section className={styles.section}>
-        <MissionGlobe missions={missions} pages={pages} onMissionSelect={handleMissionClick} />
+        <MissionGlobe missions={missions} pages={pages} />
         <div className={styles.overlay}>
           <div className={styles.briefingLayer}>
             <Briefing handleClick={handleBriefingClick} briefing={briefing} exitable={true} sections={[{title: 'Briefing', content: (
