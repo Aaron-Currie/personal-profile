@@ -372,7 +372,7 @@ export default function MissionGlobe({ missions, pages, onMissionSelect }) {
     >
       {!hasGlobeError && (
         <GlobeErrorBoundary onError={handleGlobeError}>
-          <Canvas camera={{ position: [0, 0.3, 6.1], fov: 38 }}>
+          <Canvas camera={{ position: [0, 0.3, 7.45], fov: 38 }}>
             <Suspense fallback={null}>
               <SceneReadyPing onReady={handleSceneReady} />
               <GlobeScene
