@@ -33,7 +33,7 @@ CONTENT IMPROVEMENTS
 NEW FEATURES IMPROVEMENTS
 12. add new game load animation and briefing
 8. Add a final level complete that links to the quick portfolio, maybe another level/boss fight, spotlight search?? 
-23. 3D interactive world map
+23. 3D interactive world map ✅
 
 
 
