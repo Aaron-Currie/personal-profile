@@ -3,18 +3,20 @@ import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
 import { missions } from "@/constants/missions";
 import { MissionModal } from "@/components/modals/modals";
-import {MissionPin} from "@/components/pins/pins";
 import Briefing from "@/components/briefing/briefing";
 import AnimatedLights from "@/components/animations/animated-lights";
-import useScreenSize from "@/hooks/screen-size";
 import { useUserContext } from "@/context/user";
 import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
+import dynamic from "next/dynamic";
+
+const MissionGlobe = dynamic(() => import("@/components/globe/mission-globe"), {
+  ssr: false,
+});
 
 export default function Home() {
   const [currentMission, setCurrentMission] = useState(null);
   const { briefing, setBriefing } = useUserContext();
   const [loading, setLoading] = useState(true);
-  const { mobile } = useScreenSize()
 
   const { pages, updatePageStatus } = useUserContext();
 
@@ -66,9 +68,10 @@ export default function Home() {
         <MissionModal currentMission={currentMission} closeModal={handleMissionClick} pages={pages}>
         </MissionModal>)}
       <section className={styles.section}>
-      <img src="/globetactical.png" className={styles.map} />
+        <MissionGlobe missions={missions} pages={pages} onMissionSelect={handleMissionClick} />
         <div className={styles.overlay}>
-          <Briefing handleClick={handleBriefingClick} briefing={briefing} exitable={true} sections={[{title: 'Briefing', content: (
+          <div className={styles.briefingLayer}>
+            <Briefing handleClick={handleBriefingClick} briefing={briefing} exitable={true} sections={[{title: 'Briefing', content: (
             <>
               <h3>Briefing</h3>
               <p>Welcome, Operative. Your mission is to track down Agent AC1178 who has gone dark.</p>
@@ -77,11 +80,10 @@ export default function Home() {
               <p>Time is of the essence. Good luck.</p>
             </>)
             }]}/>
-          {missions.map((mission) => {
-            const completed = pages.find((page) => page.link === `${mission.link}`)?.completed;
-            return <MissionPin key={mission.id} handleClick={handleMissionClick} mission={mission} completed={completed} />
-          })}
-          <AnimatedLights />
+          </div>
+          <div className={styles.decorLayer}>
+            <AnimatedLights />
+          </div>
         </div>
       </section>
     </main>
