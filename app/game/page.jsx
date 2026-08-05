@@ -21,9 +21,9 @@ export default function Home() {
   useEffect(() => {
     const home = pages.find((page) => page.link === '/');
     if(home && home.completed && !home.recentUnlock) {
-      setBriefing(false);
+      setBriefing({...briefing, display: false, hidden: false});
     }  else {
-      setBriefing(true);
+      setBriefing({...briefing, display: true, hidden: false});
     }
   }, [])
   const handleLoadingComplete = () => {

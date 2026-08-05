@@ -1,16 +1,15 @@
 'use client';
 import React, { useEffect, useRef, useState } from "react";
+import { useUserContext } from "@/context/user";
 import styles from "./page.module.css";
-import Typewriter from "@/components/animations/typewriter";
 import Success from "@/components/mission-components/success-animation/success";
 import Briefing from "@/components/briefing/briefing";
-import useScreenSize from "@/hooks/screen-size";
 import Button from "@/components/button/button";
 import PasswordDecryptor from "@/components/mission-components/password-text/password-text";
 import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 const CVMission = () => {
-    const [briefing, setBriefing] = useState(false);
+    const { briefing, setBriefing } = useUserContext();
     const [inputValue, setInputValue] = useState([]);
     const [currentInput, setCurrentInput] = useState('');
     const [complete, setComplete] = useState(false);
@@ -19,7 +18,7 @@ const CVMission = () => {
     const screenRef = useRef(null);
     
     const handleBriefingClick = () => {
-        setBriefing(!briefing);
+        setBriefing({...briefing, display: !briefing.display});
     }
 
     const handleSubmit = (inputValue) => {
@@ -34,6 +33,10 @@ const CVMission = () => {
         }
         setInputValue(prev => [...prev, inputValue]);
     }
+
+    useEffect(() => {
+        setBriefing({...briefing, hidden: true});
+    }, []);
 
     useEffect(() => {
         if (correct) {
@@ -60,7 +63,7 @@ const CVMission = () => {
                 <MissionLoadingScreen
                     images={[]}
                     buttonText="Access Terminal"
-                    onComplete={() => setIntroLoading(false)}
+                    onComplete={() => {setIntroLoading(false); setBriefing({...briefing, hidden: false})}}
                 >
                     <h3>Mission: Terminal Hack</h3>
                     <p>The target&apos;s highly classified CV is locked behind a secure terminal. We need you to bypass the security protocols and retrieve the information.</p>
@@ -70,12 +73,14 @@ const CVMission = () => {
             )}
             <main className={'briefing-offset '}>
             {complete && <Success page='/cv'></Success>}
-            <Briefing handleClick={handleBriefingClick} briefing={briefing}>
-            <h3>Mission: Terminal Hack</h3>
-            <p>The targets highly classified CV is locked behind a secure terminal. We need you to bypass the security protocols and retrieve the information.</p>
-            <p>We must get into the terminal by cracking the agents password, luckily this terminal is an older model and may have vulnerabilities we can exploit.</p>
-            <p>Pay attention to the terminal output, it may contain hints about the password.</p>
-            </Briefing>
+            <Briefing handleClick={handleBriefingClick} briefing={briefing} exitable={true} sections={[{title: 'Briefing', content: (
+                <>
+                    <h3>Mission: Terminal Hack</h3>
+                    <p>The targets highly classified CV is locked behind a secure terminal. We need you to bypass the security protocols and retrieve the information.</p>
+                    <p>We must get into the terminal by cracking the agents password, luckily this terminal is an older model and may have vulnerabilities we can exploit.</p>
+                    <p>Pay attention to the terminal output, it may contain hints about the password.</p>
+                </>
+            )}]} />
             <div className={styles.screenContainer}>
                 <div className={styles.screen} ref={screenRef}>
                     {correct ? (

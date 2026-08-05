@@ -1,9 +1,8 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useUserContext } from '@/context/user';
 import styles from './page.module.css';
 import { tech } from '@/constants/tech';
-import CollapsableSection from '@/components/collapsable-section/collapsable-section';
-import FlipGrid from '@/components/flip-grid/flip-grid';
 import Cards from '@/components/cards/cards';
 import AnimatedLights from '@/components/animations/animated-lights';
 import { skills } from './skills-data';
@@ -23,6 +22,12 @@ const INTRO_IMAGES = [
 
 const SkillsPage = () => {
     const [introLoading, setIntroLoading] = useState(true);
+    const { setBriefing } = useUserContext();
+
+    useEffect(() => {
+        setBriefing({display: false, hidden: true});
+    }, []);
+
     return (
         <>
             {introLoading && (

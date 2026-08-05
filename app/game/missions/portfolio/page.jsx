@@ -1,28 +1,27 @@
 'use client';
+import { useUserContext } from "@/context/user";
 import Briefing from "@/components/briefing/briefing";
 import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
-import useScreenSize from "@/hooks/screen-size";
 import Success from "@/components/mission-components/success-animation/success";
 import LoadingScan from "@/components/loading/loading-scan";
 import GridButton from "@/components/mission-components/grid-button/grid-button";
-import Button from "@/components/button/button";
 import generateRandomArray from "./utils/generate-grid";
 import Failure from "@/components/mission-components/failed-overlay/failed-overlay";
 import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 export default function PortfolioMission() {
-  const [briefing, setBriefing] = useState(false);
+  const { briefing, setBriefing } = useUserContext();
   const [complete, setComplete] = useState(false);
   const [failed, setFailed] = useState(false);
   const [counter, setCounter] = useState(0);
   const [grid, setGrid] = useState(null);
   const [energy, setEnergy] = useState(100);
-  const { mobile } = useScreenSize();
   const [introLoading, setIntroLoading] = useState(true);
 
 
   useEffect(() => {
+    setBriefing({...briefing, hidden: true});
     setGrid(generateRandomArray());
   }, []);
 
@@ -41,7 +40,7 @@ export default function PortfolioMission() {
   }, [energy]);
 
   const handleBriefingClick = () => {
-    setBriefing(!briefing);
+    setBriefing({...briefing, display: !briefing.display});
   }
 
   const resetMission = () => {
@@ -61,7 +60,7 @@ export default function PortfolioMission() {
         <MissionLoadingScreen
           images={['/backgrounds/lab.png', '/locked.png']}
           buttonText="Access Files"
-          onComplete={() => setIntroLoading(false)}
+          onComplete={() => {setIntroLoading(false); setBriefing({...briefing, hidden: false})}}
         >
           <h3>Mission: Locker Crack</h3>
           <p>Agent AC1178&apos;s previous mission equipment is locked in a vault at this location. We must break the vault to gain access to this equipment so we can assess its operational capabilities.</p>
@@ -73,12 +72,13 @@ export default function PortfolioMission() {
       <section className={styles.section}>
         {complete && <Success page='/portfolio'></Success>}
         <div className={`briefing-offset`}>
-          <Briefing handleClick={handleBriefingClick} briefing={briefing}>
-            <h3>Mission: Locker Crack</h3>
-            <p>Agent AC1178s previous mission equipment is locked in a vault at this location, we must break the vault to gain access to this equipment so we can assess its operational capabilities.</p>
-            <p>We have identified potential vulnerabilities in the vault and can use our lazer cracking tools to exploit them.</p>
-            <p>You must select the areas of the vault to target with the laser, if you can identify all the weak points before the lazers energy is depleted, you will successfully breach the vault.</p>
-          </Briefing>
+          <Briefing handleClick={handleBriefingClick} briefing={briefing} exitable={true} sections={[{title: 'Briefing', content: (
+            <>
+              <h3>Mission: Locker Crack</h3>
+              <p>Agent AC1178s previous mission equipment is locked in a vault at this location, we must break the vault to gain access to this equipment so we can assess its operational capabilities.</p>
+              <p>We have identified potential vulnerabilities in the vault and can use our lazer cracking tools to exploit them.</p>
+              <p>You must select the areas of the vault to target with the laser, if you can identify all the weak points before the lazers energy is depleted, you will successfully breach the vault.</p>
+            </>)}]} />
           <div className={styles.energyContainer}>
             <div className={`${styles.energyBar} ${failed && styles.failed}`}>
               <div className={styles.energyFill} style={{width: `${energy}%`}}></div>

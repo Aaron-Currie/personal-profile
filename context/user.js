@@ -13,7 +13,7 @@ export const UserProvider = ({ children }) => {
         { mission: 'CV', link: '/cv', completed: false, recentUnlock: false },
     ]);
 
-    const [briefing, setBriefing] = useState(false);
+    const [briefing, setBriefing] = useState({disply: false, hidden: false});
 
     const updatePageStatus = (link, completed, recentUnlock) => {
         setPages((prevPages) =>

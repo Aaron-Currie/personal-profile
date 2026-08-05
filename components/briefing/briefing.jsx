@@ -4,7 +4,7 @@ import Button from '../button/button';
 import { ModalContent, ModalOverlay } from '../modals/modals';
 
 const Briefing = ({handleClick, briefing, children, sections = []}) => {
-    if (!briefing) {
+    if (!briefing || briefing.hidden || !briefing.display) {
         return null;
     }
     const [active, setActive] = React.useState(sections[0].title || '');

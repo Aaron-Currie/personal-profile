@@ -1,5 +1,6 @@
 'use client';
 import React, { useEffect, useState } from "react";
+import { useUserContext } from '@/context/user';
 import styles from "./page.module.css";
 import { ContentFirst, ContentSecond, ContentThird } from "./content";
 import LoadingScan from "@/components/loading/loading-scan";
@@ -14,6 +15,7 @@ const CVPage = () => {
     const [analyzierContent, setAnalyzierContent] = useState(content[0]);
     const [animation, setAnimation] = useState(false);
     const [contentIndex, setContentIndex] = useState(0);
+    const { setBriefing } = useUserContext();
 
     const handleDownload = () => {
         // TODO replace with actual CV file path once updated
@@ -30,6 +32,7 @@ const CVPage = () => {
     };
 
     useEffect(() => {
+        setBriefing({display: false, hidden: true});
         setTimeout(() => {
             setAnimation(true);
         }, 19000);

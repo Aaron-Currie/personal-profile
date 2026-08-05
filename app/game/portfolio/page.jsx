@@ -2,6 +2,7 @@
 import styles from './page.module.css';
 import { projects } from '@/constants/projects';
 import { useEffect, useState } from 'react';
+import { useUserContext } from '@/context/user';
 import MissionLoadingScreen from '@/components/loading/mission-loading-screen';
 import PortfolioHologram from '@/components/quick-profile-comps/portfolio-hologram';
 
@@ -13,31 +14,11 @@ const INTRO_IMAGES = [
 
 export default function Portfolio() {
     const [introLoading, setIntroLoading] = useState(true);
-    const [projectNo, setProjectNo] = useState(null);
-    const [backgroundZoom, setBackgroundZoom] = useState(null);
-    const [project, setProject] = useState(null);
-
-    const handleClick = (project, index) => {
-        if (projectNo) {
-            setProjectNo(null);
-            setBackgroundZoom(null);
-            setProject(null);
-        } else {
-            setProjectNo(index);
-            setBackgroundZoom(project.pinData);
-            setProject(project);
-        }
-    }
-
-    const closeModal = () => {
-        setProjectNo(null);
-        setBackgroundZoom(null);
-        setProject(null);
-    }
+    const { setBriefing } = useUserContext();
 
     useEffect(() => {
-        console.log(projectNo, 'PROJECT NO')
-    }, [projectNo]);
+        setBriefing({display: false, hidden: true});
+    }, []);
 
     return (
         <>
