@@ -1,6 +1,7 @@
 
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useUserContext } from '@/context/user';
 import TimeLine from '@/components/timeline/timeline';
 import { experience } from '@/constants/experience';
 import MissionLoadingScreen from '@/components/loading/mission-loading-screen';
@@ -9,6 +10,12 @@ const INTRO_IMAGES = experience.flatMap(exp => [exp.backgroundImage, ...exp.imag
 
 export default function Experience() {
     const [introLoading, setIntroLoading] = useState(true);
+    const { setBriefing } = useUserContext();
+
+    useEffect(() => {
+        setBriefing({display: false, hidden: true});
+    }, []);
+
     return (
         <>
             {introLoading && (

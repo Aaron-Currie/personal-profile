@@ -1,5 +1,6 @@
 'use client';
 import Briefing from "@/components/briefing/briefing";
+import { useUserContext } from "@/context/user";
 import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
 import { missionData } from "./mission-data";
@@ -13,7 +14,7 @@ const INTRO_IMAGES = [...Object.values(missionData).map(a => a.image), '/backgro
 
 
 export default function AboutMission() {
-  const [briefing, setBriefing] = useState(false);
+  const { briefing, setBriefing } = useUserContext();
   const [complete, setComplete] = useState(false);
   const [missionDataState, setMissionDataState] = useState(missionData);
   const [loading, setLoading] = useState(true);
@@ -22,11 +23,12 @@ export default function AboutMission() {
   const [selectedAgent, setSelectedAgent] = useState([]);
 
   useEffect(() => {
+    setBriefing({...briefing, hidden: true});
     shuffleMissionData();
   }, []);
 
   const handleBriefingClick = () => {
-    setBriefing(!briefing);
+    setBriefing({...briefing, display: !briefing.display});
   }
 
   const shuffleMissionData = () => {
@@ -63,7 +65,7 @@ const selectAgent = (key) => {
         <MissionLoadingScreen
           images={INTRO_IMAGES}
           buttonText="Accept Mission"
-          onComplete={() => setIntroLoading(false)}
+          onComplete={() => {setIntroLoading(false); setBriefing({...briefing, hidden: false})}}
         >
           <h3>Mission: Dossier Search</h3>
           <p>A search of one of our safe houses in this location has uncovered a list of dossiers of all the agents who frequented the safe house, we must analyse these dossiers to uncover the target&#39;s Identity.</p>
@@ -75,12 +77,14 @@ const selectAgent = (key) => {
       <section className={styles.section}>
         {complete && <Success page='/about'></Success>}
         <div className={`briefing-offset`}>
-          <Briefing handleClick={handleBriefingClick} briefing={briefing}>
-            <h3>Mission: Dossier Search</h3>
-            <p>A search of one of our safe houses in this location has uncovered a list of dossiers of all the agents who frequented the safe house, we must analyse these dossiers to uncover the target’s Identity.</p>
-            <p>Select agents to reveal which traits they share with AC1178. Use this intel to eliminate false leads and zero in on the target.</p>
-            <p><strong>⚠️ Caution:</strong> After three incorrect identifications, the agents will be alerted, they will relocate to a new safe house and all revealed intel will be lost. Proceed with precision.</p>
-          </Briefing>
+          <Briefing handleClick={handleBriefingClick} briefing={briefing} exitable={true} sections={[{title: 'Briefing', content: (
+            <>
+              <h3>Mission: Dossier Search</h3>
+              <p>A search of one of our safe houses in this location has uncovered a list of dossiers of all the agents who frequented the safe house, we must analyse these dossiers to uncover the target’s Identity.</p>
+              <p>Select agents to reveal which traits they share with AC1178. Use this intel to eliminate false leads and zero in on the target.</p>
+              <p><strong>⚠️ Caution:</strong> After three incorrect identifications, the agents will be alerted, they will relocate to a new safe house and all revealed intel will be lost. Proceed with precision.</p>
+            </>
+          )}]} />
             <CarouselWrapper border={false} size='medium'>
                  {Object.keys(missionDataState).map((key, index) => {
                     return <AgentCard key={index} loading={loading} agent={missionDataState[key]} agentName={key} action={selectAgent} selectedAgent={selectedAgent} />

@@ -1,20 +1,18 @@
 'use client';
+import { useUserContext } from "@/context/user";
 import Briefing from "@/components/briefing/briefing";
 import styles from "./page.module.css";
 import React, { useEffect, useState } from "react";
-import useScreenSize from "@/hooks/screen-size";
 import Success from "@/components/mission-components/success-animation/success";
 import { TimeLinePin } from "@/components/pins/pins";
 import generateGrid from "./utils/generate-grid";
-import Button from "@/components/button/button";
 import LoadingPage from "@/components/loading/loading-page";
 import Failure from "@/components/mission-components/failed-overlay/failed-overlay";
-import MultiSection from "@/components/multi-section/multi-section";
 import MissionLoadingScreen from "@/components/loading/mission-loading-screen";
 
 export default function TimelineTraverse() {
   const GridSize = 9
-  const [briefing, setBriefing] = useState(false);
+  const { briefing, setBriefing } = useUserContext();
   const [complete, setComplete] = useState(false);
   const [failed, setFailed] = useState(false);
   const [grid, setGrid] = useState(null);
@@ -29,6 +27,7 @@ export default function TimelineTraverse() {
   const [usingShield, setUsingShield] = useState(false);
 
   useEffect(() => {
+    setBriefing({...briefing, hidden: true});
     setGrid(generateGrid(GridSize));
   }, []);
 
@@ -50,7 +49,7 @@ export default function TimelineTraverse() {
 
 
   const handleBriefingClick = () => {
-    setBriefing(!briefing);
+    setBriefing({...briefing, display: !briefing.display});
   }
 
   const noReachablePoints = (grid) => {
@@ -231,7 +230,7 @@ export default function TimelineTraverse() {
         <MissionLoadingScreen
           images={['/backgrounds/jungle.png']}
           buttonText="Begin Traverse"
-          onComplete={() => setIntroLoading(false)}
+          onComplete={() => {setIntroLoading(false); setBriefing({...briefing, hidden: false})}}
         >
           <h3>Mission: Timeline Alignment</h3>
           <p>AC1178&apos;s previous missions and experience contain vital intel that can help us locate them. We have replicated a timeline simulation to navigate their past.</p>

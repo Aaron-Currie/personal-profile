@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CollapsableSection from '@/components/collapsable-section/collapsable-section';
 import styles from './page.module.css'
 import { qestrArray } from '@/constants/questrArray';
@@ -9,6 +9,7 @@ import AnimatedLights from '@/components/animations/animated-lights';
 import CarouselWrapper from '@/components/carousel-wrapper/carousel-wrapper';
 import Typewriter from '@/components/animations/typewriter';
 import MissionLoadingScreen from '@/components/loading/mission-loading-screen';
+import { useUserContext } from '@/context/user';
 
 const INTRO_IMAGES = [
     '/profilepic.png',
@@ -18,6 +19,12 @@ const INTRO_IMAGES = [
 
 export default function AboutMe() {
     const [introLoading, setIntroLoading] = useState(true);
+    const { setBriefing } = useUserContext();
+
+    useEffect(() => {
+        setBriefing({display: false, hidden: true});
+    }, []);
+
     return (
         <>
             {introLoading && (
