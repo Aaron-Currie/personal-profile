@@ -101,8 +101,8 @@ function GlobeMesh({ globeRef }) {
       <sphereGeometry args={[R, 128, 128]} />
       <meshStandardMaterial
         map={texture}
-        color="#0099ff"
-        emissive="#001c44"
+        color="#00d0ff"
+        emissive="#010c1eeb"
         emissiveIntensity={0.32}
         roughness={0.72}
         metalness={0.04}
